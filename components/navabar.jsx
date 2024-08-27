@@ -1,9 +1,9 @@
 import { Text, View, Image, StyleSheet } from "react-native";
-import home from "../../assets/navbar/home.png";
-import wallet from "../../assets/navbar/wallet.png";
-import piu from "../../assets/navbar/piu.png";
-import stat from "../../assets/navbar/stat.png";
-import lock from "../../assets/navbar/lock.png";
+import home from "../assets/navbar/home.png";
+import wallet from "../assets/navbar/wallet.png";
+import piu from "../assets/navbar/piu.png";
+import stat from "../assets/navbar/stat.png";
+import lock from "../assets/navbar/lock.png";
 
 export default function Navbar() {
   return (

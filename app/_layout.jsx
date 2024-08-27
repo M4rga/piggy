@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
-import Navbar from "../components/Stats/navabar";
+import Navbar from "../components/navabar";
 
 export default function App() {
   return (
