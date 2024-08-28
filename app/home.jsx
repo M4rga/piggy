@@ -8,9 +8,9 @@ import Icon from "react-native-vector-icons/Feather"; // Import Feather icons
 import Icon2 from "react-native-vector-icons/FontAwesome"; // Import Feather icons
 import Icon3 from "react-native-vector-icons/MaterialCommunityIcons"; // Import Feather icons
 
-const pig_empty = require("../assets/homepage/Pig_empty.png");
-const pig_logo = require("../assets/homepage/Pig_logo.png");
-const menu = require("../assets/homepage/Menu_home.png");
+const pig_empty = require("../assets/Homepage/Pig_empty.png");
+const pig_logo = require("../assets/Homepage/Pig_logo.png");
+const menu = require("../assets/Homepage/Menu_home.png");
 
 export default function Home() {
   // ------------FONT---------------
