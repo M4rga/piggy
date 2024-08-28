@@ -11,20 +11,24 @@ export default function App() {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
+        initialRouteName="home"
         screenOptions={{
+          headerShown: false,
           tabBarShowLabel: false,
+          tabBarActiveTintColor: "#F773ED",
+          tabBarInactiveTintColor: "black",
+          tabBarStyle: {
+            paddingBottom: 20,
+            height: 70,
+          },
         }}
       >
         <Tab.Screen
           name="Home"
           component={Home}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <Icon
-                name="home"
-                size={22}
-                color={focused ? "#F773ED" : "black"}
-              />
+            tabBarIcon: ({ color }) => (
+              <Icon name="home" size={22} color={color} />
             ),
           }}
         />
@@ -32,12 +36,8 @@ export default function App() {
           name="Wallet"
           component={Wallet}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <Icon
-                name="inbox"
-                size={24}
-                color={focused ? "#F773ED" : "black"}
-              />
+            tabBarIcon: ({ color }) => (
+              <Icon name="inbox" size={24} color={color} />
             ),
           }}
         />
@@ -45,12 +45,8 @@ export default function App() {
           name="Stats"
           component={Stats}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <Icon
-                name="bar-chart"
-                size={24}
-                color={focused ? "#F773ED" : "black"}
-              />
+            tabBarIcon: ({ color }) => (
+              <Icon name="bar-chart" size={24} color={color} />
             ),
           }}
         />
