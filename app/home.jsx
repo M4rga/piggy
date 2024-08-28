@@ -8,9 +8,9 @@ import Icon from "react-native-vector-icons/Feather"; // Import Feather icons
 import Icon2 from "react-native-vector-icons/FontAwesome"; // Import Feather icons
 import Icon3 from "react-native-vector-icons/MaterialCommunityIcons"; // Import Feather icons
 
-const pig_empty = require("../assets/Homepage/Pig_empty.png");
-const pig_logo = require("../assets/Homepage/Pig_logo.png");
-const menu = require("../assets/Homepage/Menu_home.png");
+const pig_empty = require("../assets/homepage/Pig_empty.png");
+const pig_logo = require("../assets/homepage/Pig_logo.png");
+const menu = require("../assets/homepage/Menu_home.png");
 
 export default function Home() {
   // ------------FONT---------------
@@ -18,6 +18,10 @@ export default function Home() {
   const loadFonts = () => {
     return Font.loadAsync({
       "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+      "Switzer-Bold": require("../assets/font/Switzer-Bold.otf"),
+      "Switzer-Semibold": require("../assets/font/Switzer-Semibold.otf"),
+      "Switzer-Thin": require("../assets/font/Switzer-Thin.otf"),
+      "Switzer-Italic": require("../assets/font/Switzer-Italic.otf"),
     });
   };
 
@@ -138,6 +142,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 23, // Font size for the greeting text
+    fontFamily: "Switzer-Semibold",
   },
   logoContainer: {
     width: 58, // Width including padding for the logo container
@@ -163,13 +168,16 @@ const styles = StyleSheet.create({
   totalBalanceText: {
     paddingBottom: 10,
     fontSize: 18,
+    fontFamily: "Switzer-Semibold",
   },
   totalBalanceAmount: {
     fontSize: 25,
+    fontFamily: "Switzer-Semibold",
     marginBottom: 20,
   },
   totalBalanceDecimal: {
     fontSize: 12,
+    fontFamily: "Switzer-Semibold",
     color: "#A0A0A0",
   },
   card: {

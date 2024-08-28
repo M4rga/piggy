@@ -21,6 +21,10 @@ export default function Stats() {
   const loadFonts = () => {
     return Font.loadAsync({
       "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+      "Switzer-Bold": require("../assets/font/Switzer-Bold.otf"),
+      "Switzer-Semibold": require("../assets/font/Switzer-Semibold.otf"),
+      "Switzer-Thin": require("../assets/font/Switzer-Thin.otf"),
+      "Switzer-Italic": require("../assets/font/Switzer-Italic.otf"),
     });
   };
 
@@ -168,7 +172,7 @@ const styles = StyleSheet.create({
   },
   selectedOptionText: {
     color: "black",
-    fontWeight: "bold",
+    fontFamily: "Switzer-Semibold",
   },
   content: {
     marginTop: 20,

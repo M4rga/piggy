@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const appleLogo = require("../assets/apple.png");
+const appleLogo = require("../assets/stats/apple.png");
 
 export default function StatsCategory() {
   const value = 50; // Supponiamo di avere un valore da mostrare

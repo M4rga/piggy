@@ -12,6 +12,10 @@ export default function Wallet() {
   const loadFonts = () => {
     return Font.loadAsync({
       "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+      "Switzer-Bold": require("../assets/font/Switzer-Bold.otf"),
+      "Switzer-Semibold": require("../assets/font/Switzer-Semibold.otf"),
+      "Switzer-Thin": require("../assets/font/Switzer-Thin.otf"),
+      "Switzer-Italic": require("../assets/font/Switzer-Italic.otf"),
     });
   };
 
