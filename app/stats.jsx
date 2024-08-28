@@ -13,9 +13,10 @@ export default function Stats() {
   const handleSelection = (value) => {
     setSelectedValue(value);
   };
+
   return (
     <View style={styles.container}>
-      <Text style={{ textAlign: "center" }}>Stats</Text>
+      <Text style={{ textAlign: "center", fontWeight: "bold" }}>Stats</Text>
       <View>
         {/* Orizzontal selector */}
         <View style={styles.horizontalPicker}>
@@ -72,10 +73,16 @@ export default function Stats() {
         </View>
 
         {/* Page content that changes based on the selected item */}
-        <View style={styles.content}>
-          {selectedValue === "settimana" && <PieChart data={data} donut />}
-          {selectedValue === "mese" && <PieChart data={data2} donut />}
-          {selectedValue === "anno" && <PieChart data={data3} donut />}
+        <View style={[styles.content, styles.graphContainer]}>
+          {selectedValue === "settimana" && (
+            <PieChart data={data} donut innerRadius={100} />
+          )}
+          {selectedValue === "mese" && (
+            <PieChart data={data2} donut innerRadius={100} />
+          )}
+          {selectedValue === "anno" && (
+            <PieChart data={data3} donut innerRadius={100} />
+          )}
         </View>
       </View>
     </View>
@@ -86,25 +93,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    marginTop: 50,
+  },
+  graphContainer: {
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 50,
   },
   horizontalPicker: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 20,
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 20,
   },
   option: {
-    padding: 10,
+    flex: 1,
+    alignItems: "center",
   },
   selectedOption: {
     borderBottomWidth: 2,
-    borderBottomColor: "#007AFF",
+    borderBottomColor: "black",
   },
   optionText: {
     fontSize: 18,
     color: "#333",
   },
   selectedOptionText: {
-    color: "#007AFF",
+    color: "black",
     fontWeight: "bold",
   },
   content: {
