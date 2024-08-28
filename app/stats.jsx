@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
+import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
 
 const data = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
@@ -8,6 +9,7 @@ const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // D
 
 export default function Stats() {
   const [selectedValue, setSelectedValue] = useState("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
+  const [selectOption, setSelectedOptions] = useState("uscite");
 
   // Function to set the selected item active
   const handleSelection = (value) => {
@@ -16,7 +18,6 @@ export default function Stats() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ textAlign: "center", fontWeight: "bold" }}>Stats</Text>
       <View>
         {/* Orizzontal selector */}
         <View style={styles.horizontalPicker}>
@@ -74,15 +75,27 @@ export default function Stats() {
 
         {/* Page content that changes based on the selected item */}
         <View style={[styles.content, styles.graphContainer]}>
-          {selectedValue === "settimana" && (
-            <PieChart data={data} donut innerRadius={100} />
-          )}
-          {selectedValue === "mese" && (
-            <PieChart data={data2} donut innerRadius={100} />
-          )}
-          {selectedValue === "anno" && (
-            <PieChart data={data3} donut innerRadius={100} />
-          )}
+          <PieChart
+            data={
+              selectedValue === "settimana"
+                ? data
+                : selectedValue === "mese"
+                ? data2
+                : data3
+            }
+            donut
+            innerRadius={100}
+          />
+
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectOption}
+              onValueChange={(itemValue) => setSelectedOptions(itemValue)}
+            >
+              <Picker.Item label="Uscite" value="uscite" />
+              <Picker.Item label="Entrate" value="entrate" />
+            </Picker>
+          </View>
         </View>
       </View>
     </View>
@@ -92,13 +105,14 @@ export default function Stats() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    marginTop: 50,
+    padding: 0,
+    margin: 0,
   },
   graphContainer: {
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 50,
+    padding: 100,
+    margin: 20,
   },
   horizontalPicker: {
     flexDirection: "row",
@@ -129,5 +143,12 @@ const styles = StyleSheet.create({
   contentText: {
     fontSize: 16,
     color: "#333",
+  },
+  pickerContainer: {
+    position: "absolute",
+    top: -50,
+    left: 0,
+    width: 128,
+    height: 25,
   },
 });
