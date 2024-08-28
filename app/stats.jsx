@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
 import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
+import StatsCategory from "../components/statsCategory";
 
 const data = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
 const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // Data used in the graph
@@ -15,6 +16,8 @@ export default function Stats() {
   const handleSelection = (value) => {
     setSelectedValue(value);
   };
+
+  const value = 50;
 
   return (
     <View style={styles.container}>
@@ -75,6 +78,16 @@ export default function Stats() {
 
         {/* Page content that changes based on the selected item */}
         <View style={[styles.content, styles.graphContainer]}>
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={selectOption}
+              onValueChange={(itemValue) => setSelectedOptions(itemValue)}
+            >
+              <Picker.Item label="Uscite" value="uscite" />
+              <Picker.Item label="Entrate" value="entrate" />
+            </Picker>
+          </View>
+
           <PieChart
             data={
               selectedValue === "settimana"
@@ -85,17 +98,17 @@ export default function Stats() {
             }
             donut
             innerRadius={100}
+            centerLabelComponent={() => (
+              <Text style={{ fontSize: 20 }}>
+                € <Text style={styles.valueText}>{value}</Text>
+              </Text>
+            )}
           />
+        </View>
 
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={selectOption}
-              onValueChange={(itemValue) => setSelectedOptions(itemValue)}
-            >
-              <Picker.Item label="Uscite" value="uscite" />
-              <Picker.Item label="Entrate" value="entrate" />
-            </Picker>
-          </View>
+        {/* Categories */}
+        <View>
+          <StatsCategory />
         </View>
       </View>
     </View>
@@ -111,7 +124,7 @@ const styles = StyleSheet.create({
   graphContainer: {
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 100,
+    padding: 80,
     margin: 20,
   },
   horizontalPicker: {
@@ -146,9 +159,12 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     position: "absolute",
-    top: -50,
+    top: -55,
     left: 0,
     width: 128,
     height: 25,
+  },
+  valueText: {
+    fontSize: 30,
   },
 });
