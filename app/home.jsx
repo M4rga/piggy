@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 23, // Font size for the greeting text
-    fontWeight: "bold", // Bold font weight for the greeting text
   },
   logoContainer: {
     width: 58, // Width including padding for the logo container
@@ -164,16 +163,13 @@ const styles = StyleSheet.create({
   totalBalanceText: {
     paddingBottom: 10,
     fontSize: 18,
-    fontWeight: "bold",
   },
   totalBalanceAmount: {
     fontSize: 25,
-    fontWeight: "bold",
     marginBottom: 20,
   },
   totalBalanceDecimal: {
     fontSize: 12,
-    fontWeight: "bold",
     color: "#A0A0A0",
   },
   card: {

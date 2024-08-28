@@ -14,6 +14,8 @@ const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // D
 const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // Data used in the graph
 
 export default function Stats() {
+  const [selectedValue, setSelectedValue] = useState("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
+  const [selectOption, setSelectedOptions] = useState("uscite");
   // ------------FONT---------------
   const [fontsLoaded, setFontsLoaded] = useState(false); // Correct useState import
   const loadFonts = () => {
@@ -30,8 +32,6 @@ export default function Stats() {
     return null; // Or show a loading indicator
   }
   // -------------------------
-  const [selectedValue, setSelectedValue] = useState("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
-  const [selectOption, setSelectedOptions] = useState("uscite");
 
   // Function to set the selected item active
   const handleSelection = (value) => {
