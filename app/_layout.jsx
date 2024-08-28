@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./home";
 import Stats from "./stats";
+import Wallet from "./wallet";
 import Navbar from "../components/Navbar/navbar";
 
 const Stack = createNativeStackNavigator();
@@ -12,6 +13,7 @@ export default function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Wallet" component={Wallet} />
         <Stack.Screen name="Stats" component={Stats} />
       </Stack.Navigator>
       <Navbar />
