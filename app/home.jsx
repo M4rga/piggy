@@ -1,4 +1,9 @@
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+// ------------FONT---------------
+import { Text, TextInput } from "../components/textFont";
+import { useState, useEffect } from "react";
+import * as Font from "expo-font";
+// -------------------------
+import { View, StyleSheet, Image, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/Feather"; // Import Feather icons
 import Icon2 from "react-native-vector-icons/FontAwesome"; // Import Feather icons
 import Icon3 from "react-native-vector-icons/MaterialCommunityIcons"; // Import Feather icons
@@ -8,6 +13,22 @@ const pig_logo = require("../assets/Homepage/Pig_logo.png");
 const menu = require("../assets/Homepage/Menu_home.png");
 
 export default function Home() {
+  // ------------FONT---------------
+  const [fontsLoaded, setFontsLoaded] = useState(false); // Correct useState import
+  const loadFonts = () => {
+    return Font.loadAsync({
+      "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+    });
+  };
+
+  useEffect(() => {
+    loadFonts().then(() => setFontsLoaded(true));
+  }, []);
+
+  if (!fontsLoaded) {
+    return null; // Or show a loading indicator
+  }
+  // -------------------------
   return (
     <ScrollView style={styles.container}>
       {/* Container for the content within the scroll view */}
@@ -39,7 +60,9 @@ export default function Home() {
           <View style={styles.balanceContainer}>
             {/* Wrap all text content inside a <Text> component */}
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
-            <Text style={styles.totalBalanceAmount}>€ 20.275<Text style={styles.totalBalanceDecimal}>.78</Text></Text>
+            <Text style={styles.totalBalanceAmount}>
+              € 20.275<Text style={styles.totalBalanceDecimal}>.78</Text>
+            </Text>
 
             {/* Card section with icon and amount */}
             <View style={styles.allCards}>
@@ -152,14 +175,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     color: "#A0A0A0",
-
   },
   card: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: 80,
-    height: 50, 
+    height: 50,
     padding: 15,
     backgroundColor: "#5272F2",
     borderRadius: 10,

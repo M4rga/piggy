@@ -1,19 +1,41 @@
+// ------------FONT---------------
+import { Text, TextInput } from "../components/textFont";
+import { useState, useEffect } from "react";
+import * as Font from "expo-font";
+// -------------------------
+import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/Feather";
 import Home from "./home";
 import Stats from "./stats";
 import Wallet from "./wallet";
-import Icon from "react-native-vector-icons/Feather";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  // ------------FONT---------------
+  const [fontsLoaded, setFontsLoaded] = useState(false); // Correct useState import
+  const loadFonts = () => {
+    return Font.loadAsync({
+      "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+    });
+  };
+
+  useEffect(() => {
+    loadFonts().then(() => setFontsLoaded(true));
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  // -------------------------
+
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
         initialRouteName="home"
         screenOptions={{
-          headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: "#F773ED",
           tabBarInactiveTintColor: "black",
@@ -27,6 +49,7 @@ export default function App() {
           name="Home"
           component={Home}
           options={{
+            headerShown: false,
             tabBarIcon: ({ color }) => (
               <Icon name="home" size={22} color={color} />
             ),
@@ -39,6 +62,28 @@ export default function App() {
             tabBarIcon: ({ color }) => (
               <Icon name="inbox" size={24} color={color} />
             ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => (
+              <View style={{ marginLeft: 15 }}>
+                <Icon
+                  name="chevron-left"
+                  size={26}
+                  onPress={() => alert("This is a button!")}
+                />
+              </View>
+            ),
+            headerRight: () => (
+              <View style={{ marginRight: 15 }}>
+                <Icon
+                  name="plus"
+                  size={26}
+                  onPress={() => alert("This is a button!")}
+                />
+              </View>
+            ),
           }}
         />
         <Tab.Screen
@@ -47,6 +92,28 @@ export default function App() {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon name="bar-chart" size={24} color={color} />
+            ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => (
+              <View style={{ marginLeft: 15 }}>
+                <Icon
+                  name="chevron-left"
+                  size={26}
+                  onPress={() => alert("This is a button!")}
+                />
+              </View>
+            ),
+            headerRight: () => (
+              <View style={{ marginRight: 15 }}>
+                <Icon
+                  name="plus"
+                  size={26}
+                  onPress={() => alert("This is a button!")}
+                />
+              </View>
             ),
           }}
         />

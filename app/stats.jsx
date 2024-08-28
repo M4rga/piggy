@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
+// ------------FONT---------------
+import { Text, TextInput } from "../components/textFont";
+import { useState, useEffect } from "react";
+import * as Font from "expo-font";
+// -------------------------
+import React from "react";
+import { View, StyleSheet, TouchableOpacity } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
 import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../components/statsCategory";
@@ -9,6 +14,22 @@ const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // D
 const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // Data used in the graph
 
 export default function Stats() {
+  // ------------FONT---------------
+  const [fontsLoaded, setFontsLoaded] = useState(false); // Correct useState import
+  const loadFonts = () => {
+    return Font.loadAsync({
+      "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+    });
+  };
+
+  useEffect(() => {
+    loadFonts().then(() => setFontsLoaded(true));
+  }, []);
+
+  if (!fontsLoaded) {
+    return null; // Or show a loading indicator
+  }
+  // -------------------------
   const [selectedValue, setSelectedValue] = useState("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
   const [selectOption, setSelectedOptions] = useState("uscite");
 
