@@ -19,8 +19,16 @@ export default function Navbar() {
         }}
         color={home}
       />
-      <Icon name="inbox" size={24} />
-      <Icon name="plus" size={28} style={{ marginTop: -1.5 }} />
+      <Icon
+        name="inbox" 
+        size={24}
+        onPress={() => navigation.navigate("Wallet")}
+      />
+      <Icon
+        name="plus"
+        size={28}
+        style={{ marginTop: -1.5 }}
+      />
       <Icon
         name="bar-chart"
         size={24}
