@@ -1,12 +1,11 @@
 // ------------FONT---------------
-import { Text, TextInput } from "../components/textFont";
-import { useState, useEffect } from "react";
+import {Text, TextInput} from "../components/textFont";
+import {useState, useEffect} from "react";
 import * as Font from "expo-font";
 // -------------------------
-import { View, StyleSheet, Image, ScrollView } from "react-native";
-import Icon from "react-native-vector-icons/Feather"; 
-import Icon2 from "react-native-vector-icons/FontAwesome"; 
-import Icon3 from "react-native-vector-icons/MaterialCommunityIcons"; 
+import {View, StyleSheet, Image, ScrollView} from "react-native";
+import HomeCards from "../components/homeCards";
+import TextTicker from "react-native-text-ticker";
 
 const pig_empty = require("../assets/homepage/Pig_empty.png");
 const pig_mid = require("../assets/homepage/Pig_mid.png");
@@ -35,31 +34,6 @@ export default function Home() {
     return null;
   }
   // -------------------------
-  // Function to return dynamic card styles
-  const getCardStyle = (iconType) => {
-    switch (iconType) {
-      case "credit-card":
-        return { 
-          backgroundColor: "#ECE9EA", // Gray
-          textColor: "#000000", //Black Text
-        }; 
-      case "paypal":
-        return { 
-          backgroundColor: "#5272F2", // Blue
-          textColor: "#FFFFFF", // White text
-        }; 
-      case "cash":
-        return { 
-          backgroundColor: "#2F212F", // Dark
-          textColor: "#FFFFFF", // White text
-        }; 
-      default:
-        return { 
-          backgroundColor: "#F773ED", // Default Pink
-          textColor: "#FFFFFF", // White text
-        }; 
-    }
-  };
 
   const getPigImage = (balance) => {
     if (balance < 500) {
@@ -73,10 +47,10 @@ export default function Home() {
 
   // Example total balance in string format
   const totalBalanceString = "20.275,78";
-  
+
   // Convert the totalBalanceString to a number
   const convertBalanceToNumber = (balanceString) => {
-    return parseFloat(balanceString.replace(/\./g, '').replace(',', '.'));
+    return parseFloat(balanceString.replace(/\./g, "").replace(",", "."));
   };
 
   // Convert the string balance to a number
@@ -84,19 +58,19 @@ export default function Home() {
 
   const formatBalance = (balance) => {
     // Use Intl.NumberFormat to format with thousands separators and decimals
-    const formatter = new Intl.NumberFormat('de-DE', {
+    const formatter = new Intl.NumberFormat("de-DE", {
       minimumFractionDigits: 2,
-      maximumFractionDigits: 2
+      maximumFractionDigits: 2,
     });
 
     // Format the number
     const formattedBalance = formatter.format(balance);
-    const [euros, cents] = formattedBalance.split(',');
+    const [euros, cents] = formattedBalance.split(",");
 
-    return { euros, cents };
+    return {euros, cents};
   };
 
-  const { euros, cents } = formatBalance(totalBalance);
+  const {euros, cents} = formatBalance(totalBalance);
 
   return (
     <ScrollView style={styles.container}>
@@ -112,7 +86,7 @@ export default function Home() {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{ flex: 1 }}></View>
+            <View style={{flex: 1}}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -120,43 +94,53 @@ export default function Home() {
           <View style={styles.balanceContainer}>
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
             <Text style={styles.totalBalanceAmount}>
-              € {euros}<Text style={styles.totalBalanceDecimal}>.{cents}</Text>
+              € {euros}
+              <Text style={styles.totalBalanceDecimal}>.{cents}</Text>
             </Text>
+            <HomeCards />
+          </View>
 
-            <View style={styles.allCards}>
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={[styles.card, { backgroundColor: getCardStyle("credit-card").backgroundColor }]}>
-                  <Icon name="credit-card" size={12} color={getCardStyle("credit-card").textColor} style={styles.cardIcon} />
-                  <View style={styles.cardAmountRow}>
-                    <Text style={[styles.cardAmount, { color: getCardStyle("credit-card").textColor }]}>€ 6.579</Text>
-                    <Text style={[styles.cardAmountDecimal, { color: getCardStyle("credit-card").textColor }]}>,78</Text>
+          <View style={styles.InOutContainer}>
+            <Text style={styles.title}>Questo mese</Text>
+            <View style={styles.rowInOut}>
+              <View style={styles.InOut}>
+                <View style={styles.circleContainer}>
+                  <View style={styles.circleIn}>
+                    <Text style={styles.amountIn}>1782</Text>
                   </View>
                 </View>
-
-                <View style={[styles.card, { backgroundColor: getCardStyle("paypal").backgroundColor }]}>
-                  <Icon2 name="paypal" size={12} color={getCardStyle("paypal").textColor} style={styles.cardIcon} />
-                  <View style={styles.cardAmountRow}>
-                    <Text style={[styles.cardAmount, { color: getCardStyle("paypal").textColor }]}>€ 62</Text>
-                    <Text style={[styles.cardAmountDecimal, { color: getCardStyle("paypal").textColor }]}></Text>
+                <View style={styles.textContainer}>
+                  <Text style={styles.label}>Entrate</Text>
+                  <TextTicker
+                    scrollSpeed={50}
+                    loop
+                    bounce
+                    numberOfLines={1}
+                    style={styles.description}
+                  >
+                    Stipendio, Mansione
+                  </TextTicker>
+                </View>
+              </View>
+              <View style={styles.InOut}>
+                <View style={styles.circleContainer}>
+                  <View style={styles.circleOut}>
+                    <Text style={styles.amountOut}>914</Text>
                   </View>
                 </View>
-
-                <View style={[styles.card, { backgroundColor: getCardStyle("cash").backgroundColor }]}>
-                  <Icon3 name="cash" size={12} color={getCardStyle("cash").textColor} style={styles.cardIcon} />
-                  <View style={styles.cardAmountRow}>
-                    <Text style={[styles.cardAmount, { color: getCardStyle("cash").textColor }]}>€ 834</Text>
-                    <Text style={[styles.cardAmountDecimal, { color: getCardStyle("cash").textColor }]}></Text>
-                  </View>
+                <View style={styles.textContainer}>
+                  <Text style={styles.label}>Uscite</Text>
+                  <TextTicker
+                    scrollSpeed={50}
+                    loop
+                    bounce
+                    numberOfLines={1}
+                    style={styles.description}
+                  >
+                    Cibo, Casa, Benzina
+                  </TextTicker>
                 </View>
-
-                <View style={[styles.card, { backgroundColor: getCardStyle("cash").backgroundColor }]}>
-                  <Icon3 name="cash" size={12} color={getCardStyle("cash").textColor} style={styles.cardIcon} />
-                  <View style={styles.cardAmountRow}>
-                    <Text style={[styles.cardAmount, { color: getCardStyle("cash").textColor }]}>€ 12.800</Text>
-                    <Text style={[styles.cardAmountDecimal, { color: getCardStyle("cash").textColor }]}>,78</Text>
-                  </View>
-                </View>
-              </ScrollView>
+              </View>
             </View>
           </View>
         </View>
@@ -282,5 +266,76 @@ const styles = StyleSheet.create({
   paypal: {
     width: 12,
     height: 12,
+  },
+  InOutContainer: {
+    padding: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontFamily: "Switzer-Semibold",
+    marginBottom: 10,
+  },
+  rowInOut: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  InOut: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    borderColor: "#ECE9EA",
+    borderWidth: 2,
+    borderRadius: 17,
+    padding: 10,
+    margin: 5, // Space between items
+    flexDirection: "row", // Align circle and text horizontally
+    alignItems: "center", // Center items vertically
+  },
+  circleContainer: {
+    marginRight: 10, // Space between circle and text
+  },
+  circleIn: {
+    width: 50,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#F773ED",
+    borderRadius: 25, // Half of width and height for circular shape
+    //backgroundColor: "#F0F0F0",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  circleOut: {
+    width: 50,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#5272F2",
+    borderRadius: 25, // Half of width and height for circular shape
+    //backgroundColor: "#F0F0F0",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  amountIn: {
+    fontSize: 16, // Smaller font size for the number
+    color: "#F773ED",
+    fontFamily: "Switzer-Semibold",
+  },
+  amountOut: {
+    fontSize: 16, // Smaller font size for the number
+    color: "#5272F2",
+    fontFamily: "Switzer-Semibold",
+  },
+  textContainer: {
+    flex: 1, // Take remaining space
+  },
+  label: {
+    fontSize: 16,
+    textAlign: "left",
+    fontFamily: "Switzer-Semibold",
+    marginLeft: 10,
+  },
+  description: {
+    fontSize: 12,
+    textAlign: "left",
+    marginTop: 5,
+    marginLeft: 10,
   },
 });
