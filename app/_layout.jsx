@@ -9,9 +9,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import HeaderButton from "../components/headerButton";
 import Icon from "react-native-vector-icons/Feather";
+import CustomTabBar from "../components/customTabBar";
 import Home from "./home";
 import Stats from "./stats";
 import Wallet from "./wallet";
+import Income from "./income";
+import Outcome from "./loan";
+import Loan from "./outcome";
+import Private from "./private";
+import Recipt from "./recipt";
 
 const Tab = createBottomTabNavigator();
 
@@ -51,6 +57,7 @@ export default function App() {
             height: 70,
           },
         }}
+        tabBar={(props) => <CustomTabBar {...props} />}
       >
         <Tab.Screen
           name="Home"
@@ -90,6 +97,21 @@ export default function App() {
             },
             headerLeft: () => <HeaderButton />,
             headerRight: () => <HeaderButton icon={"filter"} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Private Area"
+          component={Private}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="lock" size={24} color={color} />
+            ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
           }}
         />
       </Tab.Navigator>

@@ -1,7 +1,7 @@
 // ------------FONT---------------
 import { Text, TextInput } from "../components/textFont";
 import { useState, useEffect } from "react";
-import  Card  from "../components/Card";
+import Card from "../components/card";
 import * as Font from "expo-font";
 // -------------------------
 import { View, StyleSheet, ScrollView } from "react-native";
@@ -39,14 +39,40 @@ export default function Wallet() {
         </Text>
       </View>
 
-      <Card name="Conto Corrente" num1="€ 6.579" num2=",78" color="#ECE9EA" iconName="credit-card"/>
+      <Card
+        name="Conto Corrente"
+        num1="€ 6.579"
+        num2=",78"
+        color="#ECE9EA"
+        iconName="credit-card"
+      />
 
-      <Card name="Risparmi" num1="€ 834" num2=",00" color="#2F212F" color2="white" iconName="dollar-sign" />
+      <Card
+        name="Risparmi"
+        num1="€ 834"
+        num2=",00"
+        color="#2F212F"
+        color2="white"
+        iconName="dollar-sign"
+      />
 
-      <Card name="Pay Pal" num1="€ 62" num2=",00" color="#5272F2" color2="white" iconName="fa-brands fa-paypal"/>
+      <Card
+        name="Pay Pal"
+        num1="€ 62"
+        num2=",00"
+        color="#5272F2"
+        color2="white"
+        iconName="fa-brands fa-paypal"
+      />
 
-      <Card name="Fondo di risparmio" num1="€ 12.800" num2=",00" color="#F773ED" color2="white" iconName="fa-solid fa-piggy-bank"/>
-      
+      <Card
+        name="Fondo di risparmio"
+        num1="€ 12.800"
+        num2=",00"
+        color="#F773ED"
+        color2="white"
+        iconName="fa-solid fa-piggy-bank"
+      />
     </ScrollView>
   );
 }
@@ -60,7 +86,7 @@ const styles = StyleSheet.create({
   balanceText: {
     color: "#A0A0A0",
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: "bold",
     // fontFamily: "Switzer-Variable",
   },
   card: {
@@ -69,10 +95,10 @@ const styles = StyleSheet.create({
     width: "95%",
     marginLeft: "2.5%",
     padding: 15,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: "8%",
     // Proprietà ombra per iOS
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.7,
     shadowRadius: 5,
@@ -83,5 +109,5 @@ const styles = StyleSheet.create({
     felx: 1,
     width: "88%",
     height: "100%",
-  }
+  },
 });
