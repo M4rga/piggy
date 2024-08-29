@@ -62,21 +62,27 @@ export default function Home() {
   };
 
   const getPigImage = (balance) => {
-    if(balance < 500) {
+    if (balance < 500) {
       return pig_empty;
-    } else if(balance >= 500 && balance < 10000) {
+    } else if (balance >= 500 && balance < 10000) {
       return pig_mid;
     } else {
       return pig_full;
     }
-  }
+  };
 
-  const totalBalance = "20.275,78";
+  // Example total balance in string format
+  const totalBalanceString = "20.275,78";
+  
+  // Convert the totalBalanceString to a number
+  const convertBalanceToNumber = (balanceString) => {
+    return parseFloat(balanceString.replace(/\./g, '').replace(',', '.'));
+  };
+
+  // Convert the string balance to a number
+  const totalBalance = convertBalanceToNumber(totalBalanceString);
 
   const formatBalance = (balance) => {
-    // Convert balance to a number
-    const numericBalance = parseFloat(balance.replace(/\./g, '').replace(',', '.'));
-
     // Use Intl.NumberFormat to format with thousands separators and decimals
     const formatter = new Intl.NumberFormat('de-DE', {
       minimumFractionDigits: 2,
@@ -84,7 +90,7 @@ export default function Home() {
     });
 
     // Format the number
-    const formattedBalance = formatter.format(numericBalance);
+    const formattedBalance = formatter.format(balance);
     const [euros, cents] = formattedBalance.split(',');
 
     return { euros, cents };
@@ -180,10 +186,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   pig_top: {
+    zIndex: 10,
     flex: 1,
     width: 230,
     height: 189,
-    marginBottom: -16,
+    marginBottom: -25,
   },
   pig_logo: {
     width: 48,
