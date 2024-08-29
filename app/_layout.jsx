@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import HeaderButton from "../components/headerButton";
 import Icon from "react-native-vector-icons/Feather";
+import CustomTabBar from "../components/customTabBar";
 import Home from "./home";
 import Stats from "./stats";
 import Wallet from "./wallet";
@@ -56,6 +57,7 @@ export default function App() {
             height: 70,
           },
         }}
+        tabBar={(props) => <CustomTabBar {...props} />}
       >
         <Tab.Screen
           name="Home"
@@ -73,22 +75,6 @@ export default function App() {
           options={{
             tabBarIcon: ({ color }) => (
               <Icon name="inbox" size={24} color={color} />
-            ),
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
-            headerLeft: () => <HeaderButton />,
-            headerRight: () => <HeaderButton icon={"plus"} />,
-          }}
-        />
-        {/* <Icon name="plus" size={28} /> */}
-        <Tab.Screen
-          name="Income"
-          component={Income}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Icon name="plus" size={28} color={color} />
             ),
             headerTitleAlign: "center",
             headerTitleStyle: {
