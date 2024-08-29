@@ -1,12 +1,11 @@
-// ------------FONT---------------
-import {Text, TextInput} from "../components/textFont";
-import {useState, useEffect} from "react";
-import * as Font from "expo-font";
-// -------------------------
-import {View, StyleSheet, Image, ScrollView} from "react-native";
-import HomeCards from "../components/homeCards";
-import TextTicker from "react-native-text-ticker";
+import {Text, TextInput} from "../components/textFont"; // Importing custom text components
+import {useState, useEffect} from "react"; // Importing React hooks
+import * as Font from "expo-font"; // Importing Font loading module from Expo
+import {View, StyleSheet, Image, ScrollView} from "react-native"; // Importing React Native components
+import HomeCards from "../components/homeCards"; // Importing a custom HomeCards component
+import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 
+// Importing image assets
 const pig_empty = require("../assets/homepage/Pig_empty.png");
 const pig_mid = require("../assets/homepage/Pig_mid.png");
 const pig_full = require("../assets/homepage/Pig_full.png");
@@ -14,8 +13,10 @@ const pig_logo = require("../assets/homepage/Pig_logo.png");
 const menu = require("../assets/homepage/Menu_home.png");
 
 export default function Home() {
-  // ------------FONT---------------
+  // State to manage font loading
   const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  // Function to load custom fonts
   const loadFonts = () => {
     return Font.loadAsync({
       "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
@@ -26,59 +27,92 @@ export default function Home() {
     });
   };
 
+  // Load fonts when the component mounts
   useEffect(() => {
     loadFonts().then(() => setFontsLoaded(true));
   }, []);
 
+  // Return null until fonts are loaded
   if (!fontsLoaded) {
     return null;
   }
-  // -------------------------
 
+  // Function to get the appropriate pig image based on the balance
   const getPigImage = (balance) => {
     if (balance < 500) {
-      return pig_empty;
+      return pig_empty; // Show empty pig image for balance < 500
     } else if (balance >= 500 && balance < 10000) {
-      return pig_mid;
+      return pig_mid; // Show mid pig image for balance between 500 and 10000
     } else {
-      return pig_full;
+      return pig_full; // Show full pig image for balance >= 10000
     }
   };
 
   // Example total balance in string format
   const totalBalanceString = "20.275,78";
 
-  // Convert the totalBalanceString to a number
+  // Convert the total balance string to a number
   const convertBalanceToNumber = (balanceString) => {
     return parseFloat(balanceString.replace(/\./g, "").replace(",", "."));
   };
 
-  // Convert the string balance to a number
+  // Convert string balance to number
   const totalBalance = convertBalanceToNumber(totalBalanceString);
 
+  // Function to format balance with thousands separators and decimals
   const formatBalance = (balance) => {
-    // Use Intl.NumberFormat to format with thousands separators and decimals
+    // Create a formatter object for formatting numbers according to German locale
     const formatter = new Intl.NumberFormat("de-DE", {
+      // Ensure there are always 2 digits after the decimal point
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
 
-    // Format the number
+    // Format the balance using the created formatter object
     const formattedBalance = formatter.format(balance);
+
+    // Split the formatted string into euros and cents
+    // In the "de-DE" locale, the decimal separator is a comma (",")
     const [euros, cents] = formattedBalance.split(",");
 
+    // Return an object containing the formatted euros and cents
     return {euros, cents};
   };
-
+  // Extract formatted euros and cents
   const {euros, cents} = formatBalance(totalBalance);
+
+  // Function to determine the color of the movements amount based on the sign
+  const getAmountMovesColor = (amount) => {
+    // Check if the amount starts with '-' or '+'
+    if (amount.startsWith("-")) {
+      return "#5272F2"; // Blue for negative
+    } else if (amount.startsWith("+")) {
+      return "#F773ED"; // Pink for positive
+    } else {
+      return "#A0A0A0"; // Default gray color
+    }
+  };
+
+  // Example movements data
+  const movements = [
+    {moves: "Conad", amount: "- € 78.95", date: "02.05.24"},
+    {moves: "Nonna", amount: "+ € 50.00", date: "02.05.24"},
+    {moves: "Rimborso", amount: " € 00.00", date: "02.05.24"},
+    {moves: "Conad", amount: "- € 74.50", date: "02.05.24"},
+    {moves: "Conad", amount: "- € 30.40", date: "02.05.24"},
+    {moves: "Nonna", amount: "+ € 200.31", date: "02.05.24"},
+    {moves: "Gratta e Vinci", amount: "+ € 10.00", date: "02.05.24"},
+  ];
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.contentContainer}>
+        {/* Top view with pig image */}
         <View style={styles.topView}>
           <Image source={getPigImage(totalBalance)} style={styles.pig_top} />
         </View>
 
+        {/* Main content container */}
         <View style={styles.mainContainer}>
           <View style={styles.row}>
             <View style={styles.logoContainer}>
@@ -91,6 +125,7 @@ export default function Home() {
             <Image source={menu} style={styles.menuHome} />
           </View>
 
+          {/* Total balance section */}
           <View style={styles.balanceContainer}>
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
             <Text style={styles.totalBalanceAmount}>
@@ -100,6 +135,7 @@ export default function Home() {
             <HomeCards />
           </View>
 
+          {/* In/Out section for this month */}
           <View style={styles.InOutContainer}>
             <Text style={styles.title}>Questo mese</Text>
             <View style={styles.rowInOut}>
@@ -112,11 +148,13 @@ export default function Home() {
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Entrate</Text>
                   <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
-                    style={styles.description}
+                    scrollSpeed={50} // Sets the speed of the scrolling text. A lower number means slower scrolling.
+                    loop // Ensures that the text scrolls infinitely in a loop.
+                    bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
+                    numberOfLines={1} // Limits the text to a single line. No line wrapping will occur.
+                    repeatSpacer={1} // Adds a small space (1 unit) between repetitions of the text. Helps with readability during the bounce.
+                    marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts. Here it's 1 second.
+                    style={styles.description} // Applies the custom styles defined in the `styles.description` object to the text ticker.
                   >
                     Stipendio, Mansione
                   </TextTicker>
@@ -131,10 +169,12 @@ export default function Home() {
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Uscite</Text>
                   <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
+                    scrollSpeed={50} // Sets the speed of the scrolling text. A lower number means slower scrolling.
+                    loop // Ensures that the text scrolls infinitely in a loop.
+                    bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
+                    numberOfLines={1} // Limits the text to a single line.
+                    repeatSpacer={1} // Adds a small space (1 unit) between repetitions of the text. Helps with readability during the bounce.
+                    marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts.
                     style={styles.description}
                   >
                     Cibo, Casa, Benzina
@@ -143,12 +183,36 @@ export default function Home() {
               </View>
             </View>
           </View>
+
+          {/* Latest movements section */}
+          <View style={styles.MovesContainer}>
+            <Text style={styles.title}>Ultimi movimenti</Text>
+            <View style={styles.columnMoves}>
+              {movements.map((movement, index) => (
+                // Each movement item is wrapped in a `View` with a unique `key` to help React efficiently update the list
+                <View key={index} style={styles.moveItem}>
+                  {/* Iterates over the `movements` array and renders each item as a `View` component */}
+                  <Text style={styles.moveName}>{movement.moves}</Text>
+                  <Text
+                    style={[
+                      styles.amount,
+                      {color: getAmountMovesColor(movement.amount)},
+                    ]}
+                  >
+                    {movement.amount}
+                  </Text>
+                  <Text style={styles.date}>{movement.date}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
         </View>
       </View>
     </ScrollView>
   );
 }
 
+// Styles for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -274,6 +338,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Switzer-Semibold",
     marginBottom: 10,
+    marginLeft: 10,
+    marginTop: -20,
   },
   rowInOut: {
     flexDirection: "row",
@@ -299,7 +365,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#F773ED",
     borderRadius: 25, // Half of width and height for circular shape
-    //backgroundColor: "#F0F0F0",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -309,7 +374,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#5272F2",
     borderRadius: 25, // Half of width and height for circular shape
-    //backgroundColor: "#F0F0F0",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -337,5 +401,50 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginTop: 5,
     marginLeft: 10,
+  },
+  MovesContainer: {
+    padding: 10,
+  },
+  columnMoves: {
+    flexDirection: "column",
+    padding: 10,
+  },
+  moveItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#FCF6FB",
+    paddingVertical: 8,
+    marginBottom: 10,
+    borderRadius: 15,
+    height: 60,
+  },
+  moveName: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 14,
+    fontFamily: "Switzer-Variable",
+    textAlign: "left",
+    marginTop: 12,
+    left: 20,
+  },
+  amount: {
+    position: "absolute",
+    top: 12, // Space from the top
+    right: 20, // Space from the right edge
+    fontSize: 16,
+    fontFamily: "Switzer-Semibold",
+    textAlign: "right",
+    color: "#000000", // Text color
+  },
+  date: {
+    position: "absolute",
+    bottom: 5,
+    right: 20,
+    fontSize: 10,
+    color: "#A0A0A0",
+    textAlign: "right",
+    flex: 1,
+    marginTop: 8,
   },
 });
