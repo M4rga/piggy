@@ -71,10 +71,22 @@ export default function Home() {
     }
   }
 
-  const totalBalance = 20275.78;
+  const totalBalance = "20.275,78";
 
   const formatBalance = (balance) => {
-    const [euros, cents] = balance.toFixed(2).split(".");
+    // Convert balance to a number
+    const numericBalance = parseFloat(balance.replace(/\./g, '').replace(',', '.'));
+
+    // Use Intl.NumberFormat to format with thousands separators and decimals
+    const formatter = new Intl.NumberFormat('de-DE', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    // Format the number
+    const formattedBalance = formatter.format(numericBalance);
+    const [euros, cents] = formattedBalance.split(',');
+
     return { euros, cents };
   };
 
