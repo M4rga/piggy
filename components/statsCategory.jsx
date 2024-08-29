@@ -1,17 +1,28 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const appleLogo = require("../assets/stats/apple.png");
+const images = {
+  apple: require("../assets/stats/apple.png"),
+  house: require("../assets/stats/house.png"),
+  pill: require("../assets/stats/pill.png"),
+  plane: require("../assets/stats/plane.png"),
+  shopping: require("../assets/stats/shopping.png"),
+  train: require("../assets/stats/train.png"),
+  headphones: require("../assets/stats/headphones.png"),
+  car: require("../assets/stats/car.png"),
+  plate: require("../assets/stats/plate.png"),
+  ticket: require("../assets/stats/ticket.png"),
+};
 
-export default function StatsCategory() {
-  const value = 50; // Supponiamo di avere un valore da mostrare
+export default function StatsCategory({ icon, name }) {
+  const value = 50; // value to be seen
 
   return (
     <View style={styles.container}>
       <View style={styles.circleContainer}>
-        <Image source={appleLogo} style={styles.image} />
+        <Image source={images[icon]} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Cibo</Text>
+        <Text style={styles.text}>{name}</Text>
         <Text style={styles.valueText}>€ {value}</Text>
       </View>
     </View>
@@ -28,7 +39,7 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     borderRadius: 8,
     backgroundColor: "#fff",
-    justifyContent: "space-between", // Distribuire spazio tra gli elementi
+    justifyContent: "space-between",
   },
   circleContainer: {
     width: 50,

@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // -------------------------
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
 import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../components/statsCategory";
 
-const data = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
+import data from "../data/data.json";
+
+const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
 const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // Data used in the graph
 const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // Data used in the graph
 
@@ -46,7 +48,7 @@ export default function Stats() {
 
   return (
     <View style={styles.container}>
-      <View>
+      <ScrollView>
         {/* Orizzontal selector */}
         <View style={styles.horizontalPicker}>
           <TouchableOpacity
@@ -116,7 +118,7 @@ export default function Stats() {
           <PieChart
             data={
               selectedValue === "settimana"
-                ? data
+                ? data1
                 : selectedValue === "mese"
                 ? data2
                 : data3
@@ -133,9 +135,20 @@ export default function Stats() {
 
         {/* Categories */}
         <View>
-          <StatsCategory />
+          <StatsCategory
+            icon={data.categroies[0].icon}
+            name={data.categroies[0].type}
+          />
+          <StatsCategory
+            icon={data.categroies[1].icon}
+            name={data.categroies[1].type}
+          />
+          <StatsCategory
+            icon={data.categroies[3].icon}
+            name={data.categroies[3].type}
+          />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }

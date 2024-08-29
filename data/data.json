@@ -1,0 +1,62 @@
+{
+    "wallet": 
+    [
+        {
+            "category": "conto corrente",
+            "money": "6.579,78"
+        },
+        {
+            "category": "contanti",
+            "money": "834,00"
+        },
+        {
+            "category": "Pay Pal",
+            "money": "62,00"
+        }
+        
+    ],
+    "categroies": 
+    [
+        {
+            "type": "cibo",
+            "icon": "apple"
+        },
+        {
+            "type": "casa",
+            "icon": "house"
+        },
+        {
+            "type": "mediche",
+            "icon": "pill"
+        },
+        {
+            "type": "viaggi",
+            "icon": "plane"
+        },
+        {
+            "type": "shopping",
+            "icon": "shopping"
+        },
+        {
+            "type": "mezzi",
+            "icon": "train"
+        },
+        {
+            "type": "abbonamenti",
+            "icon": "headphones"
+        },
+        {
+            "type": "benzina",
+            "icon": "car"
+        },
+        {
+            "type": "ristorante",
+            "icon": "plate"
+        },
+        {
+            "type": "divertimento",
+            "icon": "ticket"
+        }
+    ]
+}
+  
