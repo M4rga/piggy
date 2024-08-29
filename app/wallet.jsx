@@ -1,10 +1,12 @@
 // ------------FONT---------------
 import { Text, TextInput } from "../components/textFont";
 import { useState, useEffect } from "react";
+import  Card  from "./components/Card";
 import * as Font from "expo-font";
 // -------------------------
 import { View, StyleSheet, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
+import Icon2 from "react-native-vector-icons/FontAwesome";
 
 export default function Wallet() {
   // ------------FONT---------------
@@ -37,35 +39,13 @@ export default function Wallet() {
         </Text>
       </View>
 
-      <View style={[styles.card, {backgroundColor:"#ECE9EA"}]}>
-        <View style={styles.cardView1}>
-          <Text style={{ fontSize: 25 }}>Conto Corrente</Text>
-          <Text style={{ fontSize: 30, marginTop: 75, marginLeft: 5, fontWeight: 'bold' }}>
-            € 6.579 <Text style={{ fontSize: 17, fontWeight: 'bold' }}>,78</Text>
-          </Text>
-        </View>
-        <Icon style={{ marginTop: 5 }} name="credit-card" size={30} />
-      </View>
+      <Card name="Conto Corrente" num1="€ 6.579" num2=",78" color="#ECE9EA" iconName="credit-card"/>
 
-      <View style={[styles.card, {backgroundColor:"#2F212F"}]}>
-        <View style={styles.cardView1}>
-          <Text style={{ fontSize: 25, color: "white" }}>Contanti</Text>
-          <Text style={{ fontSize: 30, marginTop: 75, marginLeft: 5, fontWeight: 'bold', color: "white" }}>
-            € 834 <Text style={{ fontSize: 17, fontWeight: 'bold' }}>,00</Text>
-          </Text>
-        </View>
-        <Icon style={{ marginTop: 5, color: "white" }} name="dollar-sign" size={30} />
-      </View>
+      <Card name="Risparmi" num1="€ 834" num2=",00" color="#2F212F" color2="white" iconName="dollar-sign" />
 
-      <View style={[styles.card, {backgroundColor:"#5272F2"}]}>
-        <View style={styles.cardView1}>
-          <Text style={{ fontSize: 25, color: "white" }}>Pay Pal</Text>
-          <Text style={{ fontSize: 30, marginTop: 75, marginLeft: 5, fontWeight: 'bold', color: "white" }}>
-            € 62 <Text style={{ fontSize: 17, fontWeight: 'bold' }}>,00</Text>
-          </Text>
-        </View>
-        <Icon style={{ marginTop: 5, color: "white" }} name="credit-card" size={30} />
-      </View>
+      <Card name="Pay Pal" num1="€ 62" num2=",00" color="#5272F2" color2="white" iconName="fa-brands fa-paypal"/>
+
+      <Card name="Fondo di risparmio" num1="€ 12.800" num2=",00" color="#F773ED" color2="white" iconName="fa-solid fa-piggy-bank"/>
       
     </ScrollView>
   );
