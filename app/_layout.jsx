@@ -6,6 +6,8 @@ import * as Font from "expo-font";
 import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
+import HeaderButton from "../components/headerButton";
 import Icon from "react-native-vector-icons/Feather";
 import Home from "./home";
 import Stats from "./stats";
@@ -14,6 +16,7 @@ import Wallet from "./wallet";
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const navigation = useNavigation();
   // ------------FONT---------------
   const [fontsLoaded, setFontsLoaded] = useState(false); // Correct useState import
   const loadFonts = () => {
@@ -70,24 +73,8 @@ export default function App() {
             headerTitleStyle: {
               fontFamily: "Switzer-Variable",
             },
-            headerLeft: () => (
-              <View style={{ marginLeft: 15 }}>
-                <Icon
-                  name="chevron-left"
-                  size={26}
-                  onPress={() => alert("This is a button!")}
-                />
-              </View>
-            ),
-            headerRight: () => (
-              <View style={{ marginRight: 15 }}>
-                <Icon
-                  name="plus"
-                  size={26}
-                  onPress={() => alert("This is a button!")}
-                />
-              </View>
-            ),
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
           }}
         />
         <Tab.Screen
@@ -101,24 +88,8 @@ export default function App() {
             headerTitleStyle: {
               fontFamily: "Switzer-Variable",
             },
-            headerLeft: () => (
-              <View style={{ marginLeft: 15 }}>
-                <Icon
-                  name="chevron-left"
-                  size={26}
-                  onPress={() => alert("This is a button!")}
-                />
-              </View>
-            ),
-            headerRight: () => (
-              <View style={{ marginRight: 15 }}>
-                <Icon
-                  name="plus"
-                  size={26}
-                  onPress={() => alert("This is a button!")}
-                />
-              </View>
-            ),
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"filter"} size={20} />,
           }}
         />
       </Tab.Navigator>
