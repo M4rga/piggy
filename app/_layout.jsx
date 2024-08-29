@@ -3,7 +3,7 @@ import { Text, TextInput } from "../components/textFont";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // -------------------------
-import { View } from "react-native";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
@@ -14,8 +14,8 @@ import Home from "./home";
 import Stats from "./stats";
 import Wallet from "./wallet";
 import Income from "./income";
-import Outcome from "./loan";
-import Loan from "./outcome";
+import Loan from "./loan";
+import Outcome from "./outcome";
 import Private from "./private";
 import Recipt from "./recipt";
 
@@ -46,6 +46,7 @@ export default function App() {
 
   return (
     <NavigationContainer independent={true}>
+      <StatusBar backgroundColor={"white"} />
       <Tab.Navigator
         initialRouteName="home"
         screenOptions={{
@@ -106,6 +107,58 @@ export default function App() {
             tabBarIcon: ({ color }) => (
               <Icon name="lock" size={24} color={color} />
             ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
+          }}
+        />
+        <Tab.Screen
+          name="Income"
+          component={Income}
+          options={{
+            tabBarVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
+          }}
+        />
+        <Tab.Screen
+          name="Outcome"
+          component={Outcome}
+          options={{
+            tabBarVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
+          }}
+        />
+        <Tab.Screen
+          name="Loan"
+          component={Loan}
+          options={{
+            tabBarVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
+          }}
+        />
+        <Tab.Screen
+          name="Recipt"
+          component={Recipt}
+          options={{
+            tabBarVisible: false,
             headerTitleAlign: "center",
             headerTitleStyle: {
               fontFamily: "Switzer-Variable",
