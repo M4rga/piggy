@@ -12,6 +12,11 @@ import Icon from "react-native-vector-icons/Feather";
 import Home from "./home";
 import Stats from "./stats";
 import Wallet from "./wallet";
+import Income from "./income";
+import Outcome from "./loan";
+import Loan from "./outcome";
+import Private from "./private";
+import Recipt from "./recipt";
 
 const Tab = createBottomTabNavigator();
 
@@ -77,6 +82,22 @@ export default function App() {
             headerRight: () => <HeaderButton icon={"plus"} />,
           }}
         />
+        {/* <Icon name="plus" size={28} /> */}
+        <Tab.Screen
+          name="Income"
+          component={Income}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="plus" size={28} color={color} />
+            ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
+          }}
+        />
         <Tab.Screen
           name="Stats"
           component={Stats}
@@ -90,6 +111,21 @@ export default function App() {
             },
             headerLeft: () => <HeaderButton />,
             headerRight: () => <HeaderButton icon={"filter"} size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Private Area"
+          component={Private}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="lock" size={24} color={color} />
+            ),
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"plus"} />,
           }}
         />
       </Tab.Navigator>
