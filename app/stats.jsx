@@ -8,6 +8,7 @@ import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; /
 import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../components/statsCategory";
+import DropdownButton from "../components/dropdown";
 
 import data from "../data/data.json";
 
@@ -106,13 +107,7 @@ export default function Stats() {
         {/* Page content that changes based on the selected item */}
         <View style={[styles.content, styles.graphContainer]}>
           <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={selectOption}
-              onValueChange={(itemValue) => setSelectedOptions(itemValue)}
-            >
-              <Picker.Item label="Uscite" value="uscite" />
-              <Picker.Item label="Entrate" value="entrate" />
-            </Picker>
+            <DropdownButton />
           </View>
 
           <PieChart
@@ -205,10 +200,11 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     position: "absolute",
-    top: -55,
-    left: 0,
+    top: 20,
+    left: 20,
     width: 128,
-    height: 25,
+    height: 100,
+    zIndex: 10,
   },
   valueText: {
     fontSize: 30,
