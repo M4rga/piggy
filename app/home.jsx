@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
   circleIn: {
     width: 50,
     height: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "#F773ED",
     borderRadius: 25, // Half of width and height for circular shape
     //backgroundColor: "#F0F0F0",
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   circleOut: {
     width: 50,
     height: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "#5272F2",
     borderRadius: 25, // Half of width and height for circular shape
     //backgroundColor: "#F0F0F0",
