@@ -13,12 +13,12 @@ const images = {
   ticket: require("../assets/stats/ticket.png"),
 };
 
-export default function StatsCategory({ icon, name }) {
+export default function StatsCategory({ icon, circleColor = "black", name }) {
   const value = 50; // value to be seen
 
   return (
     <View style={styles.container}>
-      <View style={styles.circleContainer}>
+      <View style={[styles.circleContainer, { borderColor: circleColor }]}>
         <Image source={images[icon]} style={styles.image} />
       </View>
       <View style={styles.textContainer}>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     margin: 20,
+    marginBottom: 0,
     borderWidth: 1,
     borderColor: "#fff",
     borderRadius: 8,
@@ -48,7 +49,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginRight: 10,
     borderWidth: 3,
-    borderColor: "pink",
     justifyContent: "center",
     alignItems: "center",
   },

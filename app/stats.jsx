@@ -133,19 +133,27 @@ export default function Stats() {
           />
         </View>
 
+        {/* Date text */}
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateText}>13 maggio - 19 maggio</Text>
+        </View>
+
         {/* Categories */}
         <View>
           <StatsCategory
             icon={data.categroies[0].icon}
             name={data.categroies[0].type}
+            circleColor={data.categroies[0].circleColor}
           />
           <StatsCategory
             icon={data.categroies[1].icon}
             name={data.categroies[1].type}
+            circleColor={data.categroies[1].circleColor}
           />
           <StatsCategory
             icon={data.categroies[3].icon}
             name={data.categroies[3].type}
+            circleColor={data.categroies[3].circleColor}
           />
         </View>
       </ScrollView>
@@ -204,5 +212,12 @@ const styles = StyleSheet.create({
   },
   valueText: {
     fontSize: 30,
+  },
+  dateContainer: {
+    margin: 20,
+    marginBottom: 0,
+  },
+  dateText: {
+    color: "grey",
   },
 });

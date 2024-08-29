@@ -19,43 +19,53 @@
     [
         {
             "type": "cibo",
-            "icon": "apple"
+            "icon": "apple",
+            "circleColor": "pink"
         },
         {
             "type": "casa",
-            "icon": "house"
+            "icon": "house",
+            "circleColor": "grey"
         },
         {
             "type": "mediche",
-            "icon": "pill"
+            "icon": "pill",
+            "circleColor": "green"
         },
         {
             "type": "viaggi",
-            "icon": "plane"
+            "icon": "plane",
+            "circleColor": "blue"
         },
         {
             "type": "shopping",
-            "icon": "shopping"
+            "icon": "shopping",
+            "circleColor": "orange"
         },
         {
             "type": "mezzi",
-            "icon": "train"
+            "icon": "train",
+            "circleColor": "brown"
         },
         {
             "type": "abbonamenti",
-            "icon": "headphones"
+            "icon": "headphones",
+            "circleColor": "purple"
         },
         {
             "type": "benzina",
-            "icon": "car"
+            "icon": "car",
+            "circleColor": "red"
         },
         {
             "type": "ristorante",
-            "icon": "plate"
+            "icon": "plate",
+            "circleColor": "cyan"
         },
         {
             "type": "divertimento",
-            "icon": "ticket"
+            "icon": "ticket",
+            "circleColor": "yellow"
         }
     ]
 }
