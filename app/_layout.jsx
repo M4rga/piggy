@@ -46,7 +46,7 @@ export default function App() {
 
   return (
     <NavigationContainer independent={true}>
-      <StatusBar backgroundColor={"white"} />
+      <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
       <Tab.Navigator
         initialRouteName="home"
         screenOptions={{
