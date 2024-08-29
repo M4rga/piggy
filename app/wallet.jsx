@@ -1,7 +1,7 @@
 // ------------FONT---------------
 import { Text, TextInput } from "../components/textFont";
 import { useState, useEffect } from "react";
-import  Card  from "../components/card";
+import  Card  from "../components/Card";
 import * as Font from "expo-font";
 // -------------------------
 import { View, StyleSheet, ScrollView } from "react-native";
