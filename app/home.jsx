@@ -137,14 +137,10 @@ export default function Home() {
 
           {/* In/Out section for this month */}
           <View style={styles.InOutContainer}>
-            <Text style={styles.title}>Questo mese</Text>
+            <Text style={styles.titleThisMonth}>Questo mese</Text>
             <View style={styles.rowInOut}>
               <View style={styles.InOut}>
-                <View style={styles.circleContainer}>
-                  <View style={styles.circleIn}>
-                    <Text style={styles.amountIn}>1782</Text>
-                  </View>
-                </View>
+                <Text style={styles.amountIn}>+ 1782</Text>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Entrate</Text>
                   <TextTicker
@@ -152,7 +148,6 @@ export default function Home() {
                     loop // Ensures that the text scrolls infinitely in a loop.
                     bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
                     numberOfLines={1} // Limits the text to a single line. No line wrapping will occur.
-                    repeatSpacer={1} // Adds a small space (1 unit) between repetitions of the text. Helps with readability during the bounce.
                     marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts. Here it's 1 second.
                     style={styles.description} // Applies the custom styles defined in the `styles.description` object to the text ticker.
                   >
@@ -161,11 +156,7 @@ export default function Home() {
                 </View>
               </View>
               <View style={styles.InOut}>
-                <View style={styles.circleContainer}>
-                  <View style={styles.circleOut}>
-                    <Text style={styles.amountOut}>914</Text>
-                  </View>
-                </View>
+                <Text style={styles.amountOut}>- 914</Text>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Uscite</Text>
                   <TextTicker
@@ -173,7 +164,6 @@ export default function Home() {
                     loop // Ensures that the text scrolls infinitely in a loop.
                     bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
                     numberOfLines={1} // Limits the text to a single line.
-                    repeatSpacer={1} // Adds a small space (1 unit) between repetitions of the text. Helps with readability during the bounce.
                     marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts.
                     style={styles.description}
                   >
@@ -186,7 +176,7 @@ export default function Home() {
 
           {/* Latest movements section */}
           <View style={styles.MovesContainer}>
-            <Text style={styles.title}>Ultimi movimenti</Text>
+            <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
             <View style={styles.columnMoves}>
               {movements.map((movement, index) => (
                 // Each movement item is wrapped in a `View` with a unique `key` to help React efficiently update the list
@@ -334,12 +324,18 @@ const styles = StyleSheet.create({
   InOutContainer: {
     padding: 10,
   },
-  title: {
+  titleThisMonth: {
     fontSize: 18,
     fontFamily: "Switzer-Semibold",
     marginBottom: 10,
     marginLeft: 10,
-    marginTop: -20,
+    marginTop: -15,
+  },
+  titleLastMoves: {
+    fontSize: 18,
+    fontFamily: "Switzer-Semibold",
+    marginBottom: 10,
+    marginLeft: 10,
   },
   rowInOut: {
     flexDirection: "row",
@@ -355,27 +351,6 @@ const styles = StyleSheet.create({
     margin: 5, // Space between items
     flexDirection: "row", // Align circle and text horizontally
     alignItems: "center", // Center items vertically
-  },
-  circleContainer: {
-    marginRight: 10, // Space between circle and text
-  },
-  circleIn: {
-    width: 50,
-    height: 50,
-    borderWidth: 2,
-    borderColor: "#F773ED",
-    borderRadius: 25, // Half of width and height for circular shape
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  circleOut: {
-    width: 50,
-    height: 50,
-    borderWidth: 2,
-    borderColor: "#5272F2",
-    borderRadius: 25, // Half of width and height for circular shape
-    alignItems: "center",
-    justifyContent: "center",
   },
   amountIn: {
     fontSize: 16, // Smaller font size for the number
@@ -394,13 +369,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "left",
     fontFamily: "Switzer-Semibold",
-    marginLeft: 10,
+    marginLeft: 12,
   },
   description: {
     fontSize: 12,
     textAlign: "left",
     marginTop: 5,
-    marginLeft: 10,
+    marginLeft: 11,
   },
   MovesContainer: {
     padding: 10,
