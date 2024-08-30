@@ -3,7 +3,6 @@ import { Text, TextInput } from "../components/textFont";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 // -------------------------
-import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
@@ -46,7 +45,6 @@ export default function App() {
 
   return (
     <NavigationContainer independent={true}>
-      <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
       <Tab.Navigator
         initialRouteName="home"
         screenOptions={{
