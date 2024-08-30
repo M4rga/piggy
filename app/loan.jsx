@@ -1,5 +1,5 @@
-import { Text } from "../components/textFont";
+import {Text} from "../components/textFont";
 
 export default function Loan() {
-  return (<Text>LOANNNNNNNN</Text>);
+  return <Text>LOANNNNNNNN</Text>;
 }

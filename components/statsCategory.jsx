@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import {View, Text, Image, StyleSheet} from "react-native";
 
 const images = {
   apple: require("../assets/stats/apple.png"),
@@ -13,18 +13,33 @@ const images = {
   ticket: require("../assets/stats/ticket.png"),
 };
 
-export default function StatsCategory({ icon, circleColor = "black", name }) {
+export default function StatsCategory({
+  icon,
+  circleColor = "black",
+  name,
+  date,
+}) {
   const value = 50; // value to be seen
 
   return (
     <View style={styles.container}>
-      <View style={[styles.circleContainer, { borderColor: circleColor }]}>
-        <Image source={images[icon]} style={styles.image} />
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>{name}</Text>
-        <Text style={styles.valueText}>€ {value}</Text>
-      </View>
+      {icon ? (
+        <>
+          <View style={[styles.circleContainer, {borderColor: circleColor}]}>
+            <Image source={images[icon]} style={styles.image} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.valueText}>€ {value}</Text>
+          </View>
+        </>
+      ) : (
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>{name}</Text>
+          <Text style={styles.valueText}>€ {value}</Text>
+          <Text style={styles.date}>{date}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -69,5 +84,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
     textAlign: "right",
+  },
+  date: {
+    position: "absolute",
+    bottom: 5,
+    right: 20,
+    fontSize: 10,
+    color: "#A0A0A0",
+    textAlign: "right",
+    flex: 1,
+    marginTop: 8,
   },
 });

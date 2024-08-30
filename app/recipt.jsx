@@ -1,5 +1,5 @@
-import { Text } from "../components/textFont";
+import {Text} from "../components/textFont";
 
 export default function Recipt() {
-  return (<Text>RECIPTTTTTTT</Text>);
+  return <Text>RECIPTTTTTTT</Text>;
 }

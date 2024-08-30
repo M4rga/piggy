@@ -1,5 +1,5 @@
-import { Text } from "../components/textFont";
+import {Text} from "../components/textFont";
 
 export default function Outcome() {
-  return (<Text>OUTCOMEEEEEEE</Text>);
+  return <Text>OUTCOMEEEEEEE</Text>;
 }

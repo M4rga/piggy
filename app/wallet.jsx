@@ -1,10 +1,10 @@
 // ------------FONT---------------
-import { Text, TextInput } from "../components/textFont";
-import { useState, useEffect } from "react";
+import {Text, TextInput} from "../components/textFont";
+import {useState, useEffect} from "react";
 import Card from "../components/card";
 import * as Font from "expo-font";
 // -------------------------
-import { View, StyleSheet, ScrollView } from "react-native";
+import {View, StyleSheet, ScrollView} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import Icon2 from "react-native-vector-icons/FontAwesome";
 
@@ -30,12 +30,12 @@ export default function Wallet() {
   }
   // -------------------------
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+    <ScrollView style={{flex: 1, backgroundColor: "white"}}>
       <View style={styles.balance}>
         <Text style={styles.balanceText}>Bilancio Totale</Text>
-        <Text style={{ fontSize: 34 }}>
+        <Text style={{fontSize: 34}}>
           € 20.275
-          <Text style={{ color: "#A0A0A0", fontSize: 20 }}>,78</Text>
+          <Text style={{color: "#A0A0A0", fontSize: 20}}>,78</Text>
         </Text>
       </View>
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     marginBottom: "8%",
     // Proprietà ombra per iOS
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
+    shadowOffset: {width: 0, height: 10},
     shadowOpacity: 0.7,
     shadowRadius: 5,
     // Proprietà ombra per Android

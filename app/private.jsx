@@ -1,5 +1,5 @@
-import { Text } from "../components/textFont";
+import {Text} from "../components/textFont";
 
 export default function Private() {
-  return (<Text>PRIVATEEEEEEE</Text>);
+  return <Text>PRIVATEEEEEEE</Text>;
 }

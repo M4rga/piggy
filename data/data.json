@@ -20,52 +20,61 @@
         {
             "type": "cibo",
             "icon": "apple",
-            "circleColor": "pink"
+            "circleColor": "pink",
+            "date" : "02.05.24"
         },
         {
             "type": "casa",
-            "icon": "house",
-            "circleColor": "grey"
+            "circleColor": "grey",
+            "date" : "02.05.24"
         },
         {
             "type": "mediche",
             "icon": "pill",
-            "circleColor": "green"
+            "circleColor": "green",
+            "date" : "02.05.24"
         },
         {
             "type": "viaggi",
-            "icon": "plane",
-            "circleColor": "blue"
+            
+            "circleColor": "blue",
+            "date" : "02.05.24"
         },
         {
             "type": "shopping",
             "icon": "shopping",
-            "circleColor": "orange"
+            "circleColor": "orange",
+            "date" : "02.05.24"
         },
         {
             "type": "mezzi",
             "icon": "train",
-            "circleColor": "brown"
+            "circleColor": "brown",
+            "date" : "02.05.24"
         },
         {
             "type": "abbonamenti",
             "icon": "headphones",
-            "circleColor": "purple"
+            "circleColor": "purple",
+            "date" : "02.05.24"
         },
         {
             "type": "benzina",
             "icon": "car",
-            "circleColor": "red"
+            "circleColor": "red",
+            "date" : "02.05.24"
         },
         {
             "type": "ristorante",
             "icon": "plate",
-            "circleColor": "cyan"
+            "circleColor": "cyan",
+            "date" : "02.05.24"
         },
         {
             "type": "divertimento",
             "icon": "ticket",
-            "circleColor": "yellow"
+            "circleColor": "yellow",
+            "date" : "02.05.24"
         }
     ]
 }

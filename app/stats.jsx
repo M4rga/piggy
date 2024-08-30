@@ -1,18 +1,18 @@
 // ------------FONT---------------
-import { Text, TextInput } from "../components/textFont";
-import { useState, useEffect } from "react";
+import {Text, TextInput} from "../components/textFont";
+import {useState, useEffect} from "react";
 import * as Font from "expo-font";
 // -------------------------
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
-import { PieChart } from "react-native-gifted-charts";
+import {View, StyleSheet, TouchableOpacity, ScrollView} from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
+import {PieChart} from "react-native-gifted-charts";
 import StatsCategory from "../components/statsCategory";
 import DropdownButton from "../components/dropdown";
 import data from "../data/data.json";
 
-const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
-const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // Data used in the graph
-const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // Data used in the graph
+const data1 = [{value: 20}, {value: 50}, {value: 65}, {value: 90}]; // Data used in the graph
+const data2 = [{value: 30}, {value: 40}, {value: 90}, {value: 73}]; // Data used in the graph
+const data3 = [{value: 50}, {value: 50}, {value: 30}, {value: 10}]; // Data used in the graph
 
 export default function Stats() {
   const [selectedValue, setSelectedValue] = useState("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
@@ -119,7 +119,7 @@ export default function Stats() {
             donut
             innerRadius={100}
             centerLabelComponent={() => (
-              <Text style={{ fontSize: 20 }}>
+              <Text style={{fontSize: 20}}>
                 € <Text style={styles.valueText}>{value}</Text>
               </Text>
             )}
