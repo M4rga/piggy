@@ -5,11 +5,9 @@ import * as Font from "expo-font";
 // -------------------------
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
-import { Picker } from "@react-native-picker/picker";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../components/statsCategory";
 import DropdownButton from "../components/dropdown";
-
 import data from "../data/data.json";
 
 const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
