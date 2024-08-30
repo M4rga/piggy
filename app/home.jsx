@@ -1,7 +1,7 @@
-import {Text, TextInput} from "../components/textFont"; // Importing custom text components
-import {useState, useEffect} from "react"; // Importing React hooks
+import { Text, TextInput } from "../components/textFont"; // Importing custom text components
+import { useState, useEffect } from "react"; // Importing React hooks
 import * as Font from "expo-font"; // Importing Font loading module from Expo
-import {View, StyleSheet, Image, ScrollView} from "react-native"; // Importing React Native components
+import { View, StyleSheet, Image, ScrollView, Platform } from "react-native"; // Importing React Native components
 import HomeCards from "../components/homeCards"; // Importing a custom HomeCards component
 import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 
@@ -76,10 +76,10 @@ export default function Home() {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return {euros, cents};
+    return { euros, cents };
   };
   // Extract formatted euros and cents
-  const {euros, cents} = formatBalance(totalBalance);
+  const { euros, cents } = formatBalance(totalBalance);
 
   // Function to determine the color of the movements amount based on the sign
   const getAmountMovesColor = (amount) => {
@@ -95,17 +95,25 @@ export default function Home() {
 
   // Example movements data
   const movements = [
-    {moves: "Conad", amount: "- € 78.95", date: "02.05.24"},
-    {moves: "Nonna", amount: "+ € 50.00", date: "02.05.24"},
-    {moves: "Rimborso", amount: " € 00.00", date: "02.05.24"},
-    {moves: "Conad", amount: "- € 74.50", date: "02.05.24"},
-    {moves: "Conad", amount: "- € 30.40", date: "02.05.24"},
-    {moves: "Nonna", amount: "+ € 200.31", date: "02.05.24"},
-    {moves: "Gratta e Vinci", amount: "+ € 10.00", date: "02.05.24"},
+    { moves: "Conad", amount: "- € 78.95", date: "02.05.24" },
+    { moves: "Nonna", amount: "+ € 50.00", date: "02.05.24" },
+    { moves: "Rimborso", amount: " € 00.00", date: "02.05.24" },
+    { moves: "Conad", amount: "- € 74.50", date: "02.05.24" },
+    { moves: "Conad", amount: "- € 30.40", date: "02.05.24" },
+    { moves: "Nonna", amount: "+ € 200.31", date: "02.05.24" },
+    { moves: "Gratta e Vinci", amount: "+ € 10.00", date: "02.05.24" },
   ];
 
   return (
     <ScrollView style={styles.container}>
+      {/* Condizione per iOS e Android */}
+      {Platform.OS === "ios" ? (
+        <View
+          style={{ height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+        ></View>
+      ) : (
+        <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
+      )}
       <View style={styles.contentContainer}>
         {/* Top view with pig image */}
         <View style={styles.topView}>
@@ -120,7 +128,7 @@ export default function Home() {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{flex: 1}}></View>
+            <View style={{ flex: 1 }}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -196,7 +204,7 @@ export default function Home() {
                   <Text
                     style={[
                       styles.amount,
-                      {color: getAmountMovesColor(movement.amount)},
+                      { color: getAmountMovesColor(movement.amount) },
                     ]}
                   >
                     {movement.amount}
