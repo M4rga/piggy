@@ -1,4 +1,4 @@
-import {View, Text, Image, StyleSheet} from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 
 const images = {
   apple: require("../assets/stats/apple.png"),
@@ -25,7 +25,7 @@ export default function StatsCategory({
     <View style={styles.container}>
       {icon ? (
         <>
-          <View style={[styles.circleContainer, {borderColor: circleColor}]}>
+          <View style={[styles.circleContainer, { borderColor: circleColor }]}>
             <Image source={images[icon]} style={styles.image} />
           </View>
           <View style={styles.textContainer}>
