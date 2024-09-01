@@ -113,7 +113,6 @@ export default function App() {
               fontFamily: "Switzer-Variable",
             },
             headerLeft: () => <HeaderButton />,
-            headerRight: () => <HeaderButton icon={"plus"} />,
           }}
         />
         <Tab.Screen
