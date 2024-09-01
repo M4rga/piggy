@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ScrollView, View, StyleSheet, FlatList, Image } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon2 from "react-native-vector-icons/FontAwesome";
 
 import data from "../data/data.json";
 
@@ -62,7 +63,7 @@ export default function StatsFilter() {
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
               <View style={styles.walletItem}>
-                <Icon name={item.icon} style={styles.walletItemIcon} />
+                <Icon2 name={item.icon} style={styles.walletItemIcon} />
                 <Text style={styles.walletItemText}>{item.category}</Text>
               </View>
             </View>

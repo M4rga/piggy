@@ -8,17 +8,17 @@
         },
         {
             "category": "Contanti",
-            "icon": "dollar-sign",
+            "icon": "dollar",
             "amount": "834,00"
         },
         {
             "category": "Pay Pal",
-            "icon": "?",
+            "icon": "paypal",
             "amount": "62,00"
         },
         {
             "category": "Fondo di risparmio",
-            "icon": "?",
+            "icon": "smile-o",
             "amount": "62,00"
         }
         
@@ -114,4 +114,3 @@
         }
     ]
 }
-  
