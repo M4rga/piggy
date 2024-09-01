@@ -1,6 +1,7 @@
 import { Text } from "../components/textFont";
 import React, { useState } from "react";
 import {
+  ScrollView,
   View,
   StyleSheet,
   FlatList,
@@ -65,7 +66,7 @@ export default function StatsFilter() {
               <Text style={styles.nome}>{item.type}</Text>
             </View>
           )}
-          keyExtractor={(item) => item.type}
+          keyExtractor={(item, index) => item.type + index.toString()}
           numColumns={5} // Number of columns
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.flatListContainer}
@@ -85,7 +86,7 @@ export default function StatsFilter() {
               </View>
             </View>
           )}
-          keyExtractor={(item) => item.type}
+          keyExtractor={(item, index) => item.type + index.toString()}
           numColumns={2}
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.flatListContainer}
