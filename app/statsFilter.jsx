@@ -1,6 +1,13 @@
 import { Text } from "../components/textFont";
 import React, { useState } from "react";
-import { ScrollView, View, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Icon2 from "react-native-vector-icons/FontAwesome";
@@ -90,11 +97,28 @@ export default function StatsFilter() {
         <Text style={styles.title}>Data</Text>
         <View style={styles.dateContainer}>
           {/* Data di inizio */}
-          <TouchableOpacity style={styles.datePickerContainer} onPress={() => setShowDatePicker(true)}>
-            <Icon name={"calendar"} style={styles.datePickerIcon} />
-            <Text style={styles.dateText}>{date.toDateString()}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
+          {Platform.OS === "android" ? (
+            <TouchableOpacity
+              style={styles.datePickerContainer}
+              onPress={() => setShowDatePicker(true)}
+            >
+              <Icon name={"calendar"} style={styles.datePickerIcon} />
+              <Text style={styles.dateText}>{date.toDateString()}</Text>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.datePickerContainer}>
+              <Icon name={"calendar"} style={styles.datePickerIcon} />
+              <DateTimePicker
+                value={date}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+                style={styles.datePicker}
+              />
+            </View>
+          )}
+          {showDatePicker && Platform.OS === "android" && (
             <DateTimePicker
               value={date}
               mode="date"
@@ -105,11 +129,28 @@ export default function StatsFilter() {
             />
           )}
           {/* Data di fine */}
-          <TouchableOpacity style={styles.datePickerContainer} onPress={() => setShowEndDatePicker(true)}>
-            <Icon name={"calendar"} style={styles.datePickerIcon} />
-            <Text style={styles.dateText}>{date.toDateString()}</Text>
-          </TouchableOpacity>
-          {showEndDatePicker && (
+          {Platform.OS === "android" ? (
+            <TouchableOpacity
+              style={styles.datePickerContainer}
+              onPress={() => setShowEndDatePicker(true)}
+            >
+              <Icon name={"calendar"} style={styles.datePickerIcon} />
+              <Text style={styles.dateText}>{date.toDateString()}</Text>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.datePickerContainer}>
+              <Icon name={"calendar"} style={styles.datePickerIcon} />
+              <DateTimePicker
+                value={date}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                onChange={onEndDateChange}
+                style={styles.datePicker}
+              />
+            </View>
+          )}
+          {showEndDatePicker && Platform.OS === "android" && (
             <DateTimePicker
               value={date}
               mode="date"
