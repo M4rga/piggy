@@ -37,7 +37,7 @@ export default function StatsCategory({
   moves,
 }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, icon && styles.extraPaddingMargin]}>
       {icon ? (
         <>
           <View style={[styles.circleContainer, { borderColor: circleColor }]}>
@@ -73,14 +73,16 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
-    margin: 20,
     marginBottom: 0,
     borderWidth: 1,
     borderColor: "#fff",
     borderRadius: 8,
     backgroundColor: "#fff",
     justifyContent: "space-between",
+  },
+  extraPaddingMargin: {
+    padding: 10,
+    margin: 20,
   },
   circleContainer: {
     width: 50,
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
   },
   columnMoves: {
     flex: 1,
-    padding: 10,
   },
   moveItem: {
     flexDirection: "row",
@@ -131,8 +132,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Switzer-Variable",
     textAlign: "left",
-    marginLeft: 20, // Margin for alignment
-    marginTop: 12, // Margin from the top
+    marginLeft: 20,
+    marginTop: 12,
   },
   amount: {
     fontSize: 16,
