@@ -137,11 +137,13 @@ export default function Stats() {
             icon={data.categories[0].icon}
             name={data.categories[0].type}
             circleColor={data.categories[0].circleColor}
+            amount="- € 330"
           />
           <StatsCategory
             icon={data.categories[1].icon}
             name={data.categories[1].type}
             circleColor={data.categories[1].circleColor}
+            amount="- € 50"
           />
           <StatsCategory
             icon={data.categories[3].icon}

@@ -28,62 +28,89 @@
         {
             "type": "cibo",
             "icon": "apple",
-            "circleColor": "pink",
-            "date" : "02.05.24"
+            "circleColor": "pink"
         },
         {
             "type": "casa",
             "icon": "house",
-            "circleColor": "grey",
-            "date" : "02.05.24"
+            "circleColor": "grey"
         },
         {
             "type": "mediche",
             "icon": "pill",
-            "circleColor": "green",
-            "date" : "02.05.24"
+            "circleColor": "green"
         },
         {
             "type": "viaggi",
             "icon": "plane",
-            "circleColor": "blue",
-            "date" : "02.05.24"
+            "circleColor": "blue"
         },
         {
             "type": "shopping",
             "icon": "shopping",
-            "circleColor": "orange",
-            "date" : "02.05.24"
+            "circleColor": "orange"
         },
         {
             "type": "mezzi",
             "icon": "train",
-            "circleColor": "brown",
-            "date" : "02.05.24"
+            "circleColor": "brown"
         },
         {
             "type": "abbonamenti",
             "icon": "headphones",
-            "circleColor": "purple",
-            "date" : "02.05.24"
+            "circleColor": "purple"
         },
         {
             "type": "benzina",
             "icon": "car",
-            "circleColor": "red",
-            "date" : "02.05.24"
+            "circleColor": "red"
         },
         {
             "type": "ristorante",
             "icon": "plate",
-            "circleColor": "cyan",
-            "date" : "02.05.24"
+            "circleColor": "cyan"
         },
         {
             "type": "divertimento",
             "icon": "ticket",
-            "circleColor": "yellow",
-            "date" : "02.05.24"
+            "circleColor": "yellow"
+        }
+    ],
+    "movements": [
+        { 
+            "moves": "Conad", 
+            "amount": "- € 78.95", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Nonna", 
+            "amount": "+ € 50.00", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Rimborso", 
+            "amount": " € 00.00", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Conad", 
+            "amount": "- € 74.50", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Conad", 
+            "amount": "- € 30.40", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Nonna", 
+            "amount": "+ € 200.31", 
+            "date": "02.05.24" 
+        },
+        { 
+            "moves": "Gratta e Vinci", 
+            "amount": "+ € 10.00", 
+            "date": "02.05.24" 
         }
     ]
 }

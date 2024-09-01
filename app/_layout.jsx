@@ -178,7 +178,7 @@ export default function App() {
               fontFamily: "Switzer-Variable",
             },
             headerLeft: () => <HeaderButton />,
-            headerRight: () => <HeaderButton icon={"check"} />,
+            headerRight: () => <HeaderButton icon={"check"} goto="Stats" />,
           }}
         />
       </Tab.Navigator>

@@ -1,5 +1,6 @@
-import {Text, TextInput} from "../components/textFont"; // Importing custom text components
-import {useState, useEffect} from "react"; // Importing React hooks
+import { Text } from "../components/textFont"; // Importing custom text components
+import { useState, useEffect } from "react"; // Importing React hooks
+import { FlatList } from "react-native";
 import * as Font from "expo-font"; // Importing Font loading module from Expo
 import {
   View,
@@ -11,6 +12,9 @@ import {
 } from "react-native"; // Importing React Native components
 import HomeCards from "../components/homeCards"; // Importing a custom HomeCards component
 import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
+import StatsCategory from "../components/statsCategory";
+
+import data from "../data/data.json";
 
 // Importing image assets
 const pig_empty = require("../assets/homepage/Pig_empty.png");
@@ -83,40 +87,17 @@ export default function Home() {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return {euros, cents};
+    return { euros, cents };
   };
   // Extract formatted euros and cents
-  const {euros, cents} = formatBalance(totalBalance);
-
-  // Function to determine the color of the movements amount based on the sign
-  const getAmountMovesColor = (amount) => {
-    // Check if the amount starts with '-' or '+'
-    if (amount.startsWith("-")) {
-      return "#5272F2"; // Blue for negative
-    } else if (amount.startsWith("+")) {
-      return "#F773ED"; // Pink for positive
-    } else {
-      return "#A0A0A0"; // Default gray color
-    }
-  };
-
-  // Example movements data
-  const movements = [
-    {moves: "Conad", amount: "- € 78.95", date: "02.05.24"},
-    {moves: "Nonna", amount: "+ € 50.00", date: "02.05.24"},
-    {moves: "Rimborso", amount: " € 00.00", date: "02.05.24"},
-    {moves: "Conad", amount: "- € 74.50", date: "02.05.24"},
-    {moves: "Conad", amount: "- € 30.40", date: "02.05.24"},
-    {moves: "Nonna", amount: "+ € 200.31", date: "02.05.24"},
-    {moves: "Gratta e Vinci", amount: "+ € 10.00", date: "02.05.24"},
-  ];
+  const { euros, cents } = formatBalance(totalBalance);
 
   return (
     <ScrollView style={styles.container}>
       {/* Condizione per iOS e Android */}
       {Platform.OS === "ios" ? (
         <View
-          style={{height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)"}}
+          style={{ height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
         ></View>
       ) : (
         <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
@@ -135,7 +116,7 @@ export default function Home() {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{flex: 1}}></View>
+            <View style={{ flex: 1 }}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -192,24 +173,17 @@ export default function Home() {
           {/* Latest movements section */}
           <View style={styles.MovesContainer}>
             <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
-            <View style={styles.columnMoves}>
-              {movements.map((movement, index) => (
-                // Each movement item is wrapped in a `View` with a unique `key` to help React efficiently update the list
-                <View key={index} style={styles.moveItem}>
-                  {/* Iterates over the `movements` array and renders each item as a `View` component */}
-                  <Text style={styles.moveName}>{movement.moves}</Text>
-                  <Text
-                    style={[
-                      styles.amount,
-                      {color: getAmountMovesColor(movement.amount)},
-                    ]}
-                  >
-                    {movement.amount}
-                  </Text>
-                  <Text style={styles.date}>{movement.date}</Text>
-                </View>
-              ))}
-            </View>
+            <FlatList
+              data={data.movements}
+              renderItem={({ item }) => (
+                <StatsCategory
+                  moves={item.moves}
+                  amount={item.amount}
+                  date={item.date}
+                />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
           </View>
         </View>
       </View>
@@ -363,22 +337,22 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 17,
     padding: 10,
-    margin: 5, // Space between items
-    flexDirection: "row", // Align circle and text horizontally
-    alignItems: "center", // Center items vertically
+    margin: 5,
+    flexDirection: "row",
+    alignItems: "center",
   },
   amountIn: {
-    fontSize: 16, // Smaller font size for the number
+    fontSize: 16,
     color: "#F773ED",
     fontFamily: "Switzer-Semibold",
   },
   amountOut: {
-    fontSize: 16, // Smaller font size for the number
+    fontSize: 16,
     color: "#5272F2",
     fontFamily: "Switzer-Semibold",
   },
   textContainer: {
-    flex: 1, // Take remaining space
+    flex: 1,
   },
   label: {
     fontSize: 16,
@@ -420,12 +394,12 @@ const styles = StyleSheet.create({
   },
   amount: {
     position: "absolute",
-    top: 12, // Space from the top
-    right: 20, // Space from the right edge
+    top: 12,
+    right: 20,
     fontSize: 16,
     fontFamily: "Switzer-Semibold",
     textAlign: "right",
-    color: "#000000", // Text color
+    color: "#000000",
   },
   date: {
     position: "absolute",

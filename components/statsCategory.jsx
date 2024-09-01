@@ -1,5 +1,8 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
+// Import your JSON data
+import data from "../data/data.json";
+
 const images = {
   apple: require("../assets/stats/apple.png"),
   house: require("../assets/stats/house.png"),
@@ -13,14 +16,26 @@ const images = {
   ticket: require("../assets/stats/ticket.png"),
 };
 
+// Function to determine the color of the movements amount based on the sign
+const getAmountMovesColor = (amount) => {
+  // Check if the amount starts with '-' or '+'
+  if (amount.startsWith("-")) {
+    return "#5272F2"; // Blue for negative
+  } else if (amount.startsWith("+")) {
+    return "#F773ED"; // Pink for positive
+  } else {
+    return "#A0A0A0"; // Default gray color
+  }
+};
+
 export default function StatsCategory({
   icon,
   circleColor = "black",
   name,
   date,
+  amount = "€ 0",
+  moves,
 }) {
-  const value = 50; // value to be seen
-
   return (
     <View style={styles.container}>
       {icon ? (
@@ -30,14 +45,24 @@ export default function StatsCategory({
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.text}>{name}</Text>
-            <Text style={styles.valueText}>€ {value}</Text>
+            <Text
+              style={[styles.valueText, { color: getAmountMovesColor(amount) }]}
+            >
+              {amount}
+            </Text>
           </View>
         </>
       ) : (
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{name}</Text>
-          <Text style={styles.valueText}>€ {value}</Text>
-          <Text style={styles.date}>{date}</Text>
+        <View style={styles.columnMoves}>
+          <View style={styles.moveItem}>
+            <Text style={styles.moveName}>{moves}</Text>
+            <Text
+              style={[styles.amount, { color: getAmountMovesColor(amount) }]}
+            >
+              {amount}
+            </Text>
+            <Text style={styles.date}>{date}</Text>
+          </View>
         </View>
       )}
     </View>
@@ -85,14 +110,45 @@ const styles = StyleSheet.create({
     color: "#333",
     textAlign: "right",
   },
-  date: {
+  columnMoves: {
+    flex: 1,
+    padding: 10,
+  },
+  moveItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#FCF6FB",
+    paddingVertical: 8,
+    marginBottom: 10,
+    borderRadius: 15,
+    height: 60,
+    position: "relative",
+  },
+  moveName: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 14,
+    fontFamily: "Switzer-Variable",
+    textAlign: "left",
+    marginLeft: 20, // Margin for alignment
+    marginTop: 12, // Margin from the top
+  },
+  amount: {
+    fontSize: 16,
+    fontFamily: "Switzer-Semibold",
+    textAlign: "right",
+    color: "#000000",
     position: "absolute",
-    bottom: 5,
+    top: 12,
     right: 20,
+  },
+  date: {
     fontSize: 10,
     color: "#A0A0A0",
     textAlign: "right",
-    flex: 1,
-    marginTop: 8,
+    position: "absolute",
+    bottom: 5,
+    right: 20,
   },
 });

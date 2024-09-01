@@ -78,22 +78,28 @@ export default function StatsFilter() {
       <View style={styles.container}>
         <Text style={styles.title}>Data</Text>
         <View style={styles.dateContainer}>
-          <DateTimePicker
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-            style={styles.datePicker}
-          />
-          <DateTimePicker
-            value={date}
-            mode="date"
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-            style={styles.datePicker}
-          />
+          <View style={styles.datePickerContainer}>
+            <Icon name={"calendar"} style={styles.datePickerIcon} />
+            <DateTimePicker
+              value={date}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+              style={styles.datePicker}
+            />
+          </View>
+          <View style={styles.datePickerContainer}>
+            <Icon name={"calendar"} style={styles.datePickerIcon} />
+            <DateTimePicker
+              value={date}
+              mode="date"
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+              style={styles.datePicker}
+            />
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -166,11 +172,24 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginLeft: -30,
+    justifyContent: "space-around",
+  },
+  datePickerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "lightgrey",
+    padding: 5,
+    borderRadius: 5,
+  },
+  datePickerIcon: {
+    fontSize: 24,
+    color: "black",
+    marginRight: 5,
   },
   datePicker: {
-    width: 150,
+    width: 100,
+    backgroundColor: "lightgrey",
+    borderRadius: 5,
   },
   nome: {
     fontSize: 10,
