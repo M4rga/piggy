@@ -52,6 +52,7 @@ export default function StatsFilter() {
       {/* Categories */}
       <View style={styles.container}>
         <Text style={styles.title}>Categoria</Text>
+        {/* Flatlisst works like a for cicle */}
         <FlatList
           data={data.categories} // Data where to pick the items information
           renderItem={({ item }) => (
@@ -97,7 +98,7 @@ export default function StatsFilter() {
       <View style={styles.container}>
         <Text style={styles.title}>Data</Text>
         <View style={styles.dateContainer}>
-          {/* Data di inizio */}
+          {/* Initial date */}
           {Platform.OS === "android" ? (
             <TouchableOpacity
               style={styles.datePickerContainer}
@@ -129,7 +130,7 @@ export default function StatsFilter() {
               style={styles.datePicker}
             />
           )}
-          {/* Data di fine */}
+          {/* End date */}
           {Platform.OS === "android" ? (
             <TouchableOpacity
               style={styles.datePickerContainer}

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native"; // TouchableOpacity create a button which can be pressed
 
 const DropdownButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // State used to define if the dropdown is active or not
 
+  // Function that changes the state
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
