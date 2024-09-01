@@ -2,11 +2,10 @@
 import {Text, TextInput} from "../components/textFont";
 import {useState, useEffect} from "react";
 import Card from "../components/card";
+import PlusCard from "../components/PlusCard";
 import * as Font from "expo-font";
 // -------------------------
 import {View, StyleSheet, ScrollView} from "react-native";
-import Icon from "react-native-vector-icons/Feather";
-import Icon2 from "react-native-vector-icons/FontAwesome";
 
 export default function Wallet() {
   // ------------FONT---------------
@@ -53,7 +52,7 @@ export default function Wallet() {
         num2=",00"
         color="#2F212F"
         color2="white"
-        iconName="dollar-sign"
+        iconName="dollar"
       />
 
       <Card
@@ -62,7 +61,7 @@ export default function Wallet() {
         num2=",00"
         color="#5272F2"
         color2="white"
-        iconName="fa-brands fa-paypal"
+        iconName= "paypal"
       />
 
       <Card
@@ -71,7 +70,16 @@ export default function Wallet() {
         num2=",00"
         color="#F773ED"
         color2="white"
-        iconName="fa-solid fa-piggy-bank"
+        iconName="smile-o"
+      />
+
+      <PlusCard
+        name="Fondo di risparmio"
+        num1="€ 12.800"
+        num2=",00"
+        color="#F773ED"
+        color2="white"
+        iconName="smile-o"
       />
     </ScrollView>
   );
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   cardView1: {
-    felx: 1,
+    flex: 1,
     width: "88%",
     height: "100%",
   },

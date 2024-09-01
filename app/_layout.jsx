@@ -17,6 +17,7 @@ import Loan from "./loan";
 import Outcome from "./outcome";
 import Private from "./private";
 import Recipt from "./recipt";
+import AddCard from "./AddCard";
 import StatsFilter from "./statsFilter";
 
 const Tab = createBottomTabNavigator();
@@ -170,6 +171,19 @@ export default function App() {
         <Tab.Screen
           name="StatsFilter"
           component={StatsFilter}
+          options={{
+            tabBarVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontFamily: "Switzer-Variable",
+            },
+            headerLeft: () => <HeaderButton />,
+            headerRight: () => <HeaderButton icon={"check"} goto="Stats" />,
+          }}
+        />
+        <Tab.Screen
+          name="AddCard"
+          component={AddCard}
           options={{
             tabBarVisible: false,
             headerTitleAlign: "center",

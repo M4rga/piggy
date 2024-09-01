@@ -23,7 +23,7 @@ const Card = (props) => {
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>{props.num2}</Text>
         </Text>
       </View>
-      <Icon
+      <Icon2
         style={{ marginTop: 5, color: props.color2 }}
         name={props.iconName}
         size={30}
