@@ -52,6 +52,12 @@ export default function HomeScreen({navigation}) {
     }
   };
 
+  const handleSkip = () => {
+    const lastIndex = slides.length - 1;
+    setCurrentIndex(lastIndex);
+    slidesRef.current.scrollToIndex({index: lastIndex});
+  };
+
   useEffect(() => {
     animatedValues.forEach((animValue, index) => {
       Animated.timing(animValue, {
@@ -106,12 +112,23 @@ export default function HomeScreen({navigation}) {
           {slides[currentIndex].description}
         </Text>
         <View style={styles.allButtons}>
-          <TouchableOpacity style={styles.button} onPress={handleNext}>
-            <Text style={styles.buttonText}>Avanti</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.skipButton}>
-            <Text style={styles.skipText}>Salta</Text>
-          </TouchableOpacity>
+          {currentIndex === slides.length - 1 ? (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Next")}
+            >
+              <Text style={styles.buttonText}>Iniziamo</Text>
+            </TouchableOpacity>
+          ) : (
+            <>
+              <TouchableOpacity style={styles.button} onPress={handleNext}>
+                <Text style={styles.buttonText}>Avanti</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
+                <Text style={styles.skipText}>Salta</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
     </View>
@@ -124,6 +141,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCF6FB",
   },
   slide: {
+    marginTop: 40,
     width: width,
     height: height * 0.5, // Adjust height for slide image area
     alignItems: "center",
@@ -170,7 +188,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: "#FF69B4", // Use the pink color for the button
+    backgroundColor: "#F773ED", // Use the pink color for the button
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
@@ -185,7 +203,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   skipText: {
-    color: "#555",
+    color: "#A0A0A0",
     alignSelf: "center",
     textDecorationLine: "underline",
   },
