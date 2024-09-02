@@ -1,4 +1,4 @@
-export default [
+export const slides = [
   {
     id: "1",
     title: "Benvenuto/a in Piggy",
@@ -33,12 +33,5 @@ export default [
     description:
       "Non devi più preoccuparti di tenerle a mente e addio ai bigliettini promemoria.",
     image: require("../assets/login/fifthImage.png"),
-  },
-  {
-    id: "6",
-    title: "Hai già un account?",
-    description:
-      "Accedi per recuperare i tuoi dati o registrati per iniziare la tua avventura.",
-    image: require("../assets/login/sixthImage.png"),
   },
 ];
