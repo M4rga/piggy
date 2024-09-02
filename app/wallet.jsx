@@ -29,7 +29,7 @@ export default function Wallet() {
   }
   // -------------------------
   return (
-    <ScrollView style={{flex: 1, backgroundColor: "white"}}>
+    <ScrollView style={{flex: 1, backgroundColor: "#FCF6FB"}}>
       <View style={styles.balance}>
         <Text style={styles.balanceText}>Bilancio Totale</Text>
         <Text style={{fontSize: 34}}>

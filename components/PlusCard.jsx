@@ -10,13 +10,13 @@ const PlusCard = () => {
 
     <TouchableOpacity onPress={() => navigation.navigate("AddCard")}>
         <View style={styles.card}>
-        <View style={styles.InnerView}>
-            <Icon
-                style={{ marginTop: 5, color: "#A0A0A0" }}
-                name= "plus"
-                size={60}
-            />
-        </View>
+          <View style={styles.InnerView}>
+              <Icon
+                  style={{ marginTop: 5, color: "#A0A0A0" }}
+                  name= "plus"
+                  size={60}
+              />
+          </View>
         </View>
     </TouchableOpacity>
   );
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   InnerView: {
     justifyContent:"center",
     alignItems:"center",
-    height:"50%",
+    height:"45%",
     width:"23%",
     borderRadius: 100,
     borderWidth: 3,
