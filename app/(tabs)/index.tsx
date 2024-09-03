@@ -1,5 +1,5 @@
-import { Text } from "../../components/textFont"; // Importing custom text components
-import { FlatList } from "react-native";
+import {Text} from "../../components/textFont"; // Importing custom text components
+import {FlatList} from "react-native";
 import {
   View,
   StyleSheet,
@@ -61,17 +61,17 @@ const Home = () => {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return { euros, cents };
+    return {euros, cents};
   };
   // Extract formatted euros and cents
-  const { euros, cents } = formatBalance(totalBalance);
+  const {euros, cents} = formatBalance(totalBalance);
 
   return (
     <ScrollView style={styles.container}>
       {/* Condizione per iOS e Android */}
       {Platform.OS === "ios" ? (
         <View
-          style={{ height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)" }}
+          style={{height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)"}}
         ></View>
       ) : (
         <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
@@ -90,7 +90,7 @@ const Home = () => {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{ flex: 1 }}></View>
+            <View style={{flex: 1}}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -110,31 +110,35 @@ const Home = () => {
             <Text style={styles.titleThisMonth}>Questo mese</Text>
             <View style={styles.rowInOut}>
               <View style={styles.InOut}>
-                <Text style={styles.amountIn}>+ 1782</Text>
+                <View style={[styles.circleBorder, styles.incomeBorder]}>
+                  <Text style={styles.amountIn}>1782</Text>
+                </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Entrate</Text>
                   <TextTicker
-                    scrollSpeed={50} // Sets the speed of the scrolling text. A lower number means slower scrolling.
-                    loop // Ensures that the text scrolls infinitely in a loop.
-                    bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
-                    numberOfLines={1} // Limits the text to a single line. No line wrapping will occur.
-                    marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts. Here it's 1 second.
-                    style={styles.description} // Applies the custom styles defined in the `styles.description` object to the text ticker.
+                    scrollSpeed={50}
+                    loop
+                    bounce
+                    numberOfLines={1}
+                    marqueeDelay={1000}
+                    style={styles.description}
                   >
                     Stipendio, Mansione
                   </TextTicker>
                 </View>
               </View>
               <View style={styles.InOut}>
-                <Text style={styles.amountOut}>- 914</Text>
+                <View style={[styles.circleBorder, styles.outcomeBorder]}>
+                  <Text style={styles.amountOut}>914</Text>
+                </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Uscite</Text>
                   <TextTicker
-                    scrollSpeed={50} // Sets the speed of the scrolling text. A lower number means slower scrolling.
-                    loop // Ensures that the text scrolls infinitely in a loop.
-                    bounce // Makes the text bounce back to the beginning after it scrolls off the screen.
-                    numberOfLines={1} // Limits the text to a single line.
-                    marqueeDelay={1000} // Specifies a delay (in milliseconds) before the scrolling effect starts.
+                    scrollSpeed={50}
+                    loop
+                    bounce
+                    numberOfLines={1}
+                    marqueeDelay={1000}
                     style={styles.description}
                   >
                     Cibo, Casa, Benzina
@@ -149,7 +153,7 @@ const Home = () => {
             <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
             <FlatList
               data={data.movements}
-              renderItem={({ item }) => (
+              renderItem={({item}) => (
                 <StatsCategory
                   moves={item.moves}
                   amount={item.amount}
@@ -305,16 +309,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  InOut: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    borderColor: "#ECE9EA",
-    borderWidth: 2,
-    borderRadius: 17,
-    padding: 10,
-    margin: 5,
-    flexDirection: "row",
+  circleBorder: {
+    width: 55,
+    height: 55,
+    borderRadius: 27.5, // rende il contenitore un cerchio
+    borderWidth: 3, // spessore del bordo
+    justifyContent: "center",
     alignItems: "center",
+    marginRight: 10, // Spazio tra il cerchio e il testo successivo
+  },
+  incomeBorder: {
+    borderColor: "#F773ED",
+  },
+  outcomeBorder: {
+    borderColor: "#5272F2",
   },
   amountIn: {
     fontSize: 16,
@@ -326,14 +334,28 @@ const styles = StyleSheet.create({
     color: "#5272F2",
     fontFamily: "Switzer-Semibold",
   },
+  InOut: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    borderColor: "#ECE9EA",
+    borderWidth: 2,
+    borderRadius: 17,
+    padding: 10,
+    margin: 5,
+    flexDirection: "row",
+    alignItems: "center",
+  },
   textContainer: {
     flex: 1,
+  },
+  // Aggiungere uno stile specifico per il bordo delle uscite
+  amountOutContainer: {
+    borderColor: "#5272F2", // colore del bordo per le uscite
   },
   label: {
     fontSize: 16,
     textAlign: "left",
     fontFamily: "Switzer-Semibold",
-    marginLeft: 12,
   },
   description: {
     fontSize: 12,

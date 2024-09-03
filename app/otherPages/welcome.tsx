@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef} from "react";
 import {
   View,
   StyleSheet,
@@ -6,12 +6,11 @@ import {
   FlatList,
   Image,
   Dimensions,
-  Animated,
 } from "react-native";
-import { slides } from "../../data/slides"; // Import the slides data
-import { Text } from "../../components/textFont";
+import {slides} from "../../data/slides"; // Import the slides data
+import {Text} from "../../components/textFont";
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get("window");
 
 interface Slide {
   id: string;
@@ -26,40 +25,13 @@ interface WelcomeProps {
   };
 }
 
-const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
+const Welcome: React.FC<WelcomeProps> = ({navigation}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const slidesRef = useRef<FlatList<Slide>>(null);
 
-  const animatedValues = useRef<Animated.Value[]>(
-    slides.map(() => new Animated.Value(12))
-  ).current;
-
-  const translateX = useRef(new Animated.Value(0)).current;
-
-  const viewableItemsChanged = useRef(({ viewableItems }: any) => {
-    setCurrentIndex(viewableItems[0].index);
-  }).current;
-
-  const viewConfig = useRef({
-    viewAreaCoveragePercentThreshold: 50,
-  }).current;
-
   const handleNext = () => {
     if (currentIndex < slides.length - 1) {
-      Animated.sequence([
-        Animated.timing(translateX, {
-          toValue: -width,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateX, {
-          toValue: 0,
-          duration: 0,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
-      });
+      slidesRef.current?.scrollToIndex({index: currentIndex + 1});
     } else {
       navigation.navigate("Next");
     }
@@ -68,52 +40,47 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const handleSkip = () => {
     const lastIndex = slides.length - 1;
     setCurrentIndex(lastIndex);
-    slidesRef.current?.scrollToIndex({ index: lastIndex });
+    slidesRef.current?.scrollToIndex({index: lastIndex});
   };
 
-  useEffect(() => {
-    animatedValues.forEach((animValue, index) => {
-      Animated.timing(animValue, {
-        toValue: currentIndex === index ? 24 : 12,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    });
-  }, [currentIndex]);
+  const viewableItemsChanged = useRef(({viewableItems}: any) => {
+    setCurrentIndex(viewableItems[0].index);
+  }).current;
+
+  const viewConfig = useRef({
+    viewAreaCoveragePercentThreshold: 50,
+  }).current;
 
   return (
     <View style={styles.container}>
-      <Animated.View style={{ transform: [{ translateX }] }}>
-        <FlatList
-          data={slides}
-          renderItem={({ item }) => (
-            <View style={styles.slide}>
-              <Image
-                source={item.image}
-                style={styles.image}
-                resizeMode="contain"
-              />
-            </View>
-          )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          bounces={false}
-          keyExtractor={(item) => item.id}
-          onViewableItemsChanged={viewableItemsChanged}
-          viewabilityConfig={viewConfig}
-          ref={slidesRef}
-        />
-      </Animated.View>
+      <FlatList
+        data={slides}
+        renderItem={({item}) => (
+          <View style={styles.slide}>
+            <Image
+              source={item.image}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        bounces={false}
+        keyExtractor={(item) => item.id}
+        onViewableItemsChanged={viewableItemsChanged}
+        viewabilityConfig={viewConfig}
+        ref={slidesRef}
+      />
       <View style={styles.content}>
         <View style={styles.indicators}>
           {slides.map((_, index) => (
-            <Animated.View
+            <View
               key={index}
               style={[
                 styles.dot,
                 {
-                  width: animatedValues[index],
                   backgroundColor: currentIndex === index ? "#000" : "#e0e0e0",
                 },
               ]}
@@ -169,9 +136,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 15,
     marginBottom: 20,
+    position: "absolute",
+    top: 10,
+    left: 0,
+    right: 0,
+    zIndex: 2,
   },
   dot: {
     height: 8,
+    width: 8,
     borderRadius: 4,
     marginHorizontal: 2,
     backgroundColor: "#e0e0e0",
@@ -186,19 +159,21 @@ const styles = StyleSheet.create({
     height: 270,
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   title: {
     fontSize: 24,
     fontFamily: "Switzer-Semibold",
     color: "#000",
-    marginBottom: 10,
+    marginTop: 50,
     textAlign: "left",
   },
   description: {
     fontSize: 14,
     textAlign: "left",
     color: "#555",
-    marginBottom: 20,
+    marginTop: 15,
   },
   button: {
     backgroundColor: "#F773ED",
@@ -207,8 +182,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 10,
     alignItems: "center",
-    alignSelf: "center",
-    width: 120,
+    width: 140,
   },
   buttonText: {
     color: "#fff",
@@ -220,13 +194,14 @@ const styles = StyleSheet.create({
   },
   skipText: {
     color: "#A0A0A0",
-    alignSelf: "center",
     textDecorationLine: "underline",
   },
   allButtons: {
     position: "absolute",
-    alignSelf: "center",
     bottom: 10,
+    left: 0,
+    right: 0,
+    alignItems: "center",
   },
 });
 
