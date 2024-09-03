@@ -51,6 +51,8 @@ const Layout = () => {
         initialRouteName="home"
         screenOptions={{
           headerStyle: { backgroundColor: "#FCF6FB" },
+          headerTitleAlign: "center",
+          headerTitleStyle: { fontFamily: "Switzer-Semibold" },
           headerShadowVisible: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: activeColor,
@@ -75,14 +77,10 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/wallet"
           options={{
-            title: "Wallet",
+            title: "Portafogli",
             tabBarIcon: ({ color }) => (
               <IconFeather name="inbox" size={24} color={color} />
             ),
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -194,10 +192,6 @@ const Layout = () => {
           name="plus/income"
           options={{
             title: "Income",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -222,10 +216,6 @@ const Layout = () => {
           name="plus/outcome"
           options={{
             title: "Outcome",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -250,10 +240,6 @@ const Layout = () => {
           name="plus/loan"
           options={{
             title: "Loan",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -278,10 +264,6 @@ const Layout = () => {
           name="plus/receipt"
           options={{
             title: "Receipt",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -305,14 +287,10 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/stats"
           options={{
-            title: "Stats",
+            title: "Statistiche",
             tabBarIcon: ({ color }) => (
               <IconFeather name="bar-chart" size={24} color={color} />
             ),
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -335,14 +313,10 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/private"
           options={{
-            title: "Private",
+            title: "Area Privata",
             tabBarIcon: ({ color }) => (
               <IconFeather name="lock" size={24} color={color} />
             ),
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -366,15 +340,11 @@ const Layout = () => {
           name="otherPages/welcome"
           options={{
             title: "Private",
+            headerShown: false,
             // href: null,
             tabBarIcon: ({ color }) => (
               <IconFeather name="align-justify" size={24} color={color} />
             ),
-            headerShown: false,
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -397,11 +367,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/addCard"
           options={{
-            title: "Add Card",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
+            title: "Nuova fonte",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -425,11 +391,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/statsFilter"
           options={{
-            title: "Filter Stats",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              fontFamily: "Switzer-Variable",
-            },
+            title: "Filtro Statistiche",
             href: null,
             headerLeft: () => (
               <IconFeather
