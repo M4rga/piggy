@@ -1,0 +1,113 @@
+{
+    "wallet": [
+        {
+            "category": "Conto Corrente",
+            "icon": "credit-card",
+            "amount": "6.579,78"
+        },
+        {
+            "category": "Contanti",
+            "icon": "dollar",
+            "amount": "834,00"
+        },
+        {
+            "category": "Pay Pal",
+            "icon": "paypal",
+            "amount": "62,00"
+        },
+        {
+            "category": "Fondo di risparmio",
+            "icon": "smile-o",
+            "amount": "62,00"
+        }
+    ],
+    "categories": [
+        {
+            "type": "cibo",
+            "icon": "apple",
+            "circleColor": "pink"
+        },
+        {
+            "type": "casa",
+            "icon": "house",
+            "circleColor": "grey"
+        },
+        {
+            "type": "mediche",
+            "icon": "pill",
+            "circleColor": "green"
+        },
+        {
+            "type": "viaggi",
+            "icon": "plane",
+            "circleColor": "blue"
+        },
+        {
+            "type": "shopping",
+            "icon": "shopping",
+            "circleColor": "orange"
+        },
+        {
+            "type": "mezzi",
+            "icon": "train",
+            "circleColor": "brown"
+        },
+        {
+            "type": "abbonamenti",
+            "icon": "headphones",
+            "circleColor": "purple"
+        },
+        {
+            "type": "benzina",
+            "icon": "car",
+            "circleColor": "red"
+        },
+        {
+            "type": "ristorante",
+            "icon": "plate",
+            "circleColor": "cyan"
+        },
+        {
+            "type": "divertimento",
+            "icon": "ticket",
+            "circleColor": "yellow"
+        }
+    ],
+    "movements": [
+        {
+            "moves": "Conad",
+            "amount": "- € 78.95",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Nonna",
+            "amount": "+ € 50.00",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Rimborso",
+            "amount": " € 00.00",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Conad",
+            "amount": "- € 74.50",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Conad",
+            "amount": "- € 30.40",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Nonna",
+            "amount": "+ € 200.31",
+            "date": "02.05.24"
+        },
+        {
+            "moves": "Gratta e Vinci",
+            "amount": "+ € 10.00",
+            "date": "02.05.24"
+        }
+    ]
+}

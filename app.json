@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "piggy",
+    "slug": "piggy",
+    "scheme": "piggy",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/appAssets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/appAssets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/appAssets/icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/font/Switzer-Variable.ttf",
+            "./assets/font/Switzer-Bold.otf",
+            "./assets/font/Switzer-Italic.otf",
+            "./assets/font/Switzer-Semicold.otf",
+            "./assets/font/Switzer-Thin.otf"
+          ]
+        }
+      ]
+    ]
+  }
+}
