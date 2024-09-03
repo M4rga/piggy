@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
   option: {
     flex: 1,
     alignItems: "center",
+    paddingBottom: 10,
   },
   selectedOption: {
     borderBottomWidth: 2,
