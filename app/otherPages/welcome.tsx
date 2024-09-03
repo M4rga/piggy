@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Switzer-Semibold",
   },
   skipButton: {
     marginTop: 10,

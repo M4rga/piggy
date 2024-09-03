@@ -30,7 +30,7 @@ const Wallet = () => {
         num2=",00"
         color="#2F212F"
         color2="white"
-        iconName="dollar"
+        iconName="money"
       />
 
       <Card
@@ -65,8 +65,6 @@ const styles = StyleSheet.create({
   balanceText: {
     color: "#A0A0A0",
     fontSize: 20,
-    fontWeight: "bold",
-    // fontFamily: "Switzer-Variable",
   },
   card: {
     borderRadius: 20,

@@ -20,14 +20,13 @@ const Card: React.FC<CardProps> = (props) => {
         <Text
           style={{
             fontSize: 30,
-            marginTop: 75,
+            marginTop: 60,
             marginLeft: 5,
-            fontWeight: "bold",
             color: props.color2,
           }}
         >
           {props.num1}
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>{props.num2}</Text>
+          <Text style={{ fontSize: 17 }}>{props.num2}</Text>
         </Text>
       </View>
       <IconFontAwesome
@@ -42,7 +41,7 @@ const Card: React.FC<CardProps> = (props) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 20,
-    height: 200,
+    height: 170,
     width: "95%",
     marginLeft: "2.5%",
     padding: 15,

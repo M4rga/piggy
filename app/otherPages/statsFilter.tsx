@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    fontWeight: "bold",
+    fontFamily: "Switzer-Semibold",
     marginBottom: 20,
   },
   flatListContainer: {

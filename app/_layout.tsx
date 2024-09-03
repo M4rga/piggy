@@ -122,19 +122,13 @@ const Layout = () => {
                   }}
                   onOpen={() => {
                     setTimeout(() => {
-                      setActiveColor(
-                        activeColor === "#F773ED" ? "black" : "black"
-                      );
-                      setPlusColor(
-                        plusColor === "black" ? "#F773ED" : "#F773ED"
-                      );
+                      setActiveColor("black");
+                      setPlusColor("#F773ED");
                     }, 200);
                   }}
                   onClose={() => {
-                    setActiveColor(
-                      activeColor === "black" ? "#F773ED" : "#F773ED"
-                    );
-                    setPlusColor(plusColor === "#F773ED" ? "black" : "black");
+                    setActiveColor("#F773ED");
+                    setPlusColor("black");
                   }}
                 >
                   <MenuTrigger>

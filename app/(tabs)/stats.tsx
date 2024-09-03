@@ -92,8 +92,9 @@ const Stats = () => {
                 ? data2
                 : data3
             }
-            donut
-            innerRadius={100}
+            strokeWidth={4}
+            strokeColor="white"
+            innerRadius={105}
             centerLabelComponent={() => (
               <Text style={{ fontSize: 20 }}>
                 € <Text style={styles.valueText}>{value}</Text>
