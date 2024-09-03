@@ -1,13 +1,6 @@
-import {Text} from "../../components/textFont"; // Importing custom text components
-import {FlatList} from "react-native";
-import {
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Platform,
-  StatusBar,
-} from "react-native"; // Importing React Native components
+import { Text } from "../../components/textFont"; // Importing custom text components
+import { FlatList } from "react-native";
+import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
 import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 import StatsCategory from "../../components/statsCategory";
@@ -61,21 +54,13 @@ const Home = () => {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return {euros, cents};
+    return { euros, cents };
   };
   // Extract formatted euros and cents
-  const {euros, cents} = formatBalance(totalBalance);
+  const { euros, cents } = formatBalance(totalBalance);
 
   return (
     <ScrollView style={styles.container}>
-      {/* Condizione per iOS e Android */}
-      {Platform.OS === "ios" ? (
-        <View
-          style={{height: 55, backgroundColor: "rgba(255, 255, 255, 0.95)"}}
-        ></View>
-      ) : (
-        <StatusBar backgroundColor="rgba(255, 255, 255, 0.95)" />
-      )}
       <View style={styles.contentContainer}>
         {/* Top view with pig image */}
         <View style={styles.topView}>
@@ -90,7 +75,7 @@ const Home = () => {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{flex: 1}}></View>
+            <View style={{ flex: 1 }}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -153,7 +138,7 @@ const Home = () => {
             <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
             <FlatList
               data={data.movements}
-              renderItem={({item}) => (
+              renderItem={({ item }) => (
                 <StatsCategory
                   moves={item.moves}
                   amount={item.amount}

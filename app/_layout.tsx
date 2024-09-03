@@ -12,8 +12,13 @@ import {
   renderers,
 } from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { Popover } = renderers;
+
+function CustomHeader() {
+  return <SafeAreaView style={{ backgroundColor: "white" }} />;
+}
 
 const Layout = () => {
   const [activeColor, setActiveColor] = useState("#F773ED");
@@ -66,8 +71,8 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/index"
           options={{
-            title: "Home",
-            headerShown: false,
+            title: "a",
+            header: () => <CustomHeader />,
             tabBarIcon: ({ color }) => (
               <IconFeather name="home" size={22} color={color} />
             ),
