@@ -1,5 +1,6 @@
+import { useRouter } from "expo-router";
 import { Text } from "../../components/textFont";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, Pressable } from "react-native";
 
 const images = {
   receipts: require("../../assets/private/receipt-guy.png"),
@@ -8,20 +9,31 @@ const images = {
 };
 
 const Private = () => {
+  const router = useRouter();
+
   return (
     <View style={styles.outerContainer}>
-      <View style={styles.container}>
+      <Pressable
+        style={styles.container}
+        onPress={() => router.push("otherPages/receiptPage")}
+      >
         <Image source={images.receipts} style={styles.image} />
         <Text style={styles.text}>Storico scontrini</Text>
-      </View>
-      <View style={styles.container}>
+      </Pressable>
+      <Pressable
+        style={styles.container}
+        onPress={() => router.push("otherPages/passwordKeeperPage")}
+      >
         <Image source={images.passwords} style={styles.image} />
         <Text style={styles.text}>Password keeper</Text>
-      </View>
-      <View style={styles.container}>
+      </Pressable>
+      <Pressable
+        style={styles.container}
+        onPress={() => router.push("otherPages/documentsPage")}
+      >
         <Image source={images.documents} style={styles.image} />
         <Text style={styles.text}>Documenti</Text>
-      </View>
+      </Pressable>
     </View>
   );
 };
@@ -47,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: -50,
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     color: "black",
   },
 });

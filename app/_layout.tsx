@@ -416,6 +416,78 @@ const Layout = () => {
             // ),
           }}
         />
+
+        <Tabs.Screen
+          name="otherPages/receiptPage"
+          options={{
+            title: "Storico Scontrini",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/private")}
+              />
+            ),
+            // headerRight: () => (
+            //   <IconFeather
+            //     name={"chevron-left"}
+            //     size={26}
+            //     style={{ marginHorizontal: 15 }}
+            //     onPress={() => router.push("otherPages/addCard")}
+            //   />
+            // ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="otherPages/passwordKeeperPage"
+          options={{
+            title: "Password Keeper",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/private")}
+              />
+            ),
+            // headerRight: () => (
+            //   <IconFeather
+            //     name={"chevron-left"}
+            //     size={26}
+            //     style={{ marginHorizontal: 15 }}
+            //     onPress={() => router.push("otherPages/addCard")}
+            //   />
+            // ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="otherPages/documentsPage"
+          options={{
+            title: "Documenti",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/private")}
+              />
+            ),
+            // headerRight: () => (
+            //   <IconFeather
+            //     name={"chevron-left"}
+            //     size={26}
+            //     style={{ marginHorizontal: 15 }}
+            //     onPress={() => router.push("otherPages/addCard")}
+            //   />
+            // ),
+          }}
+        />
       </Tabs>
     </MenuProvider>
   );
