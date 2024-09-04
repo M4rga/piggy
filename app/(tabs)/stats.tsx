@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
 import { PieChart } from "react-native-gifted-charts";
-import StatsCategory from "../../components/statsCategory";
+import StatsCategory from "../../components/statsCategoryLastMovements";
 import DropdownButton from "../../components/dropdown";
 import { Text } from "../../components/textFont";
 import data from "../../data/data.json";
