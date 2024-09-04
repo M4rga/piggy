@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { View, Pressable } from "react-native";
+import { View, Pressable, SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Tabs, useRouter } from "expo-router";
@@ -12,7 +12,6 @@ import {
   renderers,
 } from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const { Popover } = renderers;
 
