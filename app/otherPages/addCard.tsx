@@ -1,8 +1,8 @@
 import { Text, TextInput } from "../../components/textFont";
 import { View, TouchableOpacity } from "react-native";
 import { StyleSheet, ScrollView } from "react-native";
+import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import Card from "../../components/card";
 import SelectIcon from "../../components/selectIcon";
 import ColorPoint from "../../components/colorPoint";
 
@@ -10,14 +10,25 @@ const AddCard = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={{ marginTop: 40 }}>
-        <Card
-          name="Nome"
-          num1="€ 430.00"
-          num2=",78"
-          color="#ECE9EA"
-          iconName="credit-card"
-          color2=""
-        />
+        <View style={styles.card}>
+          <View style={styles.cardView1}>
+            <TextInput style={{ fontSize: 25 }}>Name</TextInput>
+            <TextInput
+              style={{
+                fontSize: 30,
+                marginTop: 85,
+                marginLeft: 5,
+              }}
+            >
+              0<Text style={{ fontSize: 17 }}>,0</Text>
+            </TextInput>
+          </View>
+          <IconFontAwesome
+            style={{ marginTop: 5 }}
+            name="credit-card"
+            size={30}
+          />
+        </View>
       </View>
       <Text style={styles.iconW}>Icon</Text>
       <View style={styles.iconV}>
@@ -55,21 +66,21 @@ const AddCard = () => {
       </View>
 
       <View style={styles.colorV}>
-        <Text style={{ color: "#A0A0A0" }}>Nome</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="placeholder"
-          keyboardType="default"
-        />
-      </View>
-
-      <View style={styles.colorV}>
-        <Text style={{ color: "#A0A0A0" }}>Note</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="placeholder"
-          keyboardType="default"
-        />
+        <View style={{ flexDirection: "row", height: 80 }}>
+          <IconFeather
+            name="message-square"
+            style={{ marginTop: 11.5 }}
+            size={30}
+          />
+          <View style={{ marginLeft: 20 }}>
+            <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
+            <TextInput
+              style={{ marginTop: 6 }}
+              placeholder="Inserisci la tua nota qua"
+              keyboardType="default"
+            />
+          </View>
+        </View>
       </View>
 
       <View style={styles.VButton}>
@@ -85,6 +96,24 @@ const AddCard = () => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    backgroundColor: "#ECE9EA",
+    borderRadius: 20,
+    height: 200,
+    width: "95%",
+    marginLeft: "2.5%",
+    padding: 15,
+    flexDirection: "row",
+    marginBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.7,
+    shadowRadius: 5,
+    elevation: 10,
+  },
+  cardView1: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: "#FCF6FB",
@@ -122,7 +151,7 @@ const styles = StyleSheet.create({
   colorV: {
     backgroundColor: "white",
     width: "auto",
-    height: "auto",
+    height: 80,
     marginLeft: 10,
     marginTop: 30,
     marginRight: 10,

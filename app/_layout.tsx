@@ -12,11 +12,17 @@ import {
   renderers,
 } from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
+import { StatusBar } from "expo-status-bar";
 
 const { Popover } = renderers;
 
 function CustomHeader() {
-  return <SafeAreaView style={{ backgroundColor: "white" }} />;
+  return (
+    <View>
+      <SafeAreaView style={{ backgroundColor: "#FCF6FB" }} />
+      <StatusBar backgroundColor="#FCF6FB" />
+    </View>
+  );
 }
 
 const Layout = () => {
@@ -371,7 +377,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/addCard"
           options={{
-            title: "Nuova fonte",
+            title: "Nuova Fonte",
             href: null,
             headerLeft: () => (
               <IconFeather
