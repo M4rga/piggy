@@ -2,7 +2,6 @@ import { Text } from "../../components/textFont"; // Importing custom text compo
 import { FlatList } from "react-native";
 import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
-import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 import StatsCategory from "../../components/categoryLastMovements";
 
 import data from "../../data/data.json";
@@ -100,16 +99,6 @@ const Home = () => {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Entrate</Text>
-                  <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
-                    marqueeDelay={1000}
-                    style={styles.description}
-                  >
-                    Stipendio, Mansione
-                  </TextTicker>
                 </View>
               </View>
               <View style={styles.InOut}>
@@ -118,16 +107,6 @@ const Home = () => {
                 </View>
                 <View style={styles.textContainer}>
                   <Text style={styles.label}>Uscite</Text>
-                  <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
-                    marqueeDelay={1000}
-                    style={styles.description}
-                  >
-                    Cibo, Casa, Benzina
-                  </TextTicker>
                 </View>
               </View>
             </View>
