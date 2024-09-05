@@ -377,7 +377,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/addCard"
           options={{
-            title: "Nuova Fonte",
+            title: "Nuova Carta",
             href: null,
             headerLeft: () => (
               <IconFeather

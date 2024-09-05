@@ -1,17 +1,22 @@
-import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 interface SelectIconProps {
   icon: string;
+  isSelected: boolean;
+  onSelect: () => void;
 }
 
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
+
+  const borderColor = props.isSelected ? '#F773ED' : '#D3D3D3';
+  const iconColor = props.isSelected ? '#F773ED' : 'black';
+
   return (
-    <TouchableOpacity>
-      <View style={styles.InnerView}>
+    <TouchableOpacity onPress={props.onSelect}>
+      <View style={[styles.InnerView, {borderColor: borderColor}]}>
         <IconFontAwesome
-          style={{ color: "black" }}
+          style={{ color: iconColor }}
           name={props.icon}
           size={25}
         />
@@ -28,7 +33,6 @@ const styles = StyleSheet.create({
     width: 50,
     borderRadius: 100,
     borderWidth: 2,
-    borderColor: "#D3D3D3",
     marginRight: 10,
   },
 });

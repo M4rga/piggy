@@ -3,13 +3,18 @@ import { StyleSheet } from "react-native";
 
 interface ColorPointProps {
   backgroundColor: string;
+  isSelected: boolean;
+  onSelect: () => void;
 }
 
 const ColorPoint: React.FC<ColorPointProps> = (props) => {
+
+  const borderColor = props.isSelected ? '#F773ED' : 'white';
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onSelect}>
       <View
-        style={[styles.point, { backgroundColor: props.backgroundColor }]}
+        style={[styles.point, { backgroundColor: props.backgroundColor, borderColor: borderColor }]}
       />
     </TouchableOpacity>
   );
@@ -21,7 +26,6 @@ const styles = StyleSheet.create({
     width: 20,
     marginRight: 9,
     borderRadius: 100,
-    borderColor: "white",
     borderWidth: 2,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 0 },
