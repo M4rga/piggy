@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { View, Pressable } from "react-native";
+import { View, Pressable, SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Tabs, useRouter } from "expo-router";
@@ -17,7 +17,12 @@ import { StatusBar } from "expo-status-bar";
 const { Popover } = renderers;
 
 function CustomHeader() {
-  return <StatusBar backgroundColor="white" />;
+  return (
+    <View>
+      <SafeAreaView style={{ backgroundColor: "white" }} />
+      <StatusBar backgroundColor="white" />
+    </View>
+  );
 }
 
 const Layout = () => {
