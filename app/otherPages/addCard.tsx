@@ -13,7 +13,7 @@ const AddCard = () => {
         <View style={styles.card}>
           <View style={styles.cardView1}>
             <TextInput style={{ fontSize: 25 }}>Name</TextInput>
-            <Text
+            <TextInput
               style={{
                 fontSize: 30,
                 marginTop: 85,
@@ -21,7 +21,7 @@ const AddCard = () => {
               }}
             >
               0<Text style={{ fontSize: 17 }}>,0</Text>
-            </Text>
+            </TextInput>
           </View>
           <IconFontAwesome
             style={{ marginTop: 5 }}

@@ -19,8 +19,8 @@ const { Popover } = renderers;
 function CustomHeader() {
   return (
     <View>
-      <SafeAreaView style={{ backgroundColor: "white" }} />
-      <StatusBar backgroundColor="white" />
+      <SafeAreaView style={{ backgroundColor: "#FCF6FB" }} />
+      <StatusBar backgroundColor="#FCF6FB" />
     </View>
   );
 }
