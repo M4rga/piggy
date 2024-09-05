@@ -1,8 +1,7 @@
-import {Text} from "../../components/textFont"; // Importing custom text components
-import {FlatList} from "react-native";
-import {View, StyleSheet, Image, ScrollView} from "react-native"; // Importing React Native components
+import { Text } from "../../components/textFont"; // Importing custom text components
+import { FlatList } from "react-native";
+import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
-import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 import StatsCategory from "../../components/categoryLastMovements";
 import IconFeather from "react-native-vector-icons/Feather";
 
@@ -55,10 +54,10 @@ const Home = () => {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return {euros, cents};
+    return { euros, cents };
   };
   // Extract formatted euros and cents
-  const {euros, cents} = formatBalance(totalBalance);
+  const { euros, cents } = formatBalance(totalBalance);
 
   // Example inOutAmount
   const inOutAmount = -231; // You can change this value to a negative number to test the negative case
@@ -84,7 +83,7 @@ const Home = () => {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{flex: 1}}></View>
+            <View style={{ flex: 1 }}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -110,7 +109,7 @@ const Home = () => {
                 color={amountColor} // Usa amountColor per il colore dinamico
                 style={styles.arrowInOut} // Aggiorniamo lo stile
               />
-              <Text style={[styles.inOutAmount, {color: amountColor}]}>
+              <Text style={[styles.inOutAmount, { color: amountColor }]}>
                 {isPositive ? "+" : ""}
                 {inOutAmount}
               </Text>
@@ -125,21 +124,21 @@ const Home = () => {
                   <Text style={styles.inValue}>+ 1.500</Text>
                   <IconFeather
                     name="chevron-right"
-                    size={20}
-                    color="#000000"
-                    style={styles.chevronIcon}
+                    size={17}
+                    color="#ECE9EA"
+                    style={{ marginTop: 9 }}
                   />
                 </View>
               </View>
-              <View style={styles.inOutColumn}>
+              <View style={[styles.inOutColumn, { marginTop: -7 }]}>
                 <Text style={styles.outLabel}>Uscite</Text>
                 <View style={styles.valueRow}>
                   <Text style={styles.outValue}>- 630</Text>
                   <IconFeather
                     name="chevron-right"
-                    size={20}
-                    color="#000000"
-                    style={styles.chevronIcon}
+                    size={17}
+                    color="#ECE9EA"
+                    style={{ marginTop: 9 }}
                   />
                 </View>
               </View>
@@ -151,7 +150,7 @@ const Home = () => {
             <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
             <FlatList
               data={data.movements}
-              renderItem={({item}) => (
+              renderItem={({ item }) => (
                 <StatsCategory
                   moves={item.moves}
                   amount={item.amount}
@@ -303,7 +302,7 @@ const styles = StyleSheet.create({
   InOutContainer: {
     flexDirection: "row", // Disposizione orizzontale
     backgroundColor: "#FFFFFF",
-    paddingLeft: 20,
+    paddingLeft: 10,
     marginBottom: 10,
     width: "100%", // Larghezza aumentata per far spazio a entrambe le view
     height: 115,
@@ -351,7 +350,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 10,
     height: 115,
-    width: 130,
+    width: 140,
     alignItems: "flex-start", // Allinea a sinistra
     borderColor: "#ECE9EA",
     borderWidth: 2,

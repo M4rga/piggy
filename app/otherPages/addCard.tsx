@@ -13,15 +13,27 @@ const AddCard = () => {
         <View style={styles.card}>
           <View style={styles.cardView1}>
             <TextInput style={{ fontSize: 25 }}>Name</TextInput>
-            <TextInput
+            <View
               style={{
-                fontSize: 30,
                 marginTop: 85,
                 marginLeft: 5,
+                flexDirection: "row",
               }}
             >
-              0<Text style={{ fontSize: 17 }}>,0</Text>
-            </TextInput>
+              <View>
+                <TextInput style={{ fontSize: 30 }}>0</TextInput>
+              </View>
+              <View style={{ flexDirection: "row", paddingBottom: 4.6 }}>
+                <Text style={{ fontSize: 17, textAlignVertical: "bottom" }}>
+                  ,
+                </Text>
+                <TextInput
+                  style={{ fontSize: 17, textAlignVertical: "bottom" }}
+                >
+                  0
+                </TextInput>
+              </View>
+            </View>
           </View>
           <IconFontAwesome
             style={{ marginTop: 5 }}
