@@ -127,5 +127,31 @@
             "name": "Microonde",
             "date": "23.01.24"
         }
+    ],
+    "accounts": [
+        {
+            "name": "Google",
+            "date": "10.06.24"
+        },
+        {
+            "name": "Instagram",
+            "date": "08.06.24"
+        },
+        {
+            "name": "Facebook",
+            "date": "19.03.24"
+        },
+        {
+            "name": "TikTok",
+            "date": "23.04.24"
+        },
+        {
+            "name": "Linkedin",
+            "date": "10.04.24"
+        },
+        {
+            "name": "Steam",
+            "date": "05.05.24"
+        }
     ]
 }

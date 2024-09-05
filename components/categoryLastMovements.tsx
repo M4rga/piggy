@@ -101,9 +101,15 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
         </View>
       ) : (
         // Fourth condition: Name and date
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{name}</Text>
-          <Text style={styles.dateStyle}>{date}</Text>
+        <View style={styles.columnMoves}>
+          <View style={styles.moveItem}>
+            <View style={styles.containerCentered}>
+              <Text style={[styles.textCentered, { marginLeft: 20 }]}>
+                {name}
+              </Text>
+              <Text style={styles.dateStyleRight}>{date}</Text>
+            </View>
+          </View>
         </View>
       )}
     </View>
