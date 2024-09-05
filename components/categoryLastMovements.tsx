@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "./textFont";
 import { View, Image, StyleSheet, ImageSourcePropType } from "react-native";
+import IconFeather from "react-native-vector-icons/Feather";
 
 // Define type for image object
 interface Images {
@@ -50,7 +51,13 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
   moves = "",
 }) => {
   return (
-    <View style={[styles.container, icon ? styles.extraPaddingMargin : null]}>
+    <View
+      style={[
+        styles.container,
+        icon && amount ? [styles.extraMargin, styles.extraPadding] : null,
+        ,
+      ]}
+    >
       {icon && amount ? (
         // First condition: Icon and Import
         <>
@@ -67,18 +74,20 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
           </View>
         </>
       ) : icon && !amount ? (
-        // Second condition: Only Icon
-        <>
-          <View style={[styles.circleContainer, { borderColor: circleColor }]}>
-            <Image source={images[icon]} style={styles.image} />
+        // Second condition: Only Icon, Name and Date
+        <View style={styles.columnMoves}>
+          <View style={styles.privateItem}>
+            <View style={[styles.circleContainerPrivate]}>
+              <IconFeather name={icon} size={25}></IconFeather>
+            </View>
+            <View style={styles.containerCentered}>
+              <Text style={styles.textCentered}>{name}</Text>
+              <Text style={styles.dateStyleRight}>{date}</Text>
+            </View>
           </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>{name}</Text>
-            <Text style={styles.dateStyle}>{date}</Text>
-          </View>
-        </>
+        </View>
       ) : !icon && amount ? (
-        // Third condition: Only Import
+        // Third condition: Only Name, Import and Date
         <View style={styles.columnMoves}>
           <View style={styles.moveItem}>
             <Text style={styles.moveName}>{moves}</Text>
@@ -112,8 +121,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "space-between",
   },
-  extraPaddingMargin: {
+  extraPadding: {
     padding: 10,
+  },
+  extraMargin: {
     margin: 20,
   },
   circleContainer: {
@@ -126,12 +137,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  circleContainerPrivate: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderColor: "lightblue",
+    backgroundColor: "lightblue",
+    overflow: "hidden",
+    marginRight: 10,
+    borderWidth: 3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   image: {
     width: 35,
     height: 35,
   },
   textContainer: {
-    margin: 20,
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -157,6 +179,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 60,
     position: "relative",
+  },
+  privateItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#FCF6FB",
+    padding: 15,
+    marginBottom: 10,
+    borderRadius: 15,
   },
   moveName: {
     flex: 1,
@@ -184,6 +214,23 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 5,
     right: 20,
+  },
+  containerCentered: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textCentered: {
+    flex: 1,
+    fontSize: 16,
+    color: "#333",
+  },
+  dateStyleRight: {
+    fontSize: 10,
+    color: "#A0A0A0",
+    textAlign: "right",
+    marginRight: 20,
   },
 });
 
