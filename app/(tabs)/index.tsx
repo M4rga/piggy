@@ -1,9 +1,10 @@
-import { Text } from "../../components/textFont"; // Importing custom text components
-import { FlatList } from "react-native";
-import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
+import {Text} from "../../components/textFont"; // Importing custom text components
+import {FlatList} from "react-native";
+import {View, StyleSheet, Image, ScrollView} from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
 import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
 import StatsCategory from "../../components/categoryLastMovements";
+import IconFeather from "react-native-vector-icons/Feather";
 
 import data from "../../data/data.json";
 
@@ -54,10 +55,18 @@ const Home = () => {
     const [euros, cents] = formattedBalance.split(",");
 
     // Return an object containing the formatted euros and cents
-    return { euros, cents };
+    return {euros, cents};
   };
   // Extract formatted euros and cents
-  const { euros, cents } = formatBalance(totalBalance);
+  const {euros, cents} = formatBalance(totalBalance);
+
+  // Example inOutAmount
+  const inOutAmount = -231; // You can change this value to a negative number to test the negative case
+
+  // Determine colors and text based on inOutAmount
+  const isPositive = inOutAmount >= 0;
+  const inOutText = isPositive ? "Sei in Positivo!" : "Sei in Negativo!";
+  const amountColor = isPositive ? "#F773ED" : "#5272F2"; // Pink for positive, blue for negative
 
   return (
     <ScrollView style={styles.container}>
@@ -75,7 +84,7 @@ const Home = () => {
             </View>
             <Text style={styles.text}>Ciao Marco!</Text>
 
-            <View style={{ flex: 1 }}></View>
+            <View style={{flex: 1}}></View>
 
             <Image source={menu} style={styles.menuHome} />
           </View>
@@ -90,44 +99,48 @@ const Home = () => {
             <HomeCards />
           </View>
 
+          <Text style={styles.titleThisMonth}>Questo mese</Text>
           {/* In/Out section for this month */}
           <View style={styles.InOutContainer}>
-            <Text style={styles.titleThisMonth}>Questo mese</Text>
-            <View style={styles.rowInOut}>
-              <View style={styles.InOut}>
-                <View style={[styles.circleBorder, styles.incomeBorder]}>
-                  <Text style={styles.amountIn}>1782</Text>
-                </View>
-                <View style={styles.textContainer}>
-                  <Text style={styles.label}>Entrate</Text>
-                  <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
-                    marqueeDelay={1000}
-                    style={styles.description}
-                  >
-                    Stipendio, Mansione
-                  </TextTicker>
+            {/* Posizionamento della freccia in alto a sinistra */}
+            <View style={styles.amountInOut}>
+              <IconFeather
+                name={isPositive ? "arrow-up-right" : "arrow-down-right"} // Icona dinamica
+                size={35} // Ingrandiamo la freccia
+                color={amountColor} // Usa amountColor per il colore dinamico
+                style={styles.arrowInOut} // Aggiorniamo lo stile
+              />
+              <Text style={[styles.inOutAmount, {color: amountColor}]}>
+                {isPositive ? "+" : ""}
+                {inOutAmount}
+              </Text>
+              <Text style={styles.inOutText}>{inOutText}</Text>
+            </View>
+
+            {/* View aggiuntiva per entrate e uscite */}
+            <View style={styles.inOutDetails}>
+              <View style={styles.inOutColumn}>
+                <Text style={styles.inLabel}>Entrate</Text>
+                <View style={styles.valueRow}>
+                  <Text style={styles.inValue}>+ 1.500</Text>
+                  <IconFeather
+                    name="chevron-right"
+                    size={20}
+                    color="#000000"
+                    style={styles.chevronIcon}
+                  />
                 </View>
               </View>
-              <View style={styles.InOut}>
-                <View style={[styles.circleBorder, styles.outcomeBorder]}>
-                  <Text style={styles.amountOut}>914</Text>
-                </View>
-                <View style={styles.textContainer}>
-                  <Text style={styles.label}>Uscite</Text>
-                  <TextTicker
-                    scrollSpeed={50}
-                    loop
-                    bounce
-                    numberOfLines={1}
-                    marqueeDelay={1000}
-                    style={styles.description}
-                  >
-                    Cibo, Casa, Benzina
-                  </TextTicker>
+              <View style={styles.inOutColumn}>
+                <Text style={styles.outLabel}>Uscite</Text>
+                <View style={styles.valueRow}>
+                  <Text style={styles.outValue}>- 630</Text>
+                  <IconFeather
+                    name="chevron-right"
+                    size={20}
+                    color="#000000"
+                    style={styles.chevronIcon}
+                  />
                 </View>
               </View>
             </View>
@@ -138,7 +151,7 @@ const Home = () => {
             <Text style={styles.titleLastMoves}>Ultimi movimenti</Text>
             <FlatList
               data={data.movements}
-              renderItem={({ item }) => (
+              renderItem={({item}) => (
                 <StatsCategory
                   moves={item.moves}
                   amount={item.amount}
@@ -274,73 +287,119 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
   },
-  InOutContainer: {
-    padding: 10,
-  },
-  titleThisMonth: {
-    fontSize: 18,
-    fontFamily: "Switzer-Semibold",
-    marginBottom: 10,
-    marginLeft: 10,
-    marginTop: -15,
-  },
   titleLastMoves: {
     fontSize: 18,
     fontFamily: "Switzer-Semibold",
     marginBottom: 10,
     marginLeft: 10,
   },
-  rowInOut: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  circleBorder: {
-    width: 55,
-    height: 55,
-    borderRadius: 27.5, // rende il contenitore un cerchio
-    borderWidth: 3, // spessore del bordo
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 10, // Spazio tra il cerchio e il testo successivo
-  },
-  incomeBorder: {
-    borderColor: "#F773ED",
-  },
-  outcomeBorder: {
-    borderColor: "#5272F2",
-  },
-  amountIn: {
-    fontSize: 16,
-    color: "#F773ED",
+  titleThisMonth: {
+    fontSize: 18,
     fontFamily: "Switzer-Semibold",
+    marginBottom: 10,
+    marginLeft: 20,
+    marginTop: -15,
   },
-  amountOut: {
-    fontSize: 16,
-    color: "#5272F2",
-    fontFamily: "Switzer-Semibold",
-  },
-  InOut: {
-    flex: 1,
+  InOutContainer: {
+    flexDirection: "row", // Disposizione orizzontale
     backgroundColor: "#FFFFFF",
+    paddingLeft: 20,
+    marginBottom: 10,
+    width: "100%", // Larghezza aumentata per far spazio a entrambe le view
+    height: 115,
+    alignItems: "center",
+  },
+  // Stile per la sezione "Sei in Positivo", numero e freccia
+  amountInOut: {
+    flex: 1,
     borderColor: "#ECE9EA",
     borderWidth: 2,
     borderRadius: 17,
-    padding: 10,
-    margin: 5,
-    flexDirection: "row",
-    alignItems: "center",
+    height: "100%",
+    justifyContent: "space-between", // Spaziamo gli elementi
   },
-  textContainer: {
-    flex: 1,
+  // Stile per la freccia in alto a sinistra
+  arrowInOut: {
+    position: "absolute",
+    top: 15,
+    left: 15,
+    fontFamily: "Switzer-Semibold", // Rende la freccia più spessa
   },
-  // Aggiungere uno stile specifico per il bordo delle uscite
-  amountOutContainer: {
-    borderColor: "#5272F2", // colore del bordo per le uscite
-  },
-  label: {
+  // Stile per il testo "Sei in Positivo!"
+  inOutText: {
+    position: "absolute",
+    bottom: 20,
+    left: 20,
     fontSize: 16,
-    textAlign: "left",
+    color: "#000000",
     fontFamily: "Switzer-Semibold",
+  },
+  // Stile per il numero della somma in alto a destra
+  inOutAmount: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    fontSize: 22,
+    fontFamily: "Switzer-Semibold",
+    color: "#F773ED",
+  },
+  // Stile per la nuova view con entrate/uscite
+  inOutDetails: {
+    flexDirection: "column", // Disposizione orizzontale
+    backgroundColor: "#FFFFFF",
+    paddingLeft: 20,
+    marginLeft: 20,
+    marginRight: 10,
+    height: 115,
+    width: 130,
+    alignItems: "flex-start", // Allinea a sinistra
+    borderColor: "#ECE9EA",
+    borderWidth: 2,
+    borderRadius: 17,
+  },
+  // Stile per le righe Entrate e Uscite
+  inOutColumn: {
+    flexDirection: "column",
+    marginBottom: 10, // Spazio tra le etichette e i valori
+  },
+  // Stile per le etichette Entrate e Uscite
+  inLabel: {
+    fontSize: 12,
+    marginTop: 10,
+    marginLeft: -5, // Spostiamo più a sinistra
+    color: "#000000",
+    fontFamily: "Switzer-Semibold",
+  },
+  outLabel: {
+    fontSize: 12,
+    marginLeft: -5, // Spostiamo più a sinistra
+    color: "#000000",
+    fontFamily: "Switzer-Semibold",
+  },
+  // Stile per i valori di Entrate e Uscite
+  inValue: {
+    fontSize: 18,
+    marginTop: 5, // Aggiunge uno spazio maggiore tra label e valore
+    marginLeft: -5, // Spostiamo più a sinistra
+    color: "#F773ED",
+    fontFamily: "Switzer-Semibold",
+  },
+  outValue: {
+    fontSize: 18,
+    marginTop: 5, // Aggiunge uno spazio maggiore tra label e valore
+    marginLeft: -5, // Spostiamo più a sinistra
+    color: "#5272F2",
+    fontFamily: "Switzer-Semibold",
+  },
+  valueRow: {
+    flexDirection: "row", // Disposizione orizzontale
+    justifyContent: "space-between", // Spazio tra testo e icona
+    alignItems: "center", // Allinea verticalmente l'icona e il testo
+    width: "100%", // Assicurati che l'elemento occupi tutta la larghezza disponibile
+  },
+  chevronIcon: {
+    marginRight: 15,
+    color: "#D3D3D3",
   },
   description: {
     fontSize: 12,
