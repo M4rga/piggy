@@ -109,5 +109,23 @@
             "amount": "+ € 10.00",
             "date": "02.05.24"
         }
+    ],
+    "receipts": [
+        {
+            "name": "Lavatrice",
+            "date": "10.06.24"
+        },
+        {
+            "name": "Forno",
+            "date": "08.06.24"
+        },
+        {
+            "name": "Aspirapolvere",
+            "date": "19.03.24"
+        },
+        {
+            "name": "Microonde",
+            "date": "23.01.24"
+        }
     ]
 }

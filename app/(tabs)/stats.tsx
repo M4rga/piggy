@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
 import { PieChart } from "react-native-gifted-charts";
-import StatsCategory from "../../components/statsCategoryLastMovements";
+import StatsCategory from "../../components/categoryLastMovements";
 import DropdownButton from "../../components/dropdown";
 import { Text } from "../../components/textFont";
 import data from "../../data/data.json";
@@ -126,6 +126,7 @@ const Stats = () => {
             icon={data.categories[3].icon}
             name={data.categories[3].type}
             circleColor={data.categories[3].circleColor}
+            amount="€ 0"
           />
         </View>
       </ScrollView>

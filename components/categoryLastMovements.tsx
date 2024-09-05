@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "./textFont";
 import { View, Image, StyleSheet, ImageSourcePropType } from "react-native";
 
-// Definisci il tipo per l'oggetto delle immagini
+// Define type for image object
 interface Images {
   [key: string]: ImageSourcePropType;
 }
@@ -22,7 +22,6 @@ const images: Images = {
 
 // Function to determine the color of the movements amount based on the sign
 const getAmountMovesColor = (amount: string): string => {
-  // Check if the amount starts with '-' or '+'
   if (amount.startsWith("-")) {
     return "#5272F2"; // Blue for negative
   } else if (amount.startsWith("+")) {
@@ -32,7 +31,7 @@ const getAmountMovesColor = (amount: string): string => {
   }
 };
 
-// Definisci il tipo per i props del componente StatsCategory
+// Define props type of StatsCategory category
 interface StatsCategoryProps {
   icon?: string;
   circleColor?: string;
@@ -47,17 +46,13 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
   circleColor = "black",
   name = "",
   date = "",
-  amount = "€ 0",
+  amount = "",
   moves = "",
 }) => {
   return (
-    <View
-      style={[
-        styles.container,
-        icon ? styles.extraPaddingMargin : null, // Modifica qui
-      ]}
-    >
-      {icon ? (
+    <View style={[styles.container, icon ? styles.extraPaddingMargin : null]}>
+      {icon && amount ? (
+        // First condition: Icon and Import
         <>
           <View style={[styles.circleContainer, { borderColor: circleColor }]}>
             <Image source={images[icon]} style={styles.image} />
@@ -71,7 +66,19 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
             </Text>
           </View>
         </>
-      ) : (
+      ) : icon && !amount ? (
+        // Second condition: Only Icon
+        <>
+          <View style={[styles.circleContainer, { borderColor: circleColor }]}>
+            <Image source={images[icon]} style={styles.image} />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.dateStyle}>{date}</Text>
+          </View>
+        </>
+      ) : !icon && amount ? (
+        // Third condition: Only Import
         <View style={styles.columnMoves}>
           <View style={styles.moveItem}>
             <Text style={styles.moveName}>{moves}</Text>
@@ -82,6 +89,12 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
             </Text>
             <Text style={styles.dateStyle}>{date}</Text>
           </View>
+        </View>
+      ) : (
+        // Fourth condition: Name and date
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>{name}</Text>
+          <Text style={styles.dateStyle}>{date}</Text>
         </View>
       )}
     </View>
@@ -118,6 +131,7 @@ const styles = StyleSheet.create({
     height: 35,
   },
   textContainer: {
+    margin: 20,
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",

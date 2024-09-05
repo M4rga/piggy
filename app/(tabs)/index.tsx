@@ -3,7 +3,7 @@ import { FlatList } from "react-native";
 import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
 import TextTicker from "react-native-text-ticker"; // Importing TextTicker for scrolling text animation
-import StatsCategory from "../../components/statsCategoryLastMovements";
+import StatsCategory from "../../components/categoryLastMovements";
 
 import data from "../../data/data.json";
 

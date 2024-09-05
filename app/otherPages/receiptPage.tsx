@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
+import StatsCategory from "../../components/categoryLastMovements";
 
 import data from "../../data/data.json";
 
@@ -63,18 +64,15 @@ const ReceiptPage = () => {
             </ScrollView>
           </View>
           {/* Latest movements section */}
+          <Text style={styles.titleLastMoves}>Ultimi scontrini</Text>
           <View style={styles.MovesContainer}>
-            {/* <FlatList
-                data={data.movements}
-                renderItem={({ item }) => (
-                    <StatsCategory
-                      moves={item.moves}
-                      amount={item.amount}
-                      date={item.date}
-                    />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-                /> */}
+            <FlatList
+              data={data.receipts}
+              renderItem={({ item }) => (
+                <StatsCategory name={item.name} date={item.date} icon="image" />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
           </View>
         </View>
       </View>
