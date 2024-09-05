@@ -4,7 +4,7 @@ import React from "react";
 
 import data from "../../data/data.json";
 
-const documentsImage = require("../../assets/private/password-keeper.png");
+const documentsImage = require("../../assets/private/documents.png");
 
 const DocumentsPage = () => {
   return (
