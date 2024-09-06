@@ -158,6 +158,7 @@ const Home = () => {
                 />
               )}
               keyExtractor={(item, index) => index.toString()}
+              scrollEnabled={false}
             />
           </View>
         </View>

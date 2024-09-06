@@ -28,6 +28,7 @@ const PasswordKeeperPage = () => {
                 <StatsCategory name={item.name} date={item.date} />
               )}
               keyExtractor={(item, index) => index.toString()}
+              scrollEnabled={false}
             />
           </View>
         </View>
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 230,
     height: 189,
-    marginBottom: -25,
+    // marginBottom: -25,
   },
   text: {
     fontSize: 23,
