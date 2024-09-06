@@ -37,7 +37,7 @@ const ReceiptPage = () => {
           <View style={styles.selectionContainer}>
             <ScrollView
               horizontal
-              showsHorizontalScrollIndicator={false} // Nasconde la barra di scorrimento
+              showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.scrollContainer}
             >
               {categories.map((category, index) => (
