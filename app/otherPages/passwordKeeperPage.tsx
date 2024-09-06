@@ -5,7 +5,7 @@ import StatsCategory from "../../components/categoryLastMovements";
 
 import data from "../../data/data.json";
 
-const passwordKeeperImage = require("../../assets/private/password-keeper.png");
+const passwordKeeperImage = require("../../assets/login/fifthImage.png");
 
 const PasswordKeeperPage = () => {
   return (

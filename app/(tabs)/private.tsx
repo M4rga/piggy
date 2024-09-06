@@ -4,7 +4,7 @@ import { View, Image, StyleSheet, Pressable } from "react-native";
 
 const images = {
   receipts: require("../../assets/private/receipt-guy.png"),
-  passwords: require("../../assets/private/password-keeper.png"),
+  passwords: require("../../assets/login/fifthImage.png"),
   documents: require("../../assets/private/documents.png"),
 };
 
