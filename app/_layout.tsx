@@ -493,6 +493,30 @@ const Layout = () => {
             // ),
           }}
         />
+
+        <Tabs.Screen
+          name="otherPages/cardMovements"
+          options={{
+            title: "Movimenti",
+            // href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/wallet")}
+              />
+            ),
+            // headerRight: () => (
+            //   <IconFeather
+            //     name={"chevron-left"}
+            //     size={26}
+            //     style={{ marginHorizontal: 15 }}
+            //     onPress={() => router.push("otherPages/addCard")}
+            //   />
+            // ),
+          }}
+        />
       </Tabs>
     </MenuProvider>
   );
