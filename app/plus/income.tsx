@@ -1,17 +1,27 @@
 import { Text, TextInput } from "../../components/textFont";
 import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import React, { useState } from "react";
 
-const Income = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Elettrodomestici");
+type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
-  const categories = [
+const Income = () => {
+  const [selectedCategory, setSelectedCategory] = useState("Conto Corrente");
+
+  const categories: Category[] = [
     "Conto Corrente",
     "Contanti",
     "Pay Pal",
     "Fondo Risparmio",
   ];
+
+  const categoryIcons: Record<Category, string> = {
+    "Conto Corrente": "credit-card",
+    Contanti: "money",
+    "Pay Pal": "paypal",
+    "Fondo Risparmio": "smile-o",
+  };
 
   return (
     <View style={styles.container}>
@@ -42,16 +52,24 @@ const Income = () => {
               ]}
               onPress={() => setSelectedCategory(category)}
             >
-              <Text
-                style={[
-                  styles.nonSelectedText,
-                  ...(selectedCategory === category
-                    ? [styles.selectedText]
-                    : []),
-                ]}
-              >
-                {category}
-              </Text>
+              <View style={styles.iconTextContainer}>
+                <IconFontAwesome
+                  name={categoryIcons[category]}
+                  size={20}
+                  style={styles.icon}
+                  color={selectedCategory === category ? "#F773ED" : "#555"}
+                />
+                <Text
+                  style={[
+                    styles.nonSelectedText,
+                    ...(selectedCategory === category
+                      ? [styles.selectedText]
+                      : []),
+                  ]}
+                >
+                  {category}
+                </Text>
+              </View>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -121,6 +139,7 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "#FF69B4",
     fontSize: 30,
+    fontFamily: "Switzer-Semibold",
   },
   selectionContainer: {
     flexDirection: "row",
@@ -136,16 +155,23 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   selectedButton: {
-    borderColor: "pink",
+    borderColor: "#F773ED",
   },
   nonSelectedText: {
     color: "#555",
   },
   selectedText: {
-    color: "pink",
+    color: "#F773ED",
   },
   scrollContainer: {
     flexDirection: "row",
+  },
+  iconTextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    marginRight: 8,
   },
 });
 
