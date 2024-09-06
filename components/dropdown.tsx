@@ -1,46 +1,76 @@
 import React, { useState, useRef } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
-import { Menu, MenuOptions, MenuOption, MenuTrigger, renderers } from "react-native-popup-menu";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  renderers,
+} from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
 import { Text } from "./textFont";
 
 const { Popover } = renderers;
 
-const DropdownButton = () => {
-  const [isOpen, setIsOpen] = useState(false); // State used to handle the opening and closing of the menu
+interface DropdownButtonProps {
+  selectedValue: string;
+  onSelect: (value: string) => void;
+}
+
+const DropdownButton: React.FC<DropdownButtonProps> = ({
+  selectedValue,
+  onSelect,
+}) => {
+  const [isOpen, setIsOpen] = useState(false); // State used to handle opening and closing of the dropdown menu
   const menuRef = useRef(null);
 
+  // Using useRender because it allow you to not re-render the whole page
   const openMenu = () => {
     if (menuRef.current) {
-      (menuRef.current as any).open(); // Asserzione di tipo
+      (menuRef.current as any).open();
     }
   };
+
+  const handleOptionSelect = (option: string) => {
+    onSelect(option);
+    setIsOpen(false);
+  };
+
+  // Used for filtering the remaning option
+  const remainingOption = selectedValue === "uscite" ? "entrate" : "uscite";
 
   return (
     <View style={styles.dropdownContainer}>
       <Menu
         ref={menuRef}
         renderer={Popover}
-        rendererProps={{ placement: 'bottom', openAnimationDuration: 200, closeAnimationDuration: 200 }}
+        rendererProps={{
+          placement: "bottom",
+          openAnimationDuration: 200,
+          closeAnimationDuration: 200,
+        }}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}
       >
         <MenuTrigger>
           <Pressable style={styles.dropdownButton} onPress={openMenu}>
-            <Text style={styles.buttonText}>uscite</Text>
-            <IconFeather style={styles.arrow} name={isOpen ? "chevron-up" : "chevron-down"}/>
+            <Text style={styles.buttonText}>{selectedValue}</Text>
+            <IconFeather
+              style={styles.arrow}
+              name={isOpen ? "chevron-up" : "chevron-down"}
+            />
           </Pressable>
         </MenuTrigger>
 
-        <MenuOptions customStyles={{
-          optionsContainer: styles.optionsContainer,
-          optionWrapper: styles.optionWrapper,
-        }}>
-          <MenuOption onSelect={() => console.log("Uscite selezionato")}>
-            <Text style={styles.menuItemText}>uscite</Text>
-          </MenuOption>
-          <MenuOption onSelect={() => console.log("Entrate selezionato")}>
-            <Text style={styles.menuItemText}>entrate</Text>
+        <MenuOptions
+          customStyles={{
+            optionsContainer: styles.optionsContainer,
+            optionWrapper: styles.optionWrapper,
+          }}
+        >
+          {/* Shows only the remaning option */}
+          <MenuOption onSelect={() => handleOptionSelect(remainingOption)}>
+            <Text style={styles.menuItemText}>{remainingOption}</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
@@ -80,7 +110,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 8,
     elevation: 5,
-    width: 125
+    width: 125,
   },
   optionWrapper: {
     padding: 10,
