@@ -52,15 +52,11 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
 }) => {
   return (
     <View
-      style={[
-        styles.container,
-        icon && amount ? [styles.extraMargin, styles.extraPadding] : null,
-        ,
-      ]}
+      style={[styles.container, icon && amount ? styles.extraMargin : null, ,]}
     >
       {icon && amount ? (
         // First condition: Icon and Import
-        <>
+        <View style={styles.statsContainer}>
           <View style={[styles.circleContainer, { borderColor: circleColor }]}>
             <Image source={images[icon]} style={styles.image} />
           </View>
@@ -72,7 +68,7 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
               {amount}
             </Text>
           </View>
-        </>
+        </View>
       ) : icon && !amount ? (
         // Second condition: Only Icon, Name and Date
         <View style={styles.columnMoves}>
@@ -118,17 +114,7 @@ const StatsCategory: React.FC<StatsCategoryProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
     marginBottom: 0,
-    borderWidth: 1,
-    borderColor: "#fff",
-    borderRadius: 8,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
-  },
-  extraPadding: {
-    padding: 10,
   },
   extraMargin: {
     margin: 20,
@@ -237,6 +223,16 @@ const styles = StyleSheet.create({
     color: "#A0A0A0",
     textAlign: "right",
     marginRight: 20,
+  },
+  statsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#fff",
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    padding: 10,
   },
 });
 

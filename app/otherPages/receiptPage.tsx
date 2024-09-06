@@ -106,8 +106,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
     flex: 1,
     width: 230,
-    height: 189,
-    // marginBottom: -25,
+    height: 205,
   },
   text: {
     fontSize: 23,
