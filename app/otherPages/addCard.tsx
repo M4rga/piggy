@@ -86,58 +86,58 @@ const AddCard = () => {
         <View style={styles.pointV}>
           <ColorPoint 
             backgroundColor="#A0A0A0"
-            isSelected={selectedIcon === "#A0A0A0"}
-            onSelect={() => setSelectedIcon("#A0A0A0")}
+            isSelected={selectedColor === "#A0A0A0"}
+            onSelect={() => setSelectedColor("#A0A0A0")}
           />
           <ColorPoint
             backgroundColor="#D9D9D9"
-            isSelected={selectedIcon === "#D9D9D9"}
-            onSelect={() => setSelectedIcon("#D9D9D9")}
+            isSelected={selectedColor === "#D9D9D9"}
+            onSelect={() => setSelectedColor("#D9D9D9")}
           />
           <ColorPoint
             backgroundColor="#2F212F"
-            isSelected={selectedIcon === "#2F212F"}
-            onSelect={() => setSelectedIcon("#2F212F")}
+            isSelected={selectedColor === "#2F212F"}
+            onSelect={() => setSelectedColor("#2F212F")}
           />
           <ColorPoint
             backgroundColor="#F773ED"
-            isSelected={selectedIcon === "#F773ED"}
-            onSelect={() => setSelectedIcon("#F773ED")}
+            isSelected={selectedColor === "#F773ED"}
+            onSelect={() => setSelectedColor("#F773ED")}
           />
           <ColorPoint
             backgroundColor="#5272F2"
-            isSelected={selectedIcon === "#5272F2"}
-            onSelect={() => setSelectedIcon("#5272F2")}
+            isSelected={selectedColor === "#5272F2"}
+            onSelect={() => setSelectedColor("#5272F2")}
           />
           <ColorPoint
             backgroundColor="#AC52F2"
-            isSelected={selectedIcon === "#AC52F2"}
-            onSelect={() => setSelectedIcon("#AC52F2")}
+            isSelected={selectedColor === "#AC52F2"}
+            onSelect={() => setSelectedColor("#AC52F2")}
           />
           <ColorPoint
             backgroundColor="#73F798"
-            isSelected={selectedIcon === "#73F798"}
-            onSelect={() => setSelectedIcon("#73F798")}
+            isSelected={selectedColor === "#73F798"}
+            onSelect={() => setSelectedColor("#73F798")}
           />
           <ColorPoint
             backgroundColor="#F77373"
-            isSelected={selectedIcon === "#F77373"}
-            onSelect={() => setSelectedIcon("#F77373")}
+            isSelected={selectedColor === "#F77373"}
+            onSelect={() => setSelectedColor("#F77373")}
           />
           <ColorPoint
             backgroundColor="#F7C273"
-            isSelected={selectedIcon === "#F7C273"}
-            onSelect={() => setSelectedIcon("#F7C273")}
+            isSelected={selectedColor === "#F7C273"}
+            onSelect={() => setSelectedColor("#F7C273")}
           />
           <ColorPoint
             backgroundColor="#F4F773"
-            isSelected={selectedIcon === "#F4F773"}
-            onSelect={() => setSelectedIcon("#F4F773")}
+            isSelected={selectedColor === "#F4F773"}
+            onSelect={() => setSelectedColor("#F4F773")}
           />
           <ColorPoint
             backgroundColor="#52F2F2"
-            isSelected={selectedIcon === "#52F2F2"}
-            onSelect={() => setSelectedIcon("#52F2F2")}
+            isSelected={selectedColor === "#52F2F2"}
+            onSelect={() => setSelectedColor("#52F2F2")}
           />
         </View>
       </View>
