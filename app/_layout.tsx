@@ -273,7 +273,7 @@ const Layout = () => {
         <Tabs.Screen
           name="plus/receipt"
           options={{
-            title: "Receipt",
+            title: "Aggiungi Scontrino",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -283,14 +283,14 @@ const Layout = () => {
                 onPress={() => router.push("/")}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
+            headerRight: () => (
+              <IconFeather
+                name={"check"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("otherPages/addCard")}
+              />
+            ),
           }}
         />
 
