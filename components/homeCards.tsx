@@ -148,11 +148,11 @@ const styles = StyleSheet.create({
     left: 5,
   },
   cardAmount: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#FFFFFF",
   },
   cardAmountDecimal: {
-    fontSize: 8,
+    fontSize: 7,
     color: "#FFFFFF",
   },
   cash: {

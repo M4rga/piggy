@@ -1,9 +1,10 @@
 import { Text } from "../../components/textFont"; // Importing custom text components
 import { FlatList } from "react-native";
-import { View, StyleSheet, Image, ScrollView } from "react-native"; // Importing React Native components
+import { View, StyleSheet, Image, ScrollView, Pressable } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
 import StatsCategory from "../../components/categoryLastMovements";
 import IconFeather from "react-native-vector-icons/Feather";
+import { useRouter } from "expo-router";
 
 import data from "../../data/data.json";
 
@@ -15,6 +16,7 @@ const pig_logo = require("../../assets/homepage/Pig_logo.png");
 const menu = require("../../assets/homepage/Menu_home.png");
 
 const Home = () => {
+  const router = useRouter();
   // Function to get the appropriate pig image based on the balance
   const getPigImage = (balance: number) => {
     if (balance < 500) {
@@ -85,7 +87,7 @@ const Home = () => {
 
             <View style={{ flex: 1 }}></View>
 
-            <Image source={menu} style={styles.menuHome} />
+            <IconFeather name="more-vertical" size={22.5} />
           </View>
 
           {/* Total balance section */}
@@ -117,7 +119,10 @@ const Home = () => {
             </View>
 
             {/* View aggiuntiva per entrate e uscite */}
-            <View style={styles.inOutDetails}>
+            <Pressable
+              style={styles.inOutDetails}
+              onPress={() => router.push("/stats")}
+            >
               <View style={styles.inOutColumn}>
                 <Text style={styles.inLabel}>Entrate</Text>
                 <View style={styles.valueRow}>
@@ -142,7 +147,7 @@ const Home = () => {
                   />
                 </View>
               </View>
-            </View>
+            </Pressable>
           </View>
 
           {/* Latest movements section */}
