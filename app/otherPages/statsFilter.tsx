@@ -44,6 +44,8 @@ const StatsFilter: React.FC = () => {
   const [date, setDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [showEndDatePicker, setShowEndDatePicker] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
 
   const onChange = (
     event: DateTimePickerEvent,
@@ -65,6 +67,14 @@ const StatsFilter: React.FC = () => {
     setShowEndDatePicker(false);
   };
 
+  const handleCategorySelect = (type: string) => {
+    setSelectedCategory((prev) => (prev === type ? null : type)); // If the selected item is the same as the one selected before, this become deselected. Otherwise if another item is selected, it becomes the new selected item
+  };
+
+  const handleWalletSelect = (category: string) => {
+    setSelectedWallet((prev) => (prev === category ? null : category));
+  };
+
   return (
     <View style={{ backgroundColor: "#FCF6FB", flex: 1 }}>
       {/* Categories */}
@@ -73,8 +83,22 @@ const StatsFilter: React.FC = () => {
         <FlatList
           data={data.categories as Category[]}
           renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
-              <View style={styles.categoryItem}>
+            <TouchableOpacity
+              style={[
+                styles.itemContainer,
+                selectedCategory === item.type && { borderColor: "#F773ED" }, // Change the border color
+              ]}
+              onPress={() => handleCategorySelect(item.type)} // Select the category
+            >
+              <View
+                style={[
+                  styles.categoryItem,
+                  selectedCategory === item.type && {
+                    borderColor: "#F773ED",
+                    borderWidth: 1,
+                  },
+                ]}
+              >
                 <Image
                   source={images[item.icon]}
                   style={styles.categoryItemImage}
@@ -82,12 +106,13 @@ const StatsFilter: React.FC = () => {
                 />
               </View>
               <Text style={styles.nome}>{item.type}</Text>
-            </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(item, index) => item.type + index.toString()}
           numColumns={5}
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.flatListContainer}
+          scrollEnabled={false}
         />
       </View>
 
@@ -97,20 +122,35 @@ const StatsFilter: React.FC = () => {
         <FlatList
           data={data.wallet as Wallet[]}
           renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
-              <View style={styles.walletItem}>
+            <TouchableOpacity
+              style={[
+                styles.itemContainer,
+                selectedWallet === item.category && { borderColor: "#F773ED" },
+              ]}
+              onPress={() => handleWalletSelect(item.category)}
+            >
+              <View
+                style={[
+                  styles.walletItem,
+                  selectedWallet === item.category && {
+                    borderColor: "#F773ED",
+                    borderWidth: 1,
+                  },
+                ]}
+              >
                 <IconFontAwesome
                   name={item.icon}
                   style={styles.walletItemIcon}
                 />
                 <Text style={styles.walletItemText}>{item.category}</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(item, index) => item.category + index.toString()}
           numColumns={2}
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.flatListContainer}
+          scrollEnabled={false}
         />
       </View>
 
