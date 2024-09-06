@@ -1,22 +1,27 @@
 import { useState } from "react";
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native"; // TouchableOpacity puts together n elements and makes them clickable
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../../components/categoryLastMovements";
 import DropdownButton from "../../components/dropdown";
 import { Text } from "../../components/textFont";
 import data from "../../data/data.json";
 
-const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }]; // Data used in the graph
-const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }]; // Data used in the graph
-const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }]; // Data used in the graph
+const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }];
+const data2 = [{ value: 30 }, { value: 40 }, { value: 90 }, { value: 73 }];
+const data3 = [{ value: 50 }, { value: 50 }, { value: 30 }, { value: 10 }];
 
 const Stats = () => {
-  const [selectedValue, setSelectedValue] = useState<string>("settimana"); // State (hook) that permit to select multiple items - Default value: "settimana"
+  const [selectedValue, setSelectedValue] = useState<string>("settimana");
+  const [selectedTransactionType, setSelectedTransactionType] =
+    useState<string>("uscite"); // State used for "uscite" and "entrate" dropdown
 
-  // Function to set the selected item active
   const handleSelection = (value: string) => {
     setSelectedValue(value);
+  };
+
+  const handleDropdownSelection = (value: string) => {
+    setSelectedTransactionType(value); // Updates the item in the dropdwon
   };
 
   const value = 50;
@@ -29,7 +34,7 @@ const Stats = () => {
           <TouchableOpacity
             style={[
               styles.option,
-              selectedValue === "settimana" && styles.selectedOption, //If selectedValue is equals to "settimana" then adds another style to the previous
+              selectedValue === "settimana" && styles.selectedOption,
             ]}
             onPress={() => handleSelection("settimana")}
           >
@@ -78,10 +83,13 @@ const Stats = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Page content that changes based on the selected item */}
+        {/* Content that changes based on the selection */}
         <View style={[styles.content, styles.graphContainer]}>
           <View style={styles.pickerContainer}>
-            <DropdownButton />
+            <DropdownButton
+              selectedValue={selectedTransactionType} // Indicates which option is shown at the moment
+              onSelect={handleDropdownSelection} // Called when the user select another option
+            />
           </View>
 
           <PieChart
@@ -103,12 +111,10 @@ const Stats = () => {
           />
         </View>
 
-        {/* Date text */}
         <View style={styles.dateContainer}>
           <Text style={styles.dateText}>13 maggio - 19 maggio</Text>
         </View>
 
-        {/* Categories */}
         <View>
           <StatsCategory
             icon={data.categories[0].icon}
@@ -173,10 +179,6 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 20,
     alignItems: "center",
-  },
-  contentText: {
-    fontSize: 16,
-    color: "#333",
   },
   pickerContainer: {
     position: "absolute",
