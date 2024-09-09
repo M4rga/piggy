@@ -521,7 +521,7 @@ const Layout = () => {
           name="otherPages/addReceipt"
           options={{
             title: "Aggiungi scontrino",
-            href: null,
+            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
