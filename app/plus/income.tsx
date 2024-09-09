@@ -26,7 +26,7 @@ const Income = () => {
     useState<string>("uscite"); // State used for "uscite" and "entrate" dropdown
 
   const handleDropdownSelection = (value: string) => {
-    setSelectedTransactionType(value); // Updates the item in the dropdwon
+    setSelectedTransactionType(value); // Updates the item in the dropdown
   };
 
   // Function used for the switch
@@ -171,7 +171,7 @@ const Income = () => {
       </View>
 
       {/* Switch and dropdown */}
-      <View>
+      <View style={styles.footerContainer}>
         <View style={styles.switchContainer}>
           <Switch
             trackColor={{ false: "black", true: "blue" }}
@@ -187,6 +187,7 @@ const Income = () => {
             selectedValue={selectedTransactionType}
             onSelect={handleDropdownSelection}
             type="income"
+            color="white"
           />
         </View>
       </View>
@@ -209,6 +210,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FCF6FB",
     paddingTop: "10%",
+    paddingBottom: 80,
   },
   text: {
     marginLeft: 20,
@@ -312,7 +314,6 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 20,
   },
   switchText: {
     marginLeft: 10,
@@ -320,12 +321,15 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   pickerContainer: {
-    position: "absolute",
-    top: 15,
-    left: 200,
-    width: 128,
-    height: 100,
-    zIndex: 10,
+    marginLeft: 20,
+  },
+  footerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginHorizontal: 20,
+    marginBottom: 20,
+    marginTop: 20,
   },
 });
 

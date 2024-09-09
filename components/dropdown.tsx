@@ -16,12 +16,14 @@ interface DropdownButtonProps {
   selectedValue: string;
   onSelect: (value: string) => void;
   type: string;
+  color: string;
 }
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({
   selectedValue,
   onSelect,
   type,
+  color,
 }) => {
   const [isOpen, setIsOpen] = useState(false); // State used to handle opening and closing of the dropdown menu
   const menuRef = useRef(null);
@@ -41,7 +43,6 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   // Used for filtering the remaning option
   const statsOption = selectedValue === "uscite" ? "entrate" : "uscite";
   const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
-  const remainingOption = type === "stats" ? statsOption : loanOption;
 
   return (
     <View style={styles.dropdownContainer}>
@@ -57,8 +58,10 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
         onClose={() => setIsOpen(false)}
       >
         <MenuTrigger>
-          <Pressable style={styles.dropdownButton} onPress={openMenu}>
-            <Text style={styles.buttonText}>{selectedValue}</Text>
+          <Pressable style={stylestwo(color).dropdownButton} onPress={openMenu}>
+            <Text style={styles.buttonText}>
+              {type === "stats" ? selectedValue : loanOption[0]}
+            </Text>
             <IconFeather
               style={styles.arrow}
               name={isOpen ? "chevron-up" : "chevron-down"}
@@ -72,7 +75,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
             optionWrapper: styles.optionWrapper,
           }}
         >
-          {/* Se il tipo è 'stats', mostra un'opzione singola */}
+          {/* If type === "stats" it shows statsOption, otherwise */}
           {type === "stats" ? (
             <MenuOption onSelect={() => handleOptionSelect(statsOption)}>
               <Text style={styles.menuItemText}>{statsOption}</Text>
@@ -99,15 +102,6 @@ const styles = StyleSheet.create({
     position: "relative",
     width: "auto",
   },
-  dropdownButton: {
-    backgroundColor: "#FCF6FB",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   buttonText: {
     fontSize: 16,
     color: "#A0A0A0",
@@ -132,5 +126,18 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
+const stylestwo = (color: string) =>
+  StyleSheet.create({
+    dropdownButton: {
+      backgroundColor: color,
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 12,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+  });
 
 export default DropdownButton;
