@@ -121,6 +121,7 @@ const Loan = () => {
             selectedValue={selectedTransactionType}
             onSelect={handleDropdownSelection}
             type="income"
+            color="white"
           />
         </View>
       </View>
