@@ -34,7 +34,8 @@
             "./assets/font/Switzer-Thin.otf"
           ]
         }
-      ]
+      ],
+      "expo-image-picker"
     ]
   }
 }
