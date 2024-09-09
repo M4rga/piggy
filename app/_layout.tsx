@@ -76,7 +76,7 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/index"
           options={{
-            title: "a",
+            title: "",
             header: () => <CustomHeader />,
             tabBarIcon: ({ color }) => (
               <IconFeather name="home" size={22} color={color} />
@@ -216,7 +216,7 @@ const Layout = () => {
                 name={"check"}
                 size={26}
                 style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("otherPages/addCard")}
+                onPress={() => router.push("/")}
               />
             ),
           }}
@@ -273,7 +273,7 @@ const Layout = () => {
         <Tabs.Screen
           name="plus/receipt"
           options={{
-            title: "Aggiungi Scontrino",
+            title: "Aggiungi scontrino",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -283,14 +283,14 @@ const Layout = () => {
                 onPress={() => router.push("/")}
               />
             ),
-            headerRight: () => (
-              <IconFeather
-                name={"check"}
-                size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("otherPages/addCard")}
-              />
-            ),
+            // headerRight: () => (
+            //   <IconFeather
+            //     name={"check"}
+            //     size={26}
+            //     style={{ marginHorizontal: 15 }}
+            //     onPress={() => router.push("otherPages/addCard")}
+            //   />
+            // ),
           }}
         />
 
@@ -323,7 +323,7 @@ const Layout = () => {
         <Tabs.Screen
           name="(tabs)/private"
           options={{
-            title: "Area Privata",
+            title: "Area privata",
             tabBarIcon: ({ color }) => (
               <IconFeather name="lock" size={24} color={color} />
             ),
@@ -349,9 +349,8 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/welcome"
           options={{
-            title: "Private",
             headerShown: false,
-            // href: null,
+            href: null,
             tabBarIcon: ({ color }) => (
               <IconFeather name="align-justify" size={24} color={color} />
             ),
@@ -377,7 +376,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/addCard"
           options={{
-            title: "Nuova Carta",
+            title: "Nuova carta",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -401,7 +400,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/statsFilter"
           options={{
-            title: "Filtro Statistiche",
+            title: "Filtro statistiche",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -425,7 +424,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/receiptPage"
           options={{
-            title: "Storico Scontrini",
+            title: "Storico scontrini",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -449,7 +448,7 @@ const Layout = () => {
         <Tabs.Screen
           name="otherPages/passwordKeeperPage"
           options={{
-            title: "Password Keeper",
+            title: "Password keeper",
             href: null,
             headerLeft: () => (
               <IconFeather
@@ -498,7 +497,7 @@ const Layout = () => {
           name="otherPages/cardMovements"
           options={{
             title: "Movimenti",
-            // href: null,
+            href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -515,6 +514,30 @@ const Layout = () => {
             //     onPress={() => router.push("otherPages/addCard")}
             //   />
             // ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="otherPages/addReceipt"
+          options={{
+            title: "Aggiungi scontrino",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("plus/receipt")}
+              />
+            ),
+            headerRight: () => (
+              <IconFeather
+                name={"check"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("plus/receipt")}
+              />
+            ),
           }}
         />
       </Tabs>

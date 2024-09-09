@@ -2,12 +2,12 @@ import { Text } from "../../components/textFont";
 import { View } from "react-native";
 import React from "react";
 
-const Loan = () => {
+const AddReceipt = () => {
   return (
     <View>
-      <Text>Loan</Text>
+      <Text>AddReceipt</Text>
     </View>
   );
 };
 
-export default Loan;
+export default AddReceipt;
