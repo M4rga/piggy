@@ -58,7 +58,7 @@ const Income = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Import section */}
       <Text style={styles.text}>Importo</Text>
       <View style={styles.importView}>
@@ -201,7 +201,7 @@ const Income = () => {
           <Text style={styles.buttonText}>Salva</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
