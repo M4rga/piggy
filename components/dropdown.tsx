@@ -15,11 +15,13 @@ const { Popover } = renderers;
 interface DropdownButtonProps {
   selectedValue: string;
   onSelect: (value: string) => void;
+  type: string;
 }
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({
   selectedValue,
   onSelect,
+  type,
 }) => {
   const [isOpen, setIsOpen] = useState(false); // State used to handle opening and closing of the dropdown menu
   const menuRef = useRef(null);
@@ -37,7 +39,9 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   };
 
   // Used for filtering the remaning option
-  const remainingOption = selectedValue === "uscite" ? "entrate" : "uscite";
+  const statsOption = selectedValue === "uscite" ? "entrate" : "uscite";
+  const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
+  const remainingOption = type === "stats" ? statsOption : loanOption;
 
   return (
     <View style={styles.dropdownContainer}>
@@ -68,10 +72,22 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
             optionWrapper: styles.optionWrapper,
           }}
         >
-          {/* Shows only the remaning option */}
-          <MenuOption onSelect={() => handleOptionSelect(remainingOption)}>
-            <Text style={styles.menuItemText}>{remainingOption}</Text>
-          </MenuOption>
+          {/* Se il tipo è 'stats', mostra un'opzione singola */}
+          {type === "stats" ? (
+            <MenuOption onSelect={() => handleOptionSelect(statsOption)}>
+              <Text style={styles.menuItemText}>{statsOption}</Text>
+            </MenuOption>
+          ) : (
+            /* Se il tipo è diverso, mostra l'elenco di opzioni */
+            loanOption.map((option) => (
+              <MenuOption
+                key={option}
+                onSelect={() => handleOptionSelect(option)}
+              >
+                <Text style={styles.menuItemText}>{option}</Text>
+              </MenuOption>
+            ))
+          )}
         </MenuOptions>
       </Menu>
     </View>

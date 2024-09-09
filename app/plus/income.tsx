@@ -1,13 +1,47 @@
 import { Text, TextInput } from "../../components/textFont";
-import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+  Switch,
+} from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
+import DropdownButton from "../../components/dropdown";
 
 type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
 const Income = () => {
   const [selectedCategory, setSelectedCategory] = useState("Conto Corrente");
+  const [date, setDate] = useState<Date>(new Date());
+  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [selectedTransactionType, setSelectedTransactionType] =
+    useState<string>("uscite"); // State used for "uscite" and "entrate" dropdown
+
+  const handleDropdownSelection = (value: string) => {
+    setSelectedTransactionType(value); // Updates the item in the dropdwon
+  };
+
+  // Function used for the switch
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  // Function used for the date picker
+  const onChange = (
+    event: DateTimePickerEvent,
+    selectedDate?: Date | undefined
+  ) => {
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+    setShowDatePicker(false);
+  };
 
   const categories: Category[] = [
     "Conto Corrente",
@@ -36,6 +70,7 @@ const Income = () => {
         />
       </View>
 
+      {/* Wallet selection section */}
       <Text style={styles.text}>Portafogli</Text>
       <View style={styles.selectionContainer}>
         <ScrollView
@@ -75,6 +110,48 @@ const Income = () => {
         </ScrollView>
       </View>
 
+      {/* Date Picker section */}
+      <View style={styles.sessions}>
+        <View style={{ flexDirection: "row", height: 80 }}>
+          <IconFeather name="calendar" style={{ marginTop: 11.5 }} size={30} />
+          <View style={{ marginLeft: 20 }}>
+            <Text style={{ color: "#A0A0A0", margin: 0 }}>Data</Text>
+
+            {/* Initial date */}
+            {Platform.OS === "android" ? (
+              <TouchableOpacity
+                style={styles.datePickerContainer}
+                onPress={() => setShowDatePicker(true)}
+              >
+                <Text style={styles.dateText}>{date.toDateString()}</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.datePickerContainer}>
+                <DateTimePicker
+                  value={date}
+                  mode="date"
+                  is24Hour={true}
+                  display="default"
+                  onChange={onChange}
+                />
+              </View>
+            )}
+
+            {/* Date picker modal for Android */}
+            {showDatePicker && Platform.OS === "android" && (
+              <DateTimePicker
+                value={date}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
+          </View>
+        </View>
+      </View>
+
+      {/* Note section */}
       <View style={styles.sessions}>
         <View style={{ flexDirection: "row", height: 80 }}>
           <IconFeather
@@ -92,6 +169,37 @@ const Income = () => {
           </View>
         </View>
       </View>
+
+      {/* Switch and dropdown */}
+      <View>
+        <View style={styles.switchContainer}>
+          <Switch
+            trackColor={{ false: "black", true: "blue" }}
+            thumbColor={isEnabled ? "white" : "white"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+          <Text style={styles.switchText}>Ricorrente</Text>
+        </View>
+        <View style={styles.pickerContainer}>
+          <DropdownButton
+            selectedValue={selectedTransactionType}
+            onSelect={handleDropdownSelection}
+            type="income"
+          />
+        </View>
+      </View>
+
+      {/* Save Button */}
+      <View style={styles.VButton}>
+        <TouchableOpacity
+          style={styles.saveButton}
+          onPress={() => alert("Button pressed")}
+        >
+          <Text style={styles.buttonText}>Salva</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -103,7 +211,7 @@ const styles = StyleSheet.create({
     paddingTop: "10%",
   },
   text: {
-    margin: 20,
+    marginLeft: 20,
     fontSize: 15,
   },
   sessions: {
@@ -172,6 +280,52 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 8,
+  },
+  datePickerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 5,
+    marginLeft: -10,
+  },
+  dateText: {
+    fontSize: 16,
+    color: "#555",
+  },
+  VButton: {
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 20,
+  },
+
+  saveButton: {
+    backgroundColor: "#F773ED",
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 100,
+  },
+
+  buttonText: {
+    color: "black",
+    fontFamily: "Switzer-Semibold",
+    fontSize: 16,
+  },
+  switchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 20,
+  },
+  switchText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: "#000",
+  },
+  pickerContainer: {
+    position: "absolute",
+    top: 15,
+    left: 200,
+    width: 128,
+    height: 100,
+    zIndex: 10,
   },
 });
 

@@ -89,6 +89,7 @@ const Stats = () => {
             <DropdownButton
               selectedValue={selectedTransactionType} // Indicates which option is shown at the moment
               onSelect={handleDropdownSelection} // Called when the user select another option
+              type="stats"
             />
           </View>
 
