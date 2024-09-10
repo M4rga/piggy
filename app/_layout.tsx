@@ -540,6 +540,22 @@ const Layout = () => {
             ),
           }}
         />
+
+        <Tabs.Screen
+          name="otherPages/userProfile"
+          options={{
+            title: "Profilo",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/")}
+              />
+            ),
+          }}
+        />
       </Tabs>
     </MenuProvider>
   );
