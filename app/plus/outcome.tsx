@@ -186,7 +186,7 @@ const Outcome = () => {
           <DropdownButton
             selectedValue={selectedTransactionType}
             onSelect={handleDropdownSelection}
-            type="income"
+            type="income/outcome/loan"
             color="white"
           />
         </View>

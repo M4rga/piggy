@@ -1,5 +1,11 @@
 import { Text, TextInput } from "../../components/textFont";
-import { View, StyleSheet, TouchableOpacity, ScrollView, Switch } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Switch,
+} from "react-native";
 import React, { useState } from "react";
 import IconFeather from "react-native-vector-icons/Feather";
 import DropdownButton from "../../components/dropdown";
@@ -7,7 +13,8 @@ import DropdownButton from "../../components/dropdown";
 const Loan = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
-  const [selectedTransactionType, setSelectedTransactionType] = useState<string>("uscite");
+  const [selectedTransactionType, setSelectedTransactionType] =
+    useState<string>("uscite");
 
   const handleDropdownSelection = (value: string) => {
     setSelectedTransactionType(value);
@@ -24,7 +31,7 @@ const Loan = () => {
       <Text style={styles.text}>Importo</Text>
       <View style={styles.quantity}>
         <View style={styles.importView}>
-          <Text style={styles.currencyText}>   €</Text>
+          <Text style={styles.currencyText}> €</Text>
           <TextInput
             style={styles.textInput}
             placeholder="10,00"
@@ -33,19 +40,20 @@ const Loan = () => {
         </View>
 
         <View style={styles.buttons}>
-
           <View style={styles.TopButtons}>
             <TouchableOpacity
               style={[
                 styles.TopButtonsStyle,
-                selectedButton === "ioDevo" ? styles.selectedButton : {}
+                selectedButton === "ioDevo" ? styles.selectedButton : {},
               ]}
               onPress={() => handleButtonPress("ioDevo")}
             >
-              <Text style={[
-                styles.buttonText,
-                selectedButton === "ioDevo" ? styles.selectedButtonText : {}
-              ]}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  selectedButton === "ioDevo" ? styles.selectedButtonText : {},
+                ]}
+              >
                 Io devo
               </Text>
             </TouchableOpacity>
@@ -55,29 +63,26 @@ const Loan = () => {
             <TouchableOpacity
               style={[
                 styles.TopButtonsStyle,
-                selectedButton === "miDeve" ? styles.selectedButton : {}
+                selectedButton === "miDeve" ? styles.selectedButton : {},
               ]}
               onPress={() => handleButtonPress("miDeve")}
             >
-              <Text style={[
-                styles.buttonText,
-                selectedButton === "miDeve" ? styles.selectedButtonText : {}
-              ]}>
+              <Text
+                style={[
+                  styles.buttonText,
+                  selectedButton === "miDeve" ? styles.selectedButtonText : {},
+                ]}
+              >
                 Mi deve
               </Text>
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
 
       <View style={styles.sessions}>
         <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather
-            name="user"
-            style={{ marginTop: 11.5 }}
-            size={30}
-          />
+          <IconFeather name="user" style={{ marginTop: 11.5 }} size={30} />
           <View style={{ marginLeft: 20 }}>
             <Text style={{ color: "#A0A0A0", margin: 0 }}>Who</Text>
             <TextInput
@@ -91,11 +96,7 @@ const Loan = () => {
 
       <View style={styles.sessions}>
         <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather
-            name="calendar"
-            style={{ marginTop: 11.5 }}
-            size={30}
-          />
+          <IconFeather name="calendar" style={{ marginTop: 11.5 }} size={30} />
           <View style={{ marginLeft: 20 }}>
             <Text style={{ color: "#A0A0A0", margin: 0 }}>By when</Text>
             <TextInput
@@ -140,7 +141,7 @@ const Loan = () => {
           <DropdownButton
             selectedValue={selectedTransactionType}
             onSelect={handleDropdownSelection}
-            type="income"
+            type="income/outcome/loan"
             color="white"
           />
         </View>

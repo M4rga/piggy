@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import {
   Menu,
@@ -25,10 +25,30 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   type,
   color,
 }) => {
-  const [isOpen, setIsOpen] = useState(false); // State used to handle opening and closing of the dropdown menu
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentValue, setCurrentValue] = useState(selectedValue);
   const menuRef = useRef(null);
 
-  // Using useRender because it allow you to not re-render the whole page
+  const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
+
+  // Funzione per selezionare un valore casuale
+  const getRandomLoanOption = () => {
+    return loanOption[Math.floor(Math.random() * loanOption.length)];
+  };
+
+  // Effetto per impostare il valore iniziale
+  useEffect(() => {
+    if (type === "income/outcome/loan") {
+      setCurrentValue(getRandomLoanOption()); // Imposta un valore casuale all'inizio
+    } else if (
+      type === "stats" &&
+      currentValue !== "uscite" &&
+      currentValue !== "entrate"
+    ) {
+      setCurrentValue("uscite");
+    }
+  }, [type]);
+
   const openMenu = () => {
     if (menuRef.current) {
       (menuRef.current as any).open();
@@ -37,12 +57,11 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
 
   const handleOptionSelect = (option: string) => {
     onSelect(option);
+    setCurrentValue(option);
     setIsOpen(false);
   };
 
-  // Used for filtering the remaning option
-  const statsOption = selectedValue === "uscite" ? "entrate" : "uscite";
-  const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
+  const statsOption = currentValue === "uscite" ? "entrate" : "uscite";
 
   return (
     <View style={styles.dropdownContainer}>
@@ -59,9 +78,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
       >
         <MenuTrigger>
           <Pressable style={stylestwo(color).dropdownButton} onPress={openMenu}>
-            <Text style={styles.buttonText}>
-              {type === "stats" ? selectedValue : loanOption[0]}
-            </Text>
+            <Text style={styles.buttonText}>{currentValue}</Text>
             <IconFeather
               style={styles.arrow}
               name={isOpen ? "chevron-up" : "chevron-down"}
@@ -75,13 +92,11 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
             optionWrapper: styles.optionWrapper,
           }}
         >
-          {/* If type === "stats" it shows statsOption, otherwise */}
           {type === "stats" ? (
             <MenuOption onSelect={() => handleOptionSelect(statsOption)}>
               <Text style={styles.menuItemText}>{statsOption}</Text>
             </MenuOption>
           ) : (
-            /* Se il tipo è diverso, mostra l'elenco di opzioni */
             loanOption.map((option) => (
               <MenuOption
                 key={option}
