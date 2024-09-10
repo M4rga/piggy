@@ -32,14 +32,14 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
 
   // Funzione per selezionare un valore casuale
-  const getRandomLoanOption = () => {
-    return loanOption[Math.floor(Math.random() * loanOption.length)];
+  const getOption = () => {
+    return loanOption[2];
   };
 
   // Effetto per impostare il valore iniziale
   useEffect(() => {
     if (type === "income/outcome/loan") {
-      setCurrentValue(getRandomLoanOption()); // Imposta un valore casuale all'inizio
+      setCurrentValue(getOption()); // Imposta un valore casuale all'inizio
     } else if (
       type === "stats" &&
       currentValue !== "uscite" &&
