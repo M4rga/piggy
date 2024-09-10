@@ -1,70 +1,127 @@
 import { Text } from "../../components/textFont"; // Importing custom text components
-import { FlatList } from "react-native";
-import { View, StyleSheet, Image, ScrollView, Pressable } from "react-native"; // Importing React Native components
-import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
-import StatsCategory from "../../components/categoryLastMovements";
+import { View, StyleSheet, ScrollView, Pressable } from "react-native"; // Importing React Native components
 import IconFeather from "react-native-vector-icons/Feather";
-import { useRouter } from "expo-router";
+import React, { useState } from "react";
+import DropdownButton from "../../components/dropdown";
 
 const currencies = ["EUR", "USD", "JPY", "GBP", "AUD", "CAD", "CHF"];
 
+
 const UserProfile = () => {
-  return (
+    const [selectedTransactionType, setSelectedTransactionType] =
+        useState<string>("uscite");
+    
+    const handleDropdownSelection = (value: string) => {
+        setSelectedTransactionType(value); // Updates the item in the dropdown
+      };
+    return (
     <ScrollView style={styles.container}>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Generali</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Obiettivo</Text>
+        <View style={styles.allOptions}>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="award" size={18.5} />
+                    <Text style={styles.optionLabel}>Obiettivo</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="dollar-sign" size={18.5} />
+                    <Text style={styles.optionLabel}>Valuta</Text>
+                    <View>
+                        <DropdownButton
+                            selectedValue={selectedTransactionType}
+                            onSelect={handleDropdownSelection}
+                            type="income/outcome/loan"
+                            color="black"
+                        />
+                    </View>
+                </Pressable>
+            </View>
+            {/* <Picker
+                selectedValue={selectedCurrency}
+                style={styles.picker}
+                onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
+            >
+                {currencies.map((currency) => (
+                <Picker.Item key={currency} label={currency} value={currency} />
+                ))}
+            </Picker> */}
+            
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="lock" size={18.5} />
+                    <Text style={styles.optionLabel}>Privacy</Text>
+                </Pressable>
+            </View>
         </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Valuta</Text>
-          {/* <Picker
-            selectedValue={selectedCurrency}
-            style={styles.picker}
-            onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
-          >
-            {currencies.map((currency) => (
-              <Picker.Item key={currency} label={currency} value={currency} />
-            ))}
-          </Picker> */}
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Privacy</Text>
-        </View>
+        
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Account</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Foto</Text>
+        <View style={styles.allOptions}>
+        <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="image" size={18.5} />
+                    <Text style={styles.optionLabel}>Foto</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="user" size={18.5} />
+                    <Text style={styles.optionLabel}>Nome e cognome</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="mail" size={18.5} />
+                    <Text style={styles.optionLabel}>Email</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="key" size={18.5} />
+                    <Text style={styles.optionLabel}>Password</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="log-out" size={18.5} />
+                    <Text style={styles.optionLabel}>Esci</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="x-square" size={18.5} />
+                    <Text style={styles.optionLabel}>Elimina account</Text>
+                </Pressable>
+            </View>
         </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Nome e cognome</Text>
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>E-mail</Text>
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Password</Text>
-        </View>
-        <Pressable style={styles.option}>
-          <Text style={styles.optionLabel}>Esci</Text>
-        </Pressable>
-        <Pressable style={styles.option}>
-          <Text style={styles.optionLabel}>Elimina account</Text>
-        </Pressable>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Help</Text>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Istruzioni</Text>
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>FAQ</Text>
-        </View>
-        <View style={styles.option}>
-          <Text style={styles.optionLabel}>Supporto</Text>
+        <View style={styles.allOptions}>
+        <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="compass" size={18.5} />
+                    <Text style={styles.optionLabel}>Istruzioni</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="help-circle" size={18.5} />
+                    <Text style={styles.optionLabel}>FAQ</Text>
+                </Pressable>
+            </View>
+            <View>
+                <Pressable style={styles.option}>
+                    <IconFeather name="life-buoy" size={18.5} />
+                    <Text style={styles.optionLabel}>Supporto</Text>
+                </Pressable>
+            </View>
         </View>
       </View>
     </ScrollView>
@@ -81,24 +138,34 @@ const styles = StyleSheet.create({
       },
       sectionTitle: {
         fontSize: 18,
-        fontWeight: "600",
+        fontFamily: "Switzer-Semibold",
         marginBottom: 10,
+        marginLeft: 20,
+      },
+      allOptions: {
+        backgroundColor: "#FFFFFF",
+        borderRadius: 10,
       },
       option: {
         flexDirection: "row",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 15,
+        height: 60,
+        padding: 20,
         borderBottomWidth: 1,
-        borderBottomColor: "#eaeaea",
+        borderBottomColor: "#FCF6FB",
+        fontFamily: "Switzer-Variable",
       },
       optionLabel: {
         fontSize: 16,
+        marginLeft: 15,
       },
       picker: {
         height: 50,
         width: 120,
       },
-
+      Pressable: {
+        height: 40,
+      },
 });
 export default UserProfile
