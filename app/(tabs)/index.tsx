@@ -87,7 +87,9 @@ const Home = () => {
 
             <View style={{ flex: 1 }}></View>
 
-            <IconFeather name="more-vertical" size={22.5} />
+            <Pressable onPress={() => router.push("../otherPages/userProfile")}>
+              <IconFeather name="more-vertical" size={22.5} />
+            </Pressable>
           </View>
 
           {/* Total balance section */}
