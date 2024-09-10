@@ -1,21 +1,23 @@
-import { Text, TextInput} from "../../components/textFont";
-import { View, StyleSheet, TouchableOpacity, ScrollView, Platform, Switch} from "react-native";
+import { Text, TextInput } from "../../components/textFont";
+import { View, StyleSheet, TouchableOpacity, ScrollView, Switch } from "react-native";
 import React, { useState } from "react";
 import IconFeather from "react-native-vector-icons/Feather";
 import DropdownButton from "../../components/dropdown";
 
-
 const Loan = () => {
-
   const [isEnabled, setIsEnabled] = useState(false);
-  const [selectedTransactionType, setSelectedTransactionType] =
-  useState<string>("uscite"); // State used for "uscite" and "entrate" dropdown
+  const [selectedButton, setSelectedButton] = useState<string | null>(null);
+  const [selectedTransactionType, setSelectedTransactionType] = useState<string>("uscite");
 
   const handleDropdownSelection = (value: string) => {
-    setSelectedTransactionType(value); // Updates the item in the dropdwon
+    setSelectedTransactionType(value);
   };
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  const handleButtonPress = (buttonType: string) => {
+    setSelectedButton(buttonType);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -30,24 +32,42 @@ const Loan = () => {
           />
         </View>
 
-        <View>
-          <View style={styles.VButton}>
+        <View style={styles.buttons}>
+
+          <View style={styles.TopButtons}>
             <TouchableOpacity
-              style={styles.saveButton}
-              onPress={() => alert("Button pressed")}
+              style={[
+                styles.TopButtonsStyle,
+                selectedButton === "ioDevo" ? styles.selectedButton : {}
+              ]}
+              onPress={() => handleButtonPress("ioDevo")}
             >
-              <Text style={styles.buttonText}>Io devo</Text>
+              <Text style={[
+                styles.buttonText,
+                selectedButton === "ioDevo" ? styles.selectedButtonText : {}
+              ]}>
+                Io devo
+              </Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.VButton}>
+          <View style={styles.TopButtons}>
             <TouchableOpacity
-              style={styles.saveButton}
-              onPress={() => alert("Button pressed")}
+              style={[
+                styles.TopButtonsStyle,
+                selectedButton === "miDeve" ? styles.selectedButton : {}
+              ]}
+              onPress={() => handleButtonPress("miDeve")}
             >
-              <Text style={styles.buttonText}>Mi deve</Text>
+              <Text style={[
+                styles.buttonText,
+                selectedButton === "miDeve" ? styles.selectedButtonText : {}
+              ]}>
+                Mi deve
+              </Text>
             </TouchableOpacity>
           </View>
+
         </View>
       </View>
 
@@ -203,6 +223,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 
+  selectedButtonText: {
+    color: "#FF69B4",
+  },
+
   saveButton: {
     backgroundColor: "#F773ED",
     paddingVertical: 15,
@@ -210,10 +234,28 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
 
+  TopButtonsStyle: {
+    backgroundColor: "#FCF6FB",
+    borderColor: "#D3D3D3",
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 100,
+  },
+
+  selectedButton: {
+    borderColor: "#FF69B4",
+  },
+
   VButton: {
     alignItems: "center",
     marginTop: 20,
     marginBottom: 20,
+  },
+
+  TopButtons: {
+    alignItems: "center",
+    marginTop: 18,
   },
 
   switchContainer: {
@@ -235,6 +277,10 @@ const styles = StyleSheet.create({
     width: 128,
     height: 100,
     zIndex: 10,
+  },
+
+  buttons: {
+    flex: 1,
   },
 });
 
