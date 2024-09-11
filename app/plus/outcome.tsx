@@ -183,12 +183,14 @@ const Outcome = () => {
           <Text style={styles.switchText}>Ricorrente</Text>
         </View>
         <View style={styles.pickerContainer}>
-          <DropdownButton
-            selectedValue={selectedTransactionType}
-            onSelect={handleDropdownSelection}
-            type="income/outcome/loan"
-            color="white"
-          />
+          {isEnabled && (
+            <DropdownButton
+              selectedValue={selectedTransactionType}
+              onSelect={handleDropdownSelection}
+              type="income/outcome/loan"
+              color="white"
+            />
+          )}
         </View>
       </View>
 
@@ -314,6 +316,7 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
+    margin: 20,
   },
   switchText: {
     marginLeft: 10,
@@ -321,15 +324,12 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   pickerContainer: {
-    marginLeft: 20,
+    marginRight: 10,
   },
   footerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: 20,
-    marginBottom: 20,
-    marginTop: 20,
   },
 });
 

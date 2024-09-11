@@ -446,6 +446,30 @@ const Layout = () => {
         />
 
         <Tabs.Screen
+          name="otherPages/target"
+          options={{
+            title: "Obiettivo",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/otherPages/userProfile")}
+              />
+            ),
+            headerRight: () => (
+              <IconFeather
+                name={"check"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("otherPages/userProfile")}
+              />
+            ),
+          }}
+        />
+
+        <Tabs.Screen
           name="otherPages/passwordKeeperPage"
           options={{
             title: "Password keeper",
@@ -536,6 +560,22 @@ const Layout = () => {
                 size={26}
                 style={{ marginHorizontal: 15 }}
                 onPress={() => router.push("plus/receipt")}
+              />
+            ),
+          }}
+        />
+
+        <Tabs.Screen
+          name="otherPages/userProfile"
+          options={{
+            title: "Profilo",
+            href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/")}
               />
             ),
           }}

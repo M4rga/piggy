@@ -138,12 +138,14 @@ const Loan = () => {
           <Text style={styles.switchText}>Ricorrente</Text>
         </View>
         <View style={styles.pickerContainer}>
-          <DropdownButton
-            selectedValue={selectedTransactionType}
-            onSelect={handleDropdownSelection}
-            type="income/outcome/loan"
-            color="white"
-          />
+          {isEnabled && (
+            <DropdownButton
+              selectedValue={selectedTransactionType}
+              onSelect={handleDropdownSelection}
+              type="income/outcome/loan"
+              color="white"
+            />
+          )}
         </View>
       </View>
 

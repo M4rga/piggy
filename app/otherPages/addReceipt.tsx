@@ -1,5 +1,11 @@
 import { Text } from "../../components/textFont";
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 
 const images = {
@@ -9,17 +15,27 @@ const images = {
 const AddReceipt = () => {
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }}></View>
       <View style={styles.imageViewStyle}>
         <Image source={images.one} style={styles.imageStyle} />
       </View>
       <View style={styles.viewStyle}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Scatta foto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Importa</Text>
-        </TouchableOpacity>
+        <View>
+          <Text style={styles.categoriaText}>Categoria</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Elettrodomestisci</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Abbigliamento</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Texnologia</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>+</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
       </View>
     </View>
   );
@@ -33,34 +49,37 @@ const styles = StyleSheet.create({
   },
   imageViewStyle: {
     alignItems: "center",
-    marginBottom: -21,
-    zIndex: 1,
+    marginBottom: -19,
   },
   imageStyle: {
-    height: 400,
-    width: 300,
+    height: 270,
+    width: 270,
   },
   viewStyle: {
-    flexDirection: "row",
     backgroundColor: "white",
-    height: 130,
+    flex: 1,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    justifyContent: "space-around",
-    alignItems: "center",
+    padding: "6%",
+  },
+  categoriaText: {
+    color: "#A0A0A0",
+    fontSize: 11,
   },
   button: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
+    borderColor: "#F773ED",
+    borderWidth: 2,
+    padding: 12,
+    paddingTop: 9,
+    borderRadius: 15,
     marginBottom: 10,
     alignItems: "center",
-    width: 140,
+    width: "auto",
+    marginRight: 10,
   },
   buttonText: {
-    color: "black",
-    fontSize: 14,
+    color: "#F773ED",
+    fontSize: 11,
   },
 });
 
