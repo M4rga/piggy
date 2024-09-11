@@ -5,12 +5,11 @@ import React, { useState } from "react";
 import DropdownButton from "../../components/dropdown";
 import { useRouter } from "expo-router";
 
-const currencies = ["EUR", "USD", "JPY", "GBP", "AUD", "CAD", "CHF"];
-
 const UserProfile = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const [selectedTransactionType, setSelectedTransactionType] = useState<string>("uscite");
+  const [selectedTransactionType, setSelectedTransactionType] =
+    useState<string>("uscite");
 
   const handleDropdownSelection = (value: string) => {
     setSelectedTransactionType(value); // Updates the item in the dropdown
@@ -22,7 +21,10 @@ const UserProfile = () => {
         <Text style={styles.sectionTitle}>Generali</Text>
         <View style={styles.allOptions}>
           <View>
-            <Pressable style={styles.option} onPress={() => router.push("otherPages/target")}>
+            <Pressable
+              style={styles.option}
+              onPress={() => router.push("otherPages/target")}
+            >
               <IconFeather name="award" size={18.5} />
               <Text style={styles.optionLabel}>Obiettivo</Text>
             </Pressable>
@@ -35,7 +37,7 @@ const UserProfile = () => {
                 <DropdownButton
                   selectedValue={selectedTransactionType}
                   onSelect={handleDropdownSelection}
-                  type="income/outcome/loan"
+                  type="settings"
                   color="#F9F9F9"
                 />
               </View>
@@ -137,14 +139,14 @@ const styles = StyleSheet.create({
   dropdownButtonContainer: {
     marginLeft: "auto",
     width: 100,
-    height: 35,
-    backgroundColor: "#F9F9F9", // Background color for better visibility
-    borderRadius: 20, // Rounded corners
-    shadowColor: "#000", // Shadow color
-    shadowOffset: { width: 0, height: 1 }, // Shadow offset for iOS
-    shadowOpacity: 0.2, // Shadow opacity for iOS
-    shadowRadius: 4, // Shadow radius for iOS
-    elevation: 2.5, // Shadow for Android
+    height: 40,
+    backgroundColor: "#F9F9F9",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2.5,
   },
 });
 

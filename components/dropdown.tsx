@@ -29,23 +29,32 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   const [currentValue, setCurrentValue] = useState(selectedValue);
   const menuRef = useRef(null);
 
+  const statsOption = currentValue === "uscite" ? "entrate" : "uscite";
   const loanOption = ["Ogni giorno", "Ogni mese", "Ogni anno"];
+  const currencies = ["EUR", "JPY", "GBP", "AUD", "CAD", "CHF"];
 
-  // Funzione per selezionare un valore casuale
-  const getOption = () => {
+  // Function used to display a loanOption value
+  const getLoanOption = () => {
     return loanOption[2];
   };
 
-  // Effetto per impostare il valore iniziale
+  // Function used to display a currency value
+  const getCurrencyValue = () => {
+    return currencies[0];
+  };
+
+  // Used to set the initial value
   useEffect(() => {
     if (type === "income/outcome/loan") {
-      setCurrentValue(getOption()); // Imposta un valore casuale all'inizio
+      setCurrentValue(getLoanOption());
     } else if (
       type === "stats" &&
       currentValue !== "uscite" &&
       currentValue !== "entrate"
     ) {
       setCurrentValue("uscite");
+    } else if (type === "settings" && !currencies.includes(currentValue)) {
+      setCurrentValue(getCurrencyValue());
     }
   }, [type]);
 
@@ -60,8 +69,6 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
     setCurrentValue(option);
     setIsOpen(false);
   };
-
-  const statsOption = currentValue === "uscite" ? "entrate" : "uscite";
 
   return (
     <View style={styles.dropdownContainer}>
@@ -96,6 +103,15 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
             <MenuOption onSelect={() => handleOptionSelect(statsOption)}>
               <Text style={styles.menuItemText}>{statsOption}</Text>
             </MenuOption>
+          ) : type === "settings" ? (
+            currencies.map((currency) => (
+              <MenuOption
+                key={currency}
+                onSelect={() => handleOptionSelect(currency)}
+              >
+                <Text style={styles.menuItemText}>{currency}</Text>
+              </MenuOption>
+            ))
           ) : (
             loanOption.map((option) => (
               <MenuOption
