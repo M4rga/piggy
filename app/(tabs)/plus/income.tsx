@@ -3,7 +3,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
   Platform,
   Switch,
 } from "react-native";
@@ -79,7 +79,7 @@ const Income = () => {
           contentContainerStyle={styles.scrollContainer}
         >
           {categories.map((category, index) => (
-            <TouchableOpacity
+            <Pressable
               key={index}
               style={[
                 styles.button,
@@ -105,7 +105,7 @@ const Income = () => {
                   {category}
                 </Text>
               </View>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </ScrollView>
       </View>
@@ -119,12 +119,12 @@ const Income = () => {
 
             {/* Initial date */}
             {Platform.OS === "android" ? (
-              <TouchableOpacity
+              <Pressable
                 style={styles.datePickerContainer}
                 onPress={() => setShowDatePicker(true)}
               >
                 <Text style={styles.dateText}>{date.toDateString()}</Text>
-              </TouchableOpacity>
+              </Pressable>
             ) : (
               <View style={styles.datePickerContainer}>
                 <DateTimePicker
@@ -196,12 +196,12 @@ const Income = () => {
 
       {/* Save Button */}
       <View style={styles.VButton}>
-        <TouchableOpacity
+        <Pressable
           style={styles.saveButton}
           onPress={() => alert("Button pressed")}
         >
           <Text style={styles.buttonText}>Salva</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </ScrollView>
   );
@@ -259,21 +259,34 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
+    borderColor: "#A0A0A0",
     borderWidth: 2,
-    borderColor: "#ccc",
-    margin: 5,
+    padding: 12,
+    paddingTop: 9,
+    borderRadius: 15,
+    marginBottom: 10,
+    alignItems: "center",
+    width: "auto",
+    marginRight: 10,
   },
   selectedButton: {
     borderColor: "#F773ED",
+    borderWidth: 2,
+    padding: 12,
+    paddingTop: 9,
+    borderRadius: 15,
+    marginBottom: 10,
+    alignItems: "center",
+    width: "auto",
+    marginRight: 10,
   },
   nonSelectedText: {
-    color: "#555",
+    color: "#A0A0A0",
+    fontSize: 11,
   },
   selectedText: {
     color: "#F773ED",
+    fontSize: 11,
   },
   scrollContainer: {
     flexDirection: "row",
