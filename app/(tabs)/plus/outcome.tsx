@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Platform,
   Switch,
+  Image,
 } from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -14,6 +15,8 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import DropdownButton from "../../../components/dropdown";
+
+import data from "../../../data/data.json";
 
 type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
@@ -29,6 +32,19 @@ const Outcome = () => {
     setSelectedTransactionType(value); // Updates the item in the dropdown
   };
 
+  const images = {
+    apple: require("../../../assets/stats/apple.png"),
+    house: require("../../../assets/stats/house.png"),
+    pill: require("../../../assets/stats/pill.png"),
+    plane: require("../../../assets/stats/plane.png"),
+    shopping: require("../../../assets/stats/shopping.png"),
+    train: require("../../../assets/stats/train.png"),
+    headphones: require("../../../assets/stats/headphones.png"),
+    car: require("../../../assets/stats/car.png"),
+    plate: require("../../../assets/stats/plate.png"),
+    ticket: require("../../../assets/stats/ticket.png"),
+  };
+
   // Function used for the switch
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
@@ -42,6 +58,7 @@ const Outcome = () => {
     }
     setShowDatePicker(false);
   };
+  const circleSelectionCategories = data.categories;
 
   const categories: Category[] = [
     "Conto Corrente",
@@ -68,6 +85,27 @@ const Outcome = () => {
           placeholder="10,00"
           keyboardType="numeric"
         />
+      </View>
+
+      {/* Circle ScrollView */}
+      <View style={styles.categorySelectionContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollView}
+        >
+          {circleSelectionCategories.map((category, index) => (
+            <TouchableOpacity key={index} style={styles.iconContainer}>
+              <View style={styles.circle}>
+                <Image
+                  source={images[category.icon as keyof typeof images]}
+                  style={styles.categoryImage}
+                />
+              </View>
+              <Text style={styles.label}>{category.type}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
 
       {/* Wallet selection section */}
@@ -343,6 +381,37 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  scrollView: {
+    paddingHorizontal: 10,
+  },
+  iconContainer: {
+    alignItems: "center",
+    marginHorizontal: 10,
+  },
+  circle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#f0f0f0",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "pink",
+  },
+  categoryImage: {
+    width: 40,
+    height: 40,
+    resizeMode: "contain",
+    borderRadius: 20,
+  },
+  label: {
+    marginTop: 5,
+    fontSize: 12,
+    color: "#333",
+  },
+  categorySelectionContainer: {
+    marginBottom: 20,
   },
 });
 
