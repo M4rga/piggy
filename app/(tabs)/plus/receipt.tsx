@@ -1,11 +1,11 @@
-import { Text } from "../../components/textFont";
+import { Text } from "../../../components/textFont";
 import { View, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 
 const images = {
-  one: require("../../assets/login/fourthImage.png"),
+  one: require("../../../assets/login/fourthImage.png"),
 };
 
 interface ImagePickerAsset {

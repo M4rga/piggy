@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../components/textFont";
+import { Text, TextInput } from "../../../components/textFont";
 import {
   View,
   StyleSheet,
@@ -13,11 +13,11 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
-import DropdownButton from "../../components/dropdown";
+import DropdownButton from "../../../components/dropdown";
 
 type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
-const Outcome = () => {
+const Income = () => {
   const [selectedCategory, setSelectedCategory] = useState("Conto Corrente");
   const [date, setDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
@@ -333,4 +333,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Outcome;
+export default Income;

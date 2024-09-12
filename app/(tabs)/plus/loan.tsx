@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../components/textFont";
+import { Text, TextInput } from "../../../components/textFont";
 import {
   View,
   StyleSheet,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import IconFeather from "react-native-vector-icons/Feather";
-import DropdownButton from "../../components/dropdown";
+import DropdownButton from "../../../components/dropdown";
 
 const Loan = () => {
   const [isEnabled, setIsEnabled] = useState(false);
