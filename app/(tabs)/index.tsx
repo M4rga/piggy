@@ -13,7 +13,6 @@ const pig_empty = require("../../assets/homepage/Pig_empty.png");
 const pig_mid = require("../../assets/homepage/Pig_mid.png");
 const pig_full = require("../../assets/homepage/Pig_full.png");
 const pig_logo = require("../../assets/homepage/Pig_logo.png");
-const menu = require("../../assets/homepage/Menu_home.png");
 
 const Home = () => {
   const router = useRouter();
