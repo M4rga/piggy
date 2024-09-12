@@ -5,7 +5,7 @@ import {
   Image,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import StatsCategory from "../../components/categoryLastMovements";
@@ -33,7 +33,7 @@ const ReceiptPage = () => {
 
         {/* Main content container */}
         <View style={styles.mainContainer}>
-          <Text style={styles.titleLastMoves}>Categoria</Text>
+          <Text style={styles.titleCategories}>Categoria</Text>
           <View style={styles.selectionContainer}>
             <ScrollView
               horizontal
@@ -41,7 +41,7 @@ const ReceiptPage = () => {
               contentContainerStyle={styles.scrollContainer}
             >
               {categories.map((category, index) => (
-                <TouchableOpacity
+                <Pressable
                   key={index}
                   style={[
                     styles.button,
@@ -59,12 +59,12 @@ const ReceiptPage = () => {
                   >
                     {category}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               ))}
             </ScrollView>
           </View>
           {/* Latest movements section */}
-          <Text style={styles.titleLastMoves}>Ultimi scontrini</Text>
+          <Text style={styles.titleCategories}>Ultimi scontrini</Text>
           <View style={styles.MovesContainer}>
             <FlatList
               data={data.receipts}
@@ -112,13 +112,14 @@ const styles = StyleSheet.create({
     fontSize: 23,
     fontFamily: "Switzer-Semibold",
   },
-  titleLastMoves: {
+  titleCategories: {
     fontSize: 18,
     fontFamily: "Switzer-Semibold",
     margin: 20,
+    marginBottom: 0,
   },
   MovesContainer: {
-    padding: 10,
+    padding: 15,
   },
   selectionContainer: {
     flexDirection: "row",
@@ -126,24 +127,38 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
+    borderColor: "#A0A0A0",
     borderWidth: 2,
-    borderColor: "#ccc",
-    margin: 5,
+    padding: 12,
+    paddingTop: 9,
+    borderRadius: 15,
+    marginBottom: 10,
+    alignItems: "center",
+    width: "auto",
+    marginRight: 10,
   },
   selectedButton: {
-    borderColor: "pink",
+    borderColor: "#F773ED",
+    borderWidth: 2,
+    padding: 12,
+    paddingTop: 9,
+    borderRadius: 15,
+    marginBottom: 10,
+    alignItems: "center",
+    width: "auto",
+    marginRight: 10,
   },
   nonSelectedText: {
-    color: "#555",
+    color: "#A0A0A0",
+    fontSize: 11,
   },
   selectedText: {
-    color: "pink",
+    color: "#F773ED",
+    fontSize: 11,
   },
   scrollContainer: {
     flexDirection: "row",
+    padding: 5,
   },
 });
 

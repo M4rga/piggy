@@ -39,6 +39,7 @@ const AddReceipt = () => {
     "Elettrodomestisci",
     "Abbigliamento",
     "Tecnologia",
+    "Supermercato",
   ];
 
   return (
@@ -134,7 +135,10 @@ const AddReceipt = () => {
           </View>
         </View>
         <View style={styles.saveView}>
-          <TouchableOpacity style={styles.saveButton}>
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={() => alert("Button pressed")}
+          >
             <Text style={styles.saveButtonText}>Salva</Text>
           </TouchableOpacity>
         </View>
@@ -221,20 +225,19 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     backgroundColor: "#F773ED",
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    marginBottom: 10,
-    alignItems: "center",
-    width: 140,
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 100,
   },
   saveButtonText: {
     color: "black",
-    fontSize: 14,
+    fontFamily: "Switzer-Semibold",
+    fontSize: 16,
   },
   saveView: {
-    marginTop: 20,
     alignItems: "center",
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 
