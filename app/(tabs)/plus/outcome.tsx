@@ -1,4 +1,3 @@
-import { Text, TextInput } from "../../../components/textFont";
 import {
   View,
   StyleSheet,
@@ -7,13 +6,15 @@ import {
   Platform,
   Switch,
   Image,
+  KeyboardAvoidingView,
 } from "react-native";
+import React, { useState } from "react";
+import { Text, TextInput } from "../../../components/textFont";
 import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
 import DropdownButton from "../../../components/dropdown";
 
 import data from "../../../data/data.json";
@@ -58,6 +59,7 @@ const Outcome = () => {
     }
     setShowDatePicker(false);
   };
+
   const circleSelectionCategories = data.categories;
 
   const categories: Category[] = [
@@ -75,96 +77,120 @@ const Outcome = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Import section */}
-      <Text style={styles.text}>Importo</Text>
-      <View style={styles.importView}>
-        <Text style={styles.currencyText}>+ €</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="10,00"
-          keyboardType="numeric"
-        />
-      </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+    >
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* Import section */}
+        <Text style={styles.text}>Importo</Text>
+        <View style={styles.importView}>
+          <Text style={styles.currencyText}>+ €</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="10,00"
+            keyboardType="numeric"
+          />
+        </View>
 
-      {/* Circle ScrollView */}
-      <View style={styles.categorySelectionContainer}>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.scrollView}
-        >
-          {circleSelectionCategories.map((category, index) => (
-            <TouchableOpacity key={index} style={styles.iconContainer}>
-              <View style={styles.circle}>
-                <Image
-                  source={images[category.icon as keyof typeof images]}
-                  style={styles.categoryImage}
-                />
-              </View>
-              <Text style={styles.label}>{category.type}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Wallet selection section */}
-      <Text style={styles.text}>Portafogli</Text>
-      <View style={styles.selectionContainer}>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContainer}
-        >
-          {categories.map((category, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.button,
-                selectedCategory === category && styles.selectedButton,
-              ]}
-              onPress={() => setSelectedCategory(category)}
-            >
-              <View style={styles.iconTextContainer}>
-                <IconFontAwesome
-                  name={categoryIcons[category]}
-                  size={20}
-                  style={styles.icon}
-                  color={selectedCategory === category ? "#F773ED" : "#555"}
-                />
-                <Text
-                  style={[
-                    styles.nonSelectedText,
-                    ...(selectedCategory === category
-                      ? [styles.selectedText]
-                      : []),
-                  ]}
-                >
-                  {category}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Date Picker section */}
-      <View style={styles.sessions}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather name="calendar" style={{ marginTop: 11.5 }} size={30} />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>Data</Text>
-
-            {/* Initial date */}
-            {Platform.OS === "android" ? (
-              <TouchableOpacity
-                style={styles.datePickerContainer}
-                onPress={() => setShowDatePicker(true)}
-              >
-                <Text style={styles.dateText}>{date.toDateString()}</Text>
+        {/* Circle ScrollView */}
+        <View style={styles.categorySelectionContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.scrollView}
+          >
+            {circleSelectionCategories.map((category, index) => (
+              <TouchableOpacity key={index} style={styles.iconContainer}>
+                <View style={styles.circle}>
+                  <Image
+                    source={images[category.icon as keyof typeof images]}
+                    style={styles.categoryImage}
+                  />
+                </View>
+                <Text style={styles.label}>{category.type}</Text>
               </TouchableOpacity>
-            ) : (
-              <View style={styles.datePickerContainer}>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Wallet selection section */}
+        <Text style={styles.text}>Portafogli</Text>
+        <View style={styles.selectionContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.scrollContainer}
+          >
+            {categories.map((category, index) => (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.button,
+                  selectedCategory === category && styles.selectedButton,
+                ]}
+                onPress={() => setSelectedCategory(category)}
+              >
+                <View style={styles.iconTextContainer}>
+                  <IconFontAwesome
+                    name={categoryIcons[category]}
+                    size={20}
+                    style={styles.icon}
+                    color={selectedCategory === category ? "#F773ED" : "#555"}
+                  />
+                  <Text
+                    style={[
+                      styles.nonSelectedText,
+                      ...(selectedCategory === category
+                        ? [styles.selectedText]
+                        : []),
+                    ]}
+                  >
+                    {category}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Date Picker section */}
+        <View style={styles.sessions}>
+          <View style={{ flexDirection: "row", height: 80 }}>
+            <IconFeather
+              name="calendar"
+              style={{ marginTop: 11.5 }}
+              size={30}
+            />
+            <View style={{ marginLeft: 20 }}>
+              <Text style={{ color: "#A0A0A0", margin: 0 }}>Data</Text>
+
+              {/* Initial date */}
+              {Platform.OS === "android" ? (
+                <TouchableOpacity
+                  style={styles.datePickerContainer}
+                  onPress={() => setShowDatePicker(true)}
+                >
+                  <Text style={styles.dateText}>{date.toDateString()}</Text>
+                </TouchableOpacity>
+              ) : (
+                <View style={styles.datePickerContainer}>
+                  <DateTimePicker
+                    value={date}
+                    mode="date"
+                    is24Hour={true}
+                    display="default"
+                    onChange={onChange}
+                  />
+                </View>
+              )}
+
+              {/* Date picker modal for Android */}
+              {showDatePicker && Platform.OS === "android" && (
                 <DateTimePicker
                   value={date}
                   mode="date"
@@ -172,76 +198,65 @@ const Outcome = () => {
                   display="default"
                   onChange={onChange}
                 />
-              </View>
-            )}
+              )}
+            </View>
+          </View>
+        </View>
 
-            {/* Date picker modal for Android */}
-            {showDatePicker && Platform.OS === "android" && (
-              <DateTimePicker
-                value={date}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                onChange={onChange}
+        {/* Note section */}
+        <View style={styles.sessions}>
+          <View style={{ flexDirection: "row", height: 80 }}>
+            <IconFeather
+              name="message-square"
+              style={{ marginTop: 11.5 }}
+              size={30}
+            />
+            <View style={{ marginLeft: 20 }}>
+              <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
+              <TextInput
+                style={{ marginTop: 6 }}
+                placeholder="Inserisci la tua nota qua"
+                keyboardType="default"
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Switch and dropdown */}
+        <View style={styles.footerContainer}>
+          <View style={styles.switchContainer}>
+            <Switch
+              trackColor={{ false: "black", true: "blue" }}
+              thumbColor={isEnabled ? "white" : "white"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+            <Text style={styles.switchText}>Ricorrente</Text>
+          </View>
+          <View style={styles.pickerContainer}>
+            {isEnabled && (
+              <DropdownButton
+                selectedValue={selectedTransactionType}
+                onSelect={handleDropdownSelection}
+                type="income/outcome/loan"
+                color="white"
               />
             )}
           </View>
         </View>
-      </View>
 
-      {/* Note section */}
-      <View style={styles.sessions}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather
-            name="message-square"
-            style={{ marginTop: 11.5 }}
-            size={30}
-          />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
-            <TextInput
-              style={{ marginTop: 6 }}
-              placeholder="Inserisci la tua nota qua"
-              keyboardType="default"
-            />
-          </View>
+        {/* Save Button */}
+        <View style={styles.VButton}>
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={() => alert("Button pressed")}
+          >
+            <Text style={styles.buttonText}>Salva</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-
-      {/* Switch and dropdown */}
-      <View style={styles.footerContainer}>
-        <View style={styles.switchContainer}>
-          <Switch
-            trackColor={{ false: "black", true: "blue" }}
-            thumbColor={isEnabled ? "white" : "white"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
-          <Text style={styles.switchText}>Ricorrente</Text>
-        </View>
-        <View style={styles.pickerContainer}>
-          {isEnabled && (
-            <DropdownButton
-              selectedValue={selectedTransactionType}
-              onSelect={handleDropdownSelection}
-              type="income/outcome/loan"
-              color="white"
-            />
-          )}
-        </View>
-      </View>
-
-      {/* Save Button */}
-      <View style={styles.VButton}>
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => alert("Button pressed")}
-        >
-          <Text style={styles.buttonText}>Salva</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -249,8 +264,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FCF6FB",
-    paddingTop: "10%",
-    paddingBottom: 80,
+  },
+  scrollContent: {
+    paddingBottom: 50,
   },
   text: {
     marginLeft: 20,
@@ -349,16 +365,13 @@ const styles = StyleSheet.create({
   VButton: {
     alignItems: "center",
     marginTop: 20,
-    marginBottom: 20,
   },
-
   saveButton: {
     backgroundColor: "#F773ED",
     paddingVertical: 15,
     paddingHorizontal: 40,
     borderRadius: 100,
   },
-
   buttonText: {
     color: "black",
     fontFamily: "Switzer-Semibold",
