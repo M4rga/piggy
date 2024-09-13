@@ -8,22 +8,53 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 
+// Funzione per convertire un colore HEX in RGB
+const hexToRgb = (hex: string) => {
+  let cleanedHex = hex.replace('#', '');
+  if (cleanedHex.length === 3) {
+    cleanedHex = cleanedHex.split('').map(hexChar => hexChar + hexChar).join('');
+  }
+  const bigint = parseInt(cleanedHex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return [r, g, b];
+};
+
+// Funzione per calcolare la luminanza relativa di un colore RGB
+const getLuminance = ([r, g, b]: [number, number, number]): number => {
+  const [RsRGB, GsRGB, BsRGB] = [r / 255, g / 255, b / 255];
+  const [R, G, B] = [RsRGB, GsRGB, BsRGB].map(v =>
+    v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
+  );
+  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+};
+
+
+// Funzione per determinare il colore del testo (bianco o nero) in base alla luminanza
+const getTextColor = (bgColor: string) => {
+  const rgb = hexToRgb(bgColor);
+  const luminance = getLuminance(rgb);
+  return luminance > 0.5 ? 'black' : 'white';
+};
+
 const Wallet = () => {
 
-  const renderRightActions = () => {
+  const renderRightActions = (color: string) => {
+    const textColor = getTextColor(color);
     return (
-      <View style = {{flexDirection:"row"}}>
+      <View style={{ flexDirection: "row" }}>
         <Pressable
-          onPress={() => alert("Elemento eliminato")}
-          style={styles.deleteButton}
+          onPress={() => alert("Options")}
+          style={[styles.deleteButton, { backgroundColor: color }]}
         >
-          <Text style={styles.deleteButtonText}>Options</Text>
+          <Text style={[styles.deleteButtonText, { color: textColor }]}>Options</Text>
         </Pressable>
         <Pressable
-        onPress={() => alert("Elemento eliminato")}
-        style={[styles.deleteButton,{marginRight: 10}]}
+          onPress={() => alert("Elemento eliminato")}
+          style={[styles.deleteButton, { backgroundColor: color, marginRight: 10 }]}
         >
-          <Text style={styles.deleteButtonText}>Delete</Text>
+          <Text style={[styles.deleteButtonText, { color: textColor }]}>Delete</Text>
         </Pressable>
       </View>
     );
@@ -40,7 +71,7 @@ const Wallet = () => {
           </Text>
         </View>
 
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={() => renderRightActions("#ECE9EA")}>
           <Card
             name="Conto Corrente"
             num1="€ 6.579"
@@ -51,7 +82,7 @@ const Wallet = () => {
           />
         </Swipeable>
 
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={() => renderRightActions("#2F212F")}>
           <Card
             name="Risparmi"
             num1="€ 834"
@@ -62,7 +93,7 @@ const Wallet = () => {
           />
         </Swipeable>
 
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={() => renderRightActions("#5272F2")}>
           <Card
             name="Pay Pal"
             num1="€ 62"
@@ -73,7 +104,7 @@ const Wallet = () => {
           />
         </Swipeable>
 
-        <Swipeable renderRightActions={renderRightActions}>
+        <Swipeable renderRightActions={() => renderRightActions("#F773ED")}>
           <Card
             name="Fondo di risparmio"
             num1="€ 12.800"
@@ -122,7 +153,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   deleteButton: {
-    backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
     width: 80,
@@ -131,7 +161,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   deleteButtonText: {
-    color: "white",
     fontWeight: "bold",
   },
 });
