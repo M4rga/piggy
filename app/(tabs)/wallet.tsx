@@ -7,6 +7,7 @@ import {
   Swipeable,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
 // Funzione per convertire un colore HEX in RGB
 const hexToRgb = (hex: string) => {
@@ -50,7 +51,7 @@ const Wallet = () => {
     return (
       <View style={{ flexDirection: "row" }}>
         <Pressable
-          onPress={() => alert("Options")}
+          onPress={() => router.push("otherPages/modifyCard")}
           style={[styles.deleteButton, { backgroundColor: color }]}
         >
           <Text style={[styles.deleteButtonText, { color: textColor }]}>Options</Text>

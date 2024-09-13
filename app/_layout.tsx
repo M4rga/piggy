@@ -276,7 +276,24 @@ const Layout = () => {
             ),
           }}
         />
+      
+      <Stack.Screen
+          name="otherPages/modifyCard"
+          options={{
+            title: "Modifica",
+            // href: null,
+            headerLeft: () => (
+              <IconFeather
+                name={"chevron-left"}
+                size={26}
+                style={{ marginHorizontal: 15 }}
+                onPress={() => router.push("/")}
+              />
+            ),
+          }}
+        />
       </Stack>
+
     </MenuProvider>
   );
 };
