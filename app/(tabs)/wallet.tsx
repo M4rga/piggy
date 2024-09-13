@@ -22,13 +22,18 @@ const hexToRgb = (hex: string) => {
 };
 
 // Funzione per calcolare la luminanza relativa di un colore RGB
-const getLuminance = ([r, g, b]: [number, number, number]): number => {
+const getLuminance = (rgb: number[]): number => {
+  if (rgb.length !== 3) {
+    throw new Error("L'array RGB deve contenere esattamente 3 elementi.");
+  }
+  const [r, g, b] = rgb as [number, number, number];
   const [RsRGB, GsRGB, BsRGB] = [r / 255, g / 255, b / 255];
   const [R, G, B] = [RsRGB, GsRGB, BsRGB].map(v =>
     v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
   );
   return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 };
+
 
 
 // Funzione per determinare il colore del testo (bianco o nero) in base alla luminanza
