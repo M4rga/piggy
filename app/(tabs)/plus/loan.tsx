@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import IconFeather from "react-native-vector-icons/Feather";
 import DropdownButton from "../../../components/dropdown";
+import TextInputDate from "../../../components/textInputDate";
 
 const Loan = () => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -80,51 +81,14 @@ const Loan = () => {
         </View>
       </View>
 
-      <View style={styles.sessions}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather name="user" style={{ marginTop: 11.5 }} size={30} />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>Who</Text>
-            <TextInput
-              style={{ marginTop: 6 }}
-              placeholder="Inserisci la tua nota qua"
-              keyboardType="default"
-            />
-          </View>
-        </View>
-      </View>
+      {/* "who" section */}
+      <TextInputDate type="note" icon="user" title="Who" />
 
-      <View style={styles.sessions}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather name="calendar" style={{ marginTop: 11.5 }} size={30} />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>By when</Text>
-            <TextInput
-              style={{ marginTop: 6 }}
-              placeholder="Inserisci la tua nota qua"
-              keyboardType="default"
-            />
-          </View>
-        </View>
-      </View>
+      {/* "By when" section */}
+      <TextInputDate type="note" icon="calendar" title="By when" />
 
-      <View style={styles.sessions}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather
-            name="message-square"
-            style={{ marginTop: 11.5 }}
-            size={30}
-          />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
-            <TextInput
-              style={{ marginTop: 6 }}
-              placeholder="Inserisci la tua nota qua"
-              keyboardType="default"
-            />
-          </View>
-        </View>
-      </View>
+      {/* Note section */}
+      <TextInputDate type="note" icon="message-square" />
 
       <View>
         <View style={styles.switchContainer}>

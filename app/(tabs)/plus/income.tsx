@@ -8,20 +8,15 @@ import {
   Switch,
   KeyboardAvoidingView,
 } from "react-native";
-import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import DropdownButton from "../../../components/dropdown";
+import TextInputDate from "../../../components/textInputDate";
 
 type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
 const Income = () => {
   const [selectedCategory, setSelectedCategory] = useState("Conto Corrente");
-  const [date, setDate] = useState<Date>(new Date());
-  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const [selectedTransactionType, setSelectedTransactionType] =
     useState<string>("uscite");
@@ -31,16 +26,6 @@ const Income = () => {
   };
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
-  const onChange = (
-    event: DateTimePickerEvent,
-    selectedDate?: Date | undefined
-  ) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
-    setShowDatePicker(false);
-  };
 
   const categories: Category[] = [
     "Conto Corrente",
@@ -116,69 +101,11 @@ const Income = () => {
           </ScrollView>
         </View>
 
-        {/* Date Picker section */}
-        <View style={styles.sessions}>
-          <View style={{ flexDirection: "row", height: 80 }}>
-            <IconFeather
-              name="calendar"
-              style={{ marginTop: 11.5 }}
-              size={30}
-            />
-            <View style={{ marginLeft: 20 }}>
-              <Text style={{ color: "#A0A0A0", margin: 0 }}>Data</Text>
-
-              {/* Initial date */}
-              {Platform.OS === "android" ? (
-                <Pressable
-                  style={styles.datePickerContainer}
-                  onPress={() => setShowDatePicker(true)}
-                >
-                  <Text style={styles.dateText}>{date.toDateString()}</Text>
-                </Pressable>
-              ) : (
-                <View style={styles.datePickerContainer}>
-                  <DateTimePicker
-                    value={date}
-                    mode="date"
-                    is24Hour={true}
-                    display="default"
-                    onChange={onChange}
-                  />
-                </View>
-              )}
-
-              {/* Date picker modal for Android */}
-              {showDatePicker && Platform.OS === "android" && (
-                <DateTimePicker
-                  value={date}
-                  mode="date"
-                  is24Hour={true}
-                  display="default"
-                  onChange={onChange}
-                />
-              )}
-            </View>
-          </View>
-        </View>
-
         {/* Note section */}
-        <View style={styles.sessions}>
-          <View style={{ flexDirection: "row", height: 80 }}>
-            <IconFeather
-              name="message-square"
-              style={{ marginTop: 11.5 }}
-              size={30}
-            />
-            <View style={{ marginLeft: 20 }}>
-              <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
-              <TextInput
-                style={{ marginTop: 6 }}
-                placeholder="Inserisci la tua nota qua"
-                keyboardType="default"
-              />
-            </View>
-          </View>
-        </View>
+        <TextInputDate type="note" icon="message-square" />
+
+        {/* Date section */}
+        <TextInputDate type="date" icon="calendar" />
 
         {/* Switch and dropdown */}
         <View style={styles.footerContainer}>
