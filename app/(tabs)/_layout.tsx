@@ -74,7 +74,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           headerRight: () => (
@@ -186,7 +186,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           headerRight: () => (
@@ -194,7 +194,7 @@ const TabLayout = () => {
               name={"check"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
         }}
@@ -210,7 +210,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           headerRight: () => (
@@ -218,7 +218,7 @@ const TabLayout = () => {
               name={"check"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
         }}
@@ -234,7 +234,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           // headerRight: () => (
@@ -258,7 +258,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           // headerRight: () => (
@@ -284,7 +284,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           headerRight: () => (
@@ -310,7 +310,7 @@ const TabLayout = () => {
               name={"chevron-left"}
               size={26}
               style={{ marginHorizontal: 15 }}
-              onPress={() => router.push("/")}
+              onPress={() => router.back()}
             />
           ),
           // headerRight: () => (

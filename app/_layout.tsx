@@ -54,8 +54,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -78,8 +77,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/wallet")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -102,8 +100,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/stats")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -126,8 +123,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/private")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -150,16 +146,14 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/otherPages/userProfile")}
+                onPress={() => router.back()}
               />
             ),
             headerRight: () => (
               <IconFeather
                 name={"check"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("otherPages/userProfile")}
+                onPress={() => router.back()}
               />
             ),
           }}
@@ -174,8 +168,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/private")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -198,8 +191,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/private")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -222,8 +214,7 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/wallet")}
+                onPress={() => router.back()}
               />
             ),
             // headerRight: () => (
@@ -246,16 +237,14 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("plus/receipt")}
+                onPress={() => router.back()}
               />
             ),
             headerRight: () => (
               <IconFeather
                 name={"check"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("plus/receipt")}
+                onPress={() => router.back()}
               />
             ),
           }}
@@ -270,14 +259,13 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/")}
+                onPress={() => router.back()}
               />
             ),
           }}
         />
-      
-      <Stack.Screen
+
+        <Stack.Screen
           name="otherPages/modifyCard"
           options={{
             title: "Modifica",
@@ -286,14 +274,12 @@ const Layout = () => {
               <IconFeather
                 name={"chevron-left"}
                 size={26}
-                style={{ marginHorizontal: 15 }}
-                onPress={() => router.push("/")}
+                onPress={() => router.back()}
               />
             ),
           }}
         />
       </Stack>
-
     </MenuProvider>
   );
 };
