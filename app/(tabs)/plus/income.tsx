@@ -20,12 +20,17 @@ const Income = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [selectedTransactionType, setSelectedTransactionType] =
     useState<string>("uscite");
+  const [inputValue, setInputValue] = useState("");
 
   const handleDropdownSelection = (value: string) => {
     setSelectedTransactionType(value);
   };
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
+  const handleTextChange = (text: string) => {
+    setInputValue(text);
+  };
 
   const categories: Category[] = [
     "Conto Corrente",
@@ -53,12 +58,16 @@ const Income = () => {
         {/* Import section */}
         <Text style={styles.text}>Importo</Text>
         <View style={styles.importView}>
+          {/* <View style={{ flex: 1, margin: 0 }}></View> */}
           <Text style={styles.currencyText}>+ €</Text>
           <TextInput
             style={styles.textInput}
-            placeholder="10,00"
+            placeholder="0"
             keyboardType="numeric"
+            value={inputValue}
+            onChangeText={handleTextChange}
           />
+          {/* <View style={{ flex: 1, margin: 0 }}></View> */}
         </View>
 
         {/* Wallet selection section */}
@@ -199,7 +208,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textInput: {
-    flexGrow: 1,
+    flexShrink: 1,
     textAlign: "center",
     padding: 10,
     color: "#FF69B4",
