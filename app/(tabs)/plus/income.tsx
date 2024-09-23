@@ -62,7 +62,7 @@ const Income = () => {
         </View>
 
         {/* Wallet selection section */}
-        <Text style={styles.text}>Portafogli</Text>
+        <Text style={styles.selectionText}>Portafogli</Text>
         <View style={styles.selectionContainer}>
           <ScrollView
             horizontal
@@ -101,11 +101,11 @@ const Income = () => {
           </ScrollView>
         </View>
 
-        {/* Note section */}
-        <TextInputDate type="note" icon="message-square" />
-
         {/* Date section */}
         <TextInputDate type="date" icon="calendar" />
+
+        {/* Note section */}
+        <TextInputDate type="note" icon="message-square" />
 
         {/* Switch and dropdown */}
         <View style={styles.footerContainer}>
@@ -152,10 +152,17 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 30,
+    marginTop: 30,
   },
   text: {
     marginLeft: 20,
     fontSize: 15,
+    fontFamily: "Switzer-Semibold",
+  },
+  selectionText: {
+    marginLeft: 20,
+    fontSize: 15,
+    color: "gray",
   },
   sessions: {
     backgroundColor: "white",
@@ -178,6 +185,13 @@ const styles = StyleSheet.create({
     width: "60%",
     padding: 10,
     alignSelf: "center",
+    // Shadows (iOS)
+    shadowColor: "#000",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    // Shadows (Android)
+    elevation: 5,
   },
   currencyText: {
     fontSize: 24,
@@ -196,6 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     padding: 10,
+    paddingLeft: 20,
   },
   button: {
     borderColor: "#A0A0A0",
@@ -269,9 +284,9 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   switchText: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: "#000",
+    marginLeft: 15,
+    fontSize: 14,
+    color: "gray",
   },
   pickerContainer: {
     marginRight: 10,

@@ -85,7 +85,7 @@ const Loan = () => {
       <TextInputDate type="note" icon="user" title="Who" />
 
       {/* "By when" section */}
-      <TextInputDate type="note" icon="calendar" title="By when" />
+      <TextInputDate type="date" icon="calendar" title="By when" />
 
       {/* Note section */}
       <TextInputDate type="note" icon="message-square" />
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   text: {
     margin: 20,
     fontSize: 15,
+    fontFamily: "Switzer-Semibold",
   },
 
   quantity: {
@@ -232,15 +233,15 @@ const styles = StyleSheet.create({
   },
 
   switchText: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: "#000",
+    marginLeft: 15,
+    fontSize: 14,
+    color: "gray",
   },
 
   pickerContainer: {
     position: "absolute",
     top: 15,
-    left: 200,
+    left: 250,
     width: 128,
     height: 100,
     zIndex: 10,

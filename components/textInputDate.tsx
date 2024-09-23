@@ -1,14 +1,12 @@
-import { View, StyleSheet, Platform, Pressable } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Platform, Pressable, Modal } from "react-native";
 import { Text, TextInput } from "../components/textFont";
 import IconFeather from "react-native-vector-icons/Feather";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 interface TextInputDateProps {
   type: string;
-  icon?: string; // "?" Make it optional
+  icon?: string;
   title?: string;
 }
 
@@ -16,23 +14,22 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
   const [date, setDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
 
-  const onChange = (
-    event: DateTimePickerEvent,
-    selectedDate?: Date | undefined
-  ) => {
+  const onChange = (event: any, selectedDate?: Date | undefined) => {
     if (selectedDate) {
       setDate(selectedDate);
     }
     setShowDatePicker(false);
   };
 
-  // Default icons for note and date if icon prop is not provided
-  const defaultIcon = type === "note" ? "message-square" : "calendar";
-  const selectedIcon = icon || defaultIcon; // Use user-provided icon or default
+  const showPicker = () => {
+    setShowDatePicker(true);
+  };
 
-  // Default titles for note and date if title prop is not provided
+  // Default icons and titles
+  const defaultIcon = type === "note" ? "message-square" : "calendar";
+  const selectedIcon = icon || defaultIcon;
   const defaultTitle = type === "note" ? "Note" : "Data";
-  const selectedTitle = title || defaultTitle; // Use user-provided title or default
+  const selectedTitle = title || defaultTitle;
 
   return (
     <View>
@@ -41,7 +38,7 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
         <View style={styles.sessions}>
           <View style={{ flexDirection: "row", height: 80 }}>
             <IconFeather
-              name={selectedIcon} // Use the selected icon
+              name={selectedIcon}
               style={{ marginTop: 11.5 }}
               size={30}
             />
@@ -62,7 +59,7 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
         <View style={styles.sessions}>
           <View style={{ flexDirection: "row", height: 80 }}>
             <IconFeather
-              name={selectedIcon} // Use the selected icon
+              name={selectedIcon}
               style={{ marginTop: 11.5 }}
               size={30}
             />
@@ -70,34 +67,40 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
               <Text style={{ color: "#A0A0A0", margin: 0 }}>
                 {selectedTitle}
               </Text>
-              {/* Initial date */}
-              {Platform.OS === "android" ? (
-                <Pressable
-                  style={styles.datePickerContainer}
-                  onPress={() => setShowDatePicker(true)}
+
+              {/* Pressable to show the DatePicker */}
+              <Pressable
+                style={styles.datePickerContainer}
+                onPress={showPicker}
+              >
+                <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
+              </Pressable>
+
+              {/* Modal for iOS DateTimePicker */}
+              {showDatePicker && Platform.OS === "ios" && (
+                <Modal // Modal allows to display a "popup" above the page
+                  transparent={true}
+                  animationType="slide"
+                  visible={showDatePicker}
                 >
-                  <Text style={styles.dateText}>{date.toDateString()}</Text>
-                </Pressable>
-              ) : (
-                <View style={styles.datePickerContainer}>
-                  <DateTimePicker
-                    value={date}
-                    mode="date"
-                    is24Hour={true}
-                    display="default"
-                    onChange={onChange}
-                  />
-                </View>
+                  <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                      <DateTimePicker
+                        value={date}
+                        mode="date"
+                        onChange={onChange}
+                      />
+                      <Pressable onPress={() => setShowDatePicker(false)}>
+                        <Text style={styles.closeButton}>Done</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                </Modal>
               )}
-              {/* Date picker modal for Android */}
+
+              {/* Date picker for Android */}
               {showDatePicker && Platform.OS === "android" && (
-                <DateTimePicker
-                  value={date}
-                  mode="date"
-                  is24Hour={true}
-                  display="default"
-                  onChange={onChange}
-                />
+                <DateTimePicker value={date} mode="date" onChange={onChange} />
               )}
             </View>
           </View>
@@ -133,11 +136,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 5,
-    marginLeft: -10,
   },
   dateText: {
     fontSize: 16,
     color: "#555",
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  closeButton: {
+    marginTop: 10,
+    fontSize: 18,
+    color: "#007AFF",
   },
 });
 
