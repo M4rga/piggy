@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Platform, Pressable, Modal } from "react-native";
-import { Text, TextInput } from "../components/textFont";
+import { Text, TextInput } from "./customComponents";
 import IconFeather from "react-native-vector-icons/Feather";
 import DateTimePicker from "@react-native-community/datetimepicker";
 

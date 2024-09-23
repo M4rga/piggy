@@ -1,4 +1,4 @@
-import { Text } from "../../components/textFont"; // Importing custom text components
+import { Text } from "../../components/customComponents"; // Importing custom text components
 import { View, StyleSheet, ScrollView, Pressable } from "react-native"; // Importing React Native components
 import IconFeather from "react-native-vector-icons/Feather";
 import React, { useState } from "react";

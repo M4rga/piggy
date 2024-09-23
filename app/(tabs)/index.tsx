@@ -1,4 +1,4 @@
-import { Text } from "../../components/textFont"; // Importing custom text components
+import { Text, Button } from "../../components/customComponents"; // Importing custom text components
 import { FlatList } from "react-native";
 import { View, StyleSheet, Image, ScrollView, Pressable } from "react-native"; // Importing React Native components
 import HomeCards from "../../components/homeCards"; // Importing a custom HomeCards component
@@ -99,6 +99,7 @@ const Home = () => {
               <Text style={styles.totalBalanceDecimal}>.{cents}</Text>
             </Text>
             <HomeCards />
+            <Button title="Ciao" />
           </View>
 
           <Text style={styles.titleThisMonth}>Questo mese</Text>

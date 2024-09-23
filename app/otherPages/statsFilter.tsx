@@ -14,7 +14,7 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import data from "../../data/data.json";
-import { Text } from "../../components/textFont";
+import { Text } from "../../components/customComponents";
 
 // Definire un tipo per le categorie
 interface Category {

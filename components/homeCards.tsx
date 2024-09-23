@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "./textFont";
+import { Text } from "./customComponents";
 import { View, StyleSheet, ScrollView } from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";

@@ -1,4 +1,4 @@
-import { Text } from "../../../components/textFont";
+import { Text } from "../../../components/customComponents";
 import { View, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";

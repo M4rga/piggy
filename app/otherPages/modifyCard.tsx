@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../components/textFont";
+import { Text, TextInput } from "../../components/customComponents";
 import { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { StyleSheet, ScrollView } from "react-native";
@@ -8,7 +8,6 @@ import SelectIcon from "../../components/selectIcon";
 import ColorPoint from "../../components/colorPoint";
 
 const modifyCard = () => {
-
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
@@ -50,7 +49,7 @@ const modifyCard = () => {
       <Text style={styles.iconW}>Icon</Text>
       <View style={styles.iconV}>
         <View style={styles.OuterView}>
-        <SelectIcon
+          <SelectIcon
             icon="credit-card"
             isSelected={selectedIcon === "credit-card"}
             onSelect={() => setSelectedIcon("credit-card")}
@@ -84,7 +83,7 @@ const modifyCard = () => {
       <View style={styles.colorV}>
         <Text style={{ color: "#A0A0A0" }}>Colore</Text>
         <View style={styles.pointV}>
-          <ColorPoint 
+          <ColorPoint
             backgroundColor="#A0A0A0"
             isSelected={selectedColor === "#A0A0A0"}
             onSelect={() => setSelectedColor("#A0A0A0")}

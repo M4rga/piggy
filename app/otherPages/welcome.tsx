@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   StyleSheet,
@@ -7,10 +7,10 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import {slides} from "../../data/slides"; // Import the slides data
-import {Text} from "../../components/textFont";
+import { slides } from "../../data/slides"; // Import the slides data
+import { Text } from "../../components/customComponents";
 
-const {width, height} = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 interface Slide {
   id: string;
@@ -25,13 +25,13 @@ interface WelcomeProps {
   };
 }
 
-const Welcome: React.FC<WelcomeProps> = ({navigation}) => {
+const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const slidesRef = useRef<FlatList<Slide>>(null);
 
   const handleNext = () => {
     if (currentIndex < slides.length - 1) {
-      slidesRef.current?.scrollToIndex({index: currentIndex + 1});
+      slidesRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
       navigation.navigate("Next");
     }
@@ -40,10 +40,10 @@ const Welcome: React.FC<WelcomeProps> = ({navigation}) => {
   const handleSkip = () => {
     const lastIndex = slides.length - 1;
     setCurrentIndex(lastIndex);
-    slidesRef.current?.scrollToIndex({index: lastIndex});
+    slidesRef.current?.scrollToIndex({ index: lastIndex });
   };
 
-  const viewableItemsChanged = useRef(({viewableItems}: any) => {
+  const viewableItemsChanged = useRef(({ viewableItems }: any) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
 
@@ -55,7 +55,7 @@ const Welcome: React.FC<WelcomeProps> = ({navigation}) => {
     <View style={styles.container}>
       <FlatList
         data={slides}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View style={styles.slide}>
             <Image
               source={item.image}

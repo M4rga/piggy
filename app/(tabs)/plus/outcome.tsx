@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
-import { Text, TextInput } from "../../../components/textFont";
+import { Text, TextInput } from "../../../components/customComponents";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import DropdownButton from "../../../components/dropdown";
 import TextInputDate from "../../../components/textInputDate";

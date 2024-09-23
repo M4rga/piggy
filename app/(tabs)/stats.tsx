@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 import StatsCategory from "../../components/categoryLastMovements";
 import DropdownButton from "../../components/dropdown";
-import { Text } from "../../components/textFont";
+import { Text } from "../../components/customComponents";
 import data from "../../data/data.json";
 
 const data1 = [{ value: 20 }, { value: 50 }, { value: 65 }, { value: 90 }];

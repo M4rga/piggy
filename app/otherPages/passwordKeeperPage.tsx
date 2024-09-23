@@ -1,4 +1,4 @@
-import { Text } from "../../components/textFont";
+import { Text } from "../../components/customComponents";
 import { View, ScrollView, Image, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import StatsCategory from "../../components/categoryLastMovements";

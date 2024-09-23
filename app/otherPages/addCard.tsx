@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../components/textFont";
+import { Text, TextInput } from "../../components/customComponents";
 import { useState } from "react";
 import { View, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import { StyleSheet, ScrollView, Platform } from "react-native";

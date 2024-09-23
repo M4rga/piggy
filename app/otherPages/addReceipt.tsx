@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../components/textFont";
+import { Text, TextInput } from "../../components/customComponents";
 import {
   View,
   StyleSheet,

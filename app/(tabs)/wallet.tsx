@@ -1,4 +1,4 @@
-import { Text } from "../../components/textFont";
+import { Text } from "../../components/customComponents";
 import { View, ScrollView, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import Card from "../../components/card";
@@ -11,9 +11,12 @@ import { router } from "expo-router";
 
 // Funzione per convertire un colore HEX in RGB
 const hexToRgb = (hex: string) => {
-  let cleanedHex = hex.replace('#', '');
+  let cleanedHex = hex.replace("#", "");
   if (cleanedHex.length === 3) {
-    cleanedHex = cleanedHex.split('').map(hexChar => hexChar + hexChar).join('');
+    cleanedHex = cleanedHex
+      .split("")
+      .map((hexChar) => hexChar + hexChar)
+      .join("");
   }
   const bigint = parseInt(cleanedHex, 16);
   const r = (bigint >> 16) & 255;
@@ -29,23 +32,20 @@ const getLuminance = (rgb: number[]): number => {
   }
   const [r, g, b] = rgb as [number, number, number];
   const [RsRGB, GsRGB, BsRGB] = [r / 255, g / 255, b / 255];
-  const [R, G, B] = [RsRGB, GsRGB, BsRGB].map(v =>
+  const [R, G, B] = [RsRGB, GsRGB, BsRGB].map((v) =>
     v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
   );
   return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 };
 
-
-
 // Funzione per determinare il colore del testo (bianco o nero) in base alla luminanza
 const getTextColor = (bgColor: string) => {
   const rgb = hexToRgb(bgColor);
   const luminance = getLuminance(rgb);
-  return luminance > 0.5 ? 'black' : 'white';
+  return luminance > 0.5 ? "black" : "white";
 };
 
 const Wallet = () => {
-
   const renderRightActions = (color: string) => {
     const textColor = getTextColor(color);
     return (
@@ -54,13 +54,20 @@ const Wallet = () => {
           onPress={() => router.push("otherPages/modifyCard")}
           style={[styles.deleteButton, { backgroundColor: color }]}
         >
-          <Text style={[styles.deleteButtonText, { color: textColor }]}>Options</Text>
+          <Text style={[styles.deleteButtonText, { color: textColor }]}>
+            Options
+          </Text>
         </Pressable>
         <Pressable
           onPress={() => alert("Elemento eliminato")}
-          style={[styles.deleteButton, { backgroundColor: color, marginRight: 10 }]}
+          style={[
+            styles.deleteButton,
+            { backgroundColor: color, marginRight: 10 },
+          ]}
         >
-          <Text style={[styles.deleteButtonText, { color: textColor }]}>Delete</Text>
+          <Text style={[styles.deleteButtonText, { color: textColor }]}>
+            Delete
+          </Text>
         </Pressable>
       </View>
     );

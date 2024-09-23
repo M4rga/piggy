@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { Text } from "../../components/textFont";
+import { Text } from "../../components/customComponents";
 import { View, Image, StyleSheet, Pressable } from "react-native";
 
 const images = {

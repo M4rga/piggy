@@ -8,7 +8,7 @@ import {
   renderers,
 } from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
-import { Text } from "./textFont";
+import { Text } from "./customComponents";
 
 const { Popover } = renderers;
 

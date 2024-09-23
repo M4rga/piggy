@@ -1,4 +1,4 @@
-import { Text } from "./textFont";
+import { Text } from "./customComponents";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
