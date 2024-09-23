@@ -5,7 +5,8 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  Platform,
+  Pressable,
+  Modal,
 } from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
 import DateTimePicker, {
@@ -42,6 +43,7 @@ const images = {
 
 const StatsFilter: React.FC = () => {
   const [date, setDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [showEndDatePicker, setShowEndDatePicker] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -62,7 +64,7 @@ const StatsFilter: React.FC = () => {
     selectedDate?: Date | undefined
   ) => {
     if (selectedDate) {
-      setDate(selectedDate);
+      setEndDate(selectedDate);
     }
     setShowEndDatePicker(false);
   };
@@ -154,76 +156,73 @@ const StatsFilter: React.FC = () => {
         />
       </View>
 
-      {/* Date */}
+      {/* Date Selection */}
       <View style={styles.container}>
         <Text style={styles.title}>Data</Text>
         <View style={styles.dateContainer}>
-          {/* Initial date */}
-          {Platform.OS === "android" ? (
-            <TouchableOpacity
-              style={styles.datePickerContainer}
-              onPress={() => setShowDatePicker(true)}
-            >
-              <IconFeather name={"calendar"} style={styles.datePickerIcon} />
-              <Text style={styles.dateText}>{date.toDateString()}</Text>
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.datePickerContainer}>
-              <IconFeather name={"calendar"} style={styles.datePickerIcon} />
-              <DateTimePicker
-                value={date}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                onChange={onChange}
-                style={styles.datePicker}
-              />
-            </View>
-          )}
-          {showDatePicker && Platform.OS === "android" && (
+          <TouchableOpacity
+            style={styles.datePickerContainer}
+            onPress={() => setShowDatePicker(true)}
+          >
+            <IconFeather name={"calendar"} style={styles.datePickerIcon} />
+            <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.datePickerContainer}
+            onPress={() => setShowEndDatePicker(true)}
+          >
+            <IconFeather name={"calendar"} style={styles.datePickerIcon} />
+            <Text style={styles.dateText}>{endDate.toLocaleDateString()}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Modal for Start Date */}
+      <Modal visible={showDatePicker} transparent={true} animationType="fade">
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
             <DateTimePicker
               value={date}
               mode="date"
               is24Hour={true}
               display="default"
               onChange={onChange}
-              style={styles.datePicker}
             />
-          )}
-          {/* End date */}
-          {Platform.OS === "android" ? (
-            <TouchableOpacity
-              style={styles.datePickerContainer}
-              onPress={() => setShowEndDatePicker(true)}
+            <Pressable
+              style={styles.modalButton}
+              onPress={() => setShowDatePicker(false)}
             >
-              <IconFeather name={"calendar"} style={styles.datePickerIcon} />
-              <Text style={styles.dateText}>{date.toDateString()}</Text>
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.datePickerContainer}>
-              <IconFeather name={"calendar"} style={styles.datePickerIcon} />
-              <DateTimePicker
-                value={date}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                onChange={onEndDateChange}
-                style={styles.datePicker}
-              />
-            </View>
-          )}
-          {showEndDatePicker && Platform.OS === "android" && (
+              <Text style={styles.modalButtonText}>Chiudi</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal for End Date */}
+      <Modal
+        visible={showEndDatePicker}
+        transparent={true}
+        animationType="fade"
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
             <DateTimePicker
-              value={date}
+              value={endDate}
               mode="date"
               is24Hour={true}
               display="default"
               onChange={onEndDateChange}
-              style={styles.datePicker}
             />
-          )}
+            <Pressable
+              style={styles.modalButton}
+              onPress={() => setShowEndDatePicker(false)}
+            >
+              <Text style={styles.modalButtonText}>Chiudi</Text>
+            </Pressable>
+          </View>
         </View>
-      </View>
+      </Modal>
     </View>
   );
 };
@@ -237,7 +236,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    fontFamily: "Switzer-Semibold",
+    color: "gray",
     marginBottom: 20,
   },
   flatListContainer: {
@@ -293,7 +292,7 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   datePickerContainer: {
     flexDirection: "row",
@@ -320,6 +319,30 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     marginTop: 4,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    width: 300,
+    alignItems: "center",
+  },
+  modalButton: {
+    marginTop: 20,
+    backgroundColor: "#F773ED",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  modalButtonText: {
+    color: "white",
+    fontSize: 16,
   },
 });
 

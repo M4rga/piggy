@@ -44,7 +44,7 @@ const Stats = () => {
                 selectedValue === "settimana" ? styles.selectedOptionText : {},
               ]}
             >
-              Settimana
+              SETTIMANA
             </Text>
           </TouchableOpacity>
 
@@ -61,7 +61,7 @@ const Stats = () => {
                 selectedValue === "mese" ? styles.selectedOptionText : {},
               ]}
             >
-              Mese
+              MESE
             </Text>
           </TouchableOpacity>
 
@@ -78,7 +78,7 @@ const Stats = () => {
                 selectedValue === "anno" ? styles.selectedOptionText : {},
               ]}
             >
-              Anno
+              ANNO
             </Text>
           </TouchableOpacity>
         </View>
@@ -106,7 +106,7 @@ const Stats = () => {
             strokeColor="white"
             innerRadius={105}
             centerLabelComponent={() => (
-              <Text style={{ fontSize: 20 }}>
+              <Text style={{ fontSize: 20, color: "gray" }}>
                 € <Text style={styles.valueText}>{value}</Text>
               </Text>
             )}
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
   },
   optionText: {
-    fontSize: 18,
+    fontSize: 13,
     color: "#333",
   },
   selectedOptionText: {
@@ -192,13 +192,16 @@ const styles = StyleSheet.create({
   },
   valueText: {
     fontSize: 30,
+    color: "black",
   },
   dateContainer: {
     margin: 20,
     marginBottom: 0,
   },
   dateText: {
-    color: "grey",
+    color: "black",
+    fontFamily: "Switzer-Semibold",
+    fontSize: 15,
   },
 });
 

@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "3%",
     fontFamily: "Switzer-Semibold",
     fontSize: 27,
+    textAlign: "center",
   },
   imageViewStyle: {
     alignItems: "center",
