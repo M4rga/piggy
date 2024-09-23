@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
-import { Text, TextInput } from "../../../components/customComponents";
+import { Text, TextInput, Button } from "../../../components/customComponents";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import DropdownButton from "../../../components/dropdown";
 import TextInputDate from "../../../components/textInputDate";
@@ -174,12 +174,7 @@ const Outcome = () => {
 
         {/* Save Button */}
         <View style={styles.VButton}>
-          <TouchableOpacity
-            style={styles.saveButton}
-            onPress={() => alert("Button pressed")}
-          >
-            <Text style={styles.buttonText}>Salva</Text>
-          </TouchableOpacity>
+          <Button title="Salva" />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -306,17 +301,6 @@ const styles = StyleSheet.create({
   VButton: {
     alignItems: "center",
     marginTop: 20,
-  },
-  saveButton: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-  },
-  buttonText: {
-    color: "black",
-    fontFamily: "Switzer-Semibold",
-    fontSize: 16,
   },
   switchContainer: {
     flexDirection: "row",

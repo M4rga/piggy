@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../../components/customComponents";
+import { Text, TextInput, Button } from "../../../components/customComponents";
 import {
   View,
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   Switch,
 } from "react-native";
 import React, { useState } from "react";
-import IconFeather from "react-native-vector-icons/Feather";
 import DropdownButton from "../../../components/dropdown";
 import TextInputDate from "../../../components/textInputDate";
 
@@ -114,12 +113,7 @@ const Loan = () => {
       </View>
 
       <View style={styles.VButton}>
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => alert("Button pressed")}
-        >
-          <Text style={styles.buttonText}>Salva</Text>
-        </TouchableOpacity>
+        <Button title="Salva" />
       </View>
     </ScrollView>
   );
@@ -193,13 +187,6 @@ const styles = StyleSheet.create({
 
   selectedButtonText: {
     color: "#FF69B4",
-  },
-
-  saveButton: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 100,
   },
 
   TopButtonsStyle: {

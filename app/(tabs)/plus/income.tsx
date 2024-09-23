@@ -1,4 +1,4 @@
-import { Text, TextInput } from "../../../components/customComponents";
+import { Text, TextInput, Button } from "../../../components/customComponents";
 import {
   View,
   StyleSheet,
@@ -142,12 +142,7 @@ const Income = () => {
 
         {/* Save Button */}
         <View style={styles.VButton}>
-          <Pressable
-            style={styles.saveButton}
-            onPress={() => alert("Button pressed")}
-          >
-            <Text style={styles.buttonText}>Salva</Text>
-          </Pressable>
+          <Button title="Salva" />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -275,17 +270,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     marginBottom: 20,
-  },
-  saveButton: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-  },
-  buttonText: {
-    color: "black",
-    fontFamily: "Switzer-Semibold",
-    fontSize: 16,
   },
   switchContainer: {
     flexDirection: "row",
