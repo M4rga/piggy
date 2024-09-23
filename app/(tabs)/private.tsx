@@ -24,7 +24,10 @@ const Private = () => {
         style={styles.container}
         onPress={() => router.push("otherPages/passwordKeeperPage")}
       >
-        <Image source={images.passwords} style={styles.image} />
+        <Image
+          source={images.passwords}
+          style={[styles.image, { marginTop: 40 }]}
+        />
         <Text style={styles.text}>Password keeper</Text>
       </Pressable>
       <Pressable
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
     height: 150,
     marginRight: 10,
     marginBottom: -50,
+    zIndex: 0,
   },
   text: {
     fontSize: 18,
