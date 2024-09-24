@@ -1,4 +1,4 @@
-import { Text } from "../../components/customComponents";
+import { Text } from "./customComponents";
 import React from "react";
 
 interface BalanceProps {

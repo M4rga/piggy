@@ -5,7 +5,7 @@ import HomeCards from "../../components/homeCards"; // Importing a custom HomeCa
 import StatsCategory from "../../components/categoryLastMovements";
 import IconFeather from "react-native-vector-icons/Feather";
 import { useRouter } from "expo-router";
-import Balance from "../otherPages/balanceNumber";
+import Balance from "../../components/balanceNumber";
 
 import data from "../../data/data.json";
 
