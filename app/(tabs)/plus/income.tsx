@@ -50,6 +50,7 @@ const Income = () => {
     <ScrollView
       contentContainerStyle={styles.scrollContent}
       keyboardShouldPersistTaps="handled"
+      style={styles.container}
     >
       {/* Import section */}
       <Text style={styles.text}>Importo</Text>
