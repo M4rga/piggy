@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { slides } from "../../data/slides"; // Import the slides data
-import { Text } from "../../components/customComponents";
+import { Text, Button } from "../../components/customComponents";
 
 const { width, height } = Dimensions.get("window");
 
@@ -81,6 +81,8 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
               style={[
                 styles.dot,
                 {
+                  width: currentIndex === index ? 30 : 12,
+                  height: currentIndex === index ? 8 : 5,
                   backgroundColor: currentIndex === index ? "#000" : "#e0e0e0",
                 },
               ]}
@@ -93,20 +95,22 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
         </Text>
         <View style={styles.allButtons}>
           {currentIndex === slides.length - 1 ? (
-            <TouchableOpacity
-              style={styles.button}
+            <Button
+              title="Iniziamo"
               onPress={() => navigation.navigate("Next")}
-            >
-              <Text style={styles.buttonText}>Iniziamo</Text>
-            </TouchableOpacity>
+            />
           ) : (
             <>
-              <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Avanti</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-                <Text style={styles.skipText}>Salta</Text>
-              </TouchableOpacity>
+              <Button title="Avanti" onPress={handleNext} />
+              <Button
+                title="Salta"
+                textStyle={styles.skipText}
+                ombra={false}
+                style={{
+                  backgroundColor: "transparent",
+                }}
+                onPress={handleSkip}
+              />
             </>
           )}
         </View>
@@ -130,10 +134,12 @@ const styles = StyleSheet.create({
   image: {
     width: "80%",
     height: "80%",
+    marginTop: 50,
   },
   indicators: {
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
     marginTop: 15,
     marginBottom: 20,
     position: "absolute",
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     height: 8,
-    width: 8,
+    width: 30,
     borderRadius: 4,
     marginHorizontal: 2,
     backgroundColor: "#e0e0e0",
@@ -156,7 +162,7 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 20,
-    height: 270,
+    height: 320,
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
     // justifyContent: "center",
@@ -175,30 +181,13 @@ const styles = StyleSheet.create({
     color: "#555",
     marginTop: 15,
   },
-  button: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    marginBottom: 10,
-    alignItems: "center",
-    width: 140,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontFamily: "Switzer-Semibold",
-  },
-  skipButton: {
-    marginTop: 10,
-  },
   skipText: {
     color: "#A0A0A0",
     textDecorationLine: "underline",
   },
   allButtons: {
     position: "absolute",
-    bottom: 10,
+    bottom: 20,
     left: 0,
     right: 0,
     alignItems: "center",
