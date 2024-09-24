@@ -63,7 +63,7 @@ const Home = () => {
           <View style={styles.balanceContainer}>
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
             <View style={{ marginBottom: 10 }}>
-              <Balance number={20275.78} size={20} />
+              <Balance number={20275.78} size={25} />
             </View>
             <HomeCards />
           </View>
