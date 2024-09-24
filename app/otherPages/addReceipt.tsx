@@ -1,18 +1,14 @@
-import { Text, TextInput } from "../../components/customComponents";
+import { Text, Button } from "../../components/customComponents";
 import {
   View,
   StyleSheet,
   Image,
   ScrollView,
   Pressable,
-  Platform,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
-import IconFeather from "react-native-vector-icons/Feather";
+import TextInputDate from "../../components/textInputDate";
 
 const images = {
   one: require("../../assets/private/receipt-guy.png"),
@@ -20,19 +16,6 @@ const images = {
 
 const AddReceipt = () => {
   const [selectedCategory, setSelectedCategory] = useState("Conto Corrente");
-  const [date, setDate] = useState<Date>(new Date());
-  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
-
-  // Function used for the date picker
-  const onChange = (
-    event: DateTimePickerEvent,
-    selectedDate?: Date | undefined
-  ) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
-    setShowDatePicker(false);
-  };
 
   type Category = any;
   const categories: Category[] = [
@@ -76,71 +59,16 @@ const AddReceipt = () => {
             ))}
           </ScrollView>
         </View>
-        <View style={styles.sessions}>
-          <View style={{ flexDirection: "row", height: 80 }}>
-            <IconFeather name="calendar" style={{ marginTop: 9.5 }} size={30} />
-            <View style={{ marginLeft: 20 }}>
-              <Text style={{ color: "#A0A0A0", margin: 0 }}>Data</Text>
 
-              {/* Initial date */}
-              {Platform.OS === "android" ? (
-                <Pressable
-                  style={styles.datePickerContainer}
-                  onPress={() => setShowDatePicker(true)}
-                >
-                  <Text style={styles.dateText}>
-                    {date.toLocaleDateString("it-IT")}
-                  </Text>
-                </Pressable>
-              ) : (
-                <View style={styles.datePickerContainer}>
-                  <DateTimePicker
-                    value={date}
-                    mode="date"
-                    is24Hour={true}
-                    display="default"
-                    onChange={onChange}
-                  />
-                </View>
-              )}
+        {/* Date section */}
+        <TextInputDate type="date" icon="calendar" />
 
-              {/* Date picker modal for Android */}
-              {showDatePicker && Platform.OS === "android" && (
-                <DateTimePicker
-                  value={date}
-                  mode="date"
-                  is24Hour={true}
-                  display="default"
-                  onChange={onChange}
-                />
-              )}
-            </View>
-          </View>
-        </View>
-        <View style={styles.sessions}>
-          <View style={{ flexDirection: "row", height: 80 }}>
-            <IconFeather
-              name="message-square"
-              style={{ marginTop: 11.5 }}
-              size={30}
-            />
-            <View style={{ marginLeft: 20 }}>
-              <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
-              <TextInput
-                style={{ marginTop: 6 }}
-                placeholder="Inserisci la tua nota qua"
-                keyboardType="default"
-              />
-            </View>
-          </View>
-        </View>
+        {/* Note section */}
+        <TextInputDate type="note" icon="message-square" />
+
+        {/* Save button */}
         <View style={styles.saveView}>
-          <TouchableOpacity
-            style={styles.saveButton}
-            onPress={() => alert("Button pressed")}
-          >
-            <Text style={styles.saveButtonText}>Salva</Text>
-          </TouchableOpacity>
+          <Button title="Salva" />
         </View>
       </View>
     </View>
@@ -203,36 +131,6 @@ const styles = StyleSheet.create({
   selectedButtonText: {
     color: "#F773ED",
     fontSize: 11,
-  },
-  sessions: {
-    backgroundColor: "#FCF6FB",
-    width: "auto",
-    height: 80,
-    marginTop: 20,
-    padding: 15,
-    borderRadius: 20,
-  },
-  datePickerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 5,
-    marginLeft: -10,
-  },
-  dateText: {
-    fontSize: 16,
-    color: "#555",
-    marginLeft: 8,
-  },
-  saveButton: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-  },
-  saveButtonText: {
-    color: "black",
-    fontFamily: "Switzer-Semibold",
-    fontSize: 16,
   },
   saveView: {
     alignItems: "center",

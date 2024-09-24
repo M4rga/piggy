@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    flexGrow: 1,
+    flexShrink: 1,
     textAlign: "center",
     padding: 10,
     color: "#FF69B4",

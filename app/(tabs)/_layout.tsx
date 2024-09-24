@@ -179,7 +179,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="plus/income"
         options={{
-          title: "Income",
+          title: "Entrata",
           href: null,
           headerLeft: () => (
             <IconFeather
@@ -203,7 +203,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="plus/outcome"
         options={{
-          title: "Outcome",
+          title: "Uscita",
           href: null,
           headerLeft: () => (
             <IconFeather
@@ -227,7 +227,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="plus/loan"
         options={{
-          title: "Loan",
+          title: "Prestito",
           href: null,
           headerLeft: () => (
             <IconFeather
