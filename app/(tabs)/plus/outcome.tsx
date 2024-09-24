@@ -61,123 +61,117 @@ const Outcome = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.scrollContent}
     >
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {/* Import section */}
-        <Text style={styles.text}>Importo</Text>
-        <View style={styles.importView}>
-          <Text style={styles.currencyText}>- €</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="10,00"
-            keyboardType="numeric"
+      {/* Import section */}
+      <Text style={styles.text}>Importo</Text>
+      <View style={styles.importView}>
+        <Text style={styles.currencyText}>- €</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="10,00"
+          keyboardType="numeric"
+        />
+      </View>
+
+      {/* Circle ScrollView */}
+      <View style={styles.categorySelectionContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollView}
+        >
+          {circleSelectionCategories.map((category, index) => (
+            <TouchableOpacity key={index} style={styles.iconContainer}>
+              <View style={styles.circle}>
+                <Image
+                  source={images[category.icon as keyof typeof images]}
+                  style={styles.categoryImage}
+                />
+              </View>
+              <Text style={styles.label}>{category.type}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Wallet selection section */}
+      <Text style={styles.selectionText}>Portafogli</Text>
+      <View style={styles.selectionContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContainer}
+        >
+          {categories.map((category, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.button,
+                selectedCategory === category && styles.selectedButton,
+              ]}
+              onPress={() => setSelectedCategory(category)}
+            >
+              <View style={styles.iconTextContainer}>
+                <IconFontAwesome
+                  name={categoryIcons[category]}
+                  size={20}
+                  style={styles.icon}
+                  color={selectedCategory === category ? "#F773ED" : "#555"}
+                />
+                <Text
+                  style={[
+                    styles.nonSelectedText,
+                    ...(selectedCategory === category
+                      ? [styles.selectedText]
+                      : []),
+                  ]}
+                >
+                  {category}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Date section */}
+      <TextInputDate type="date" icon="calendar" />
+
+      {/* Note section */}
+      <TextInputDate type="note" icon="message-square" />
+
+      {/* Switch and dropdown */}
+      <View style={styles.footerContainer}>
+        <View style={styles.switchContainer}>
+          <Switch
+            trackColor={{ false: "black", true: "blue" }}
+            thumbColor={isEnabled ? "white" : "white"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
           />
+          <Text style={styles.switchText}>Ricorrente</Text>
         </View>
-
-        {/* Circle ScrollView */}
-        <View style={styles.categorySelectionContainer}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.scrollView}
-          >
-            {circleSelectionCategories.map((category, index) => (
-              <TouchableOpacity key={index} style={styles.iconContainer}>
-                <View style={styles.circle}>
-                  <Image
-                    source={images[category.icon as keyof typeof images]}
-                    style={styles.categoryImage}
-                  />
-                </View>
-                <Text style={styles.label}>{category.type}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-
-        {/* Wallet selection section */}
-        <Text style={styles.selectionText}>Portafogli</Text>
-        <View style={styles.selectionContainer}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.scrollContainer}
-          >
-            {categories.map((category, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.button,
-                  selectedCategory === category && styles.selectedButton,
-                ]}
-                onPress={() => setSelectedCategory(category)}
-              >
-                <View style={styles.iconTextContainer}>
-                  <IconFontAwesome
-                    name={categoryIcons[category]}
-                    size={20}
-                    style={styles.icon}
-                    color={selectedCategory === category ? "#F773ED" : "#555"}
-                  />
-                  <Text
-                    style={[
-                      styles.nonSelectedText,
-                      ...(selectedCategory === category
-                        ? [styles.selectedText]
-                        : []),
-                    ]}
-                  >
-                    {category}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-
-        {/* Date section */}
-        <TextInputDate type="date" icon="calendar" />
-
-        {/* Note section */}
-        <TextInputDate type="note" icon="message-square" />
-
-        {/* Switch and dropdown */}
-        <View style={styles.footerContainer}>
-          <View style={styles.switchContainer}>
-            <Switch
-              trackColor={{ false: "black", true: "blue" }}
-              thumbColor={isEnabled ? "white" : "white"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+        <View style={styles.pickerContainer}>
+          {isEnabled && (
+            <DropdownButton
+              selectedValue={selectedTransactionType}
+              onSelect={handleDropdownSelection}
+              type="income/outcome/loan"
+              color="white"
             />
-            <Text style={styles.switchText}>Ricorrente</Text>
-          </View>
-          <View style={styles.pickerContainer}>
-            {isEnabled && (
-              <DropdownButton
-                selectedValue={selectedTransactionType}
-                onSelect={handleDropdownSelection}
-                type="income/outcome/loan"
-                color="white"
-              />
-            )}
-          </View>
+          )}
         </View>
+      </View>
 
-        {/* Save Button */}
-        <View style={styles.VButton}>
-          <Button title="Salva" />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      {/* Save Button */}
+      <View style={styles.VButton}>
+        <Button title="Salva" />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -235,7 +229,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textInput: {
-    flexGrow: 1,
+    flexShrink: 1,
     textAlign: "center",
     padding: 10,
     color: "#FF69B4",

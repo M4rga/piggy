@@ -9,6 +9,8 @@ import {
   GestureResponderEvent,
   View,
   Animated,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 
 // Definisci uno stile di base per il font
@@ -24,9 +26,14 @@ interface TextProps {
 const Text: React.FC<TextProps> = (props) => {
   const { style, children, ...rest } = props;
   return (
-    <RNText style={[defaultStyle, style]} {...rest}>
-      {children}
-    </RNText>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+    >
+      <RNText style={[defaultStyle, style]} {...rest}>
+        {children}
+      </RNText>
+    </KeyboardAvoidingView>
   );
 };
 

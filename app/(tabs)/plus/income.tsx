@@ -47,105 +47,98 @@ const Income = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    <ScrollView
+      contentContainerStyle={styles.scrollContent}
+      keyboardShouldPersistTaps="handled"
     >
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
-      >
-        {/* Import section */}
-        <Text style={styles.text}>Importo</Text>
-        <View style={styles.importView}>
-          {/* <View style={{ flex: 1, margin: 0 }}></View> */}
-          <Text style={styles.currencyText}>+ €</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="0"
-            keyboardType="numeric"
-            value={inputValue}
-            onChangeText={handleTextChange}
+      {/* Import section */}
+      <Text style={styles.text}>Importo</Text>
+      <View style={styles.importView}>
+        <Text style={styles.currencyText}>+ €</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="0"
+          keyboardType="numeric"
+          value={inputValue}
+          onChangeText={handleTextChange}
+        />
+      </View>
+
+      {/* Wallet selection section */}
+      <Text style={styles.selectionText}>Portafogli</Text>
+      <View style={styles.selectionContainer}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContainer}
+        >
+          {categories.map((category, index) => (
+            <Pressable
+              key={index}
+              style={[
+                styles.button,
+                selectedCategory === category && styles.selectedButton,
+              ]}
+              onPress={() => setSelectedCategory(category)}
+            >
+              <View style={styles.iconTextContainer}>
+                <IconFontAwesome
+                  name={categoryIcons[category]}
+                  size={20}
+                  style={styles.icon}
+                  color={selectedCategory === category ? "#F773ED" : "#555"}
+                />
+                <Text
+                  style={[
+                    styles.nonSelectedText,
+                    ...(selectedCategory === category
+                      ? [styles.selectedText]
+                      : []),
+                  ]}
+                >
+                  {category}
+                </Text>
+              </View>
+            </Pressable>
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Date section */}
+      <TextInputDate type="date" icon="calendar" />
+
+      {/* Note section */}
+      <TextInputDate type="note" icon="message-square" />
+
+      {/* Switch and dropdown */}
+      <View style={styles.footerContainer}>
+        <View style={styles.switchContainer}>
+          <Switch
+            trackColor={{ false: "black", true: "blue" }}
+            thumbColor={isEnabled ? "white" : "white"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
           />
-          {/* <View style={{ flex: 1, margin: 0 }}></View> */}
+          <Text style={styles.switchText}>Ricorrente</Text>
         </View>
-
-        {/* Wallet selection section */}
-        <Text style={styles.selectionText}>Portafogli</Text>
-        <View style={styles.selectionContainer}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.scrollContainer}
-          >
-            {categories.map((category, index) => (
-              <Pressable
-                key={index}
-                style={[
-                  styles.button,
-                  selectedCategory === category && styles.selectedButton,
-                ]}
-                onPress={() => setSelectedCategory(category)}
-              >
-                <View style={styles.iconTextContainer}>
-                  <IconFontAwesome
-                    name={categoryIcons[category]}
-                    size={20}
-                    style={styles.icon}
-                    color={selectedCategory === category ? "#F773ED" : "#555"}
-                  />
-                  <Text
-                    style={[
-                      styles.nonSelectedText,
-                      ...(selectedCategory === category
-                        ? [styles.selectedText]
-                        : []),
-                    ]}
-                  >
-                    {category}
-                  </Text>
-                </View>
-              </Pressable>
-            ))}
-          </ScrollView>
-        </View>
-
-        {/* Date section */}
-        <TextInputDate type="date" icon="calendar" />
-
-        {/* Note section */}
-        <TextInputDate type="note" icon="message-square" />
-
-        {/* Switch and dropdown */}
-        <View style={styles.footerContainer}>
-          <View style={styles.switchContainer}>
-            <Switch
-              trackColor={{ false: "black", true: "blue" }}
-              thumbColor={isEnabled ? "white" : "white"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+        <View style={styles.pickerContainer}>
+          {isEnabled && (
+            <DropdownButton
+              selectedValue={selectedTransactionType}
+              onSelect={handleDropdownSelection}
+              type="income/outcome/loan"
+              color="white"
             />
-            <Text style={styles.switchText}>Ricorrente</Text>
-          </View>
-          <View style={styles.pickerContainer}>
-            {isEnabled && (
-              <DropdownButton
-                selectedValue={selectedTransactionType}
-                onSelect={handleDropdownSelection}
-                type="income/outcome/loan"
-                color="white"
-              />
-            )}
-          </View>
+          )}
         </View>
+      </View>
 
-        {/* Save Button */}
-        <View style={styles.VButton}>
-          <Button title="Salva" />
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      {/* Save Button */}
+      <View style={styles.VButton}>
+        <Button title="Salva" />
+      </View>
+    </ScrollView>
   );
 };
 

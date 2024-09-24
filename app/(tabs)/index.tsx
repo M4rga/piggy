@@ -6,6 +6,7 @@ import StatsCategory from "../../components/categoryLastMovements";
 import IconFeather from "react-native-vector-icons/Feather";
 import { useRouter } from "expo-router";
 import Balance from "../../components/balanceNumber";
+import BalanceTextInput from "../../components/balanceTextInput";
 
 import data from "../../data/data.json";
 
@@ -64,6 +65,9 @@ const Home = () => {
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
             <View style={{ marginBottom: 10 }}>
               <Balance number={20275.78} size={25} />
+            </View>
+            <View style={{ marginBottom: 10 }}>
+              <BalanceTextInput />
             </View>
             <HomeCards />
           </View>
