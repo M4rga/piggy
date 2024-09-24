@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 23,
-    fontFamily: "Switzer-Semibold",
+    fontFamily: "Switzer-Variable",
   },
   logoContainer: {
     width: 58,
@@ -242,16 +242,16 @@ const styles = StyleSheet.create({
   totalBalanceText: {
     paddingBottom: 10,
     fontSize: 18,
-    fontFamily: "Switzer-Semibold",
+    fontFamily: "Switzer-Variable",
   },
   totalBalanceAmount: {
     fontSize: 25,
-    fontFamily: "Switzer-Semibold",
+    fontFamily: "Switzer-Variable",
     marginBottom: 20,
   },
   totalBalanceDecimal: {
     fontSize: 12,
-    fontFamily: "Switzer-Semibold",
+    fontFamily: "Switzer-Variable",
     color: "#A0A0A0",
   },
   card: {

@@ -44,13 +44,14 @@ const TextInput: React.FC<CustomTextInputProps> = (props) => {
 // Definisci i tipi per le proprietà del componente Button
 interface ButtonProps {
   title: string;
-  onPress?: (event: GestureResponderEvent) => void; // Rendi onPress opzionale
+  onPress?: (event: GestureResponderEvent) => void;
   style?: TextStyle | TextStyle[];
+  textStyle?: TextStyle; // Aggiungiamo questa nuova prop
 }
 
 // Definisci il componente Button con tipi espliciti
 const Button: React.FC<ButtonProps> = (props) => {
-  const { title, onPress, style, ...rest } = props;
+  const { title, onPress, style, textStyle, ...rest } = props;
   const [isPressed, setIsPressed] = useState(false);
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -74,7 +75,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         style={[styles.button, style, { transform: [{ scale: scaleAnim }] }]}
       >
         {isPressed && <View style={styles.overlay} />}
-        <RNText style={styles.buttonText}>{title}</RNText>
+        <RNText style={[styles.buttonText, textStyle]}>{title}</RNText>
       </Animated.View>
     </Pressable>
   );
