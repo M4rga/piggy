@@ -46,12 +46,13 @@ interface ButtonProps {
   title: string;
   onPress?: (event: GestureResponderEvent) => void;
   style?: TextStyle | TextStyle[];
-  textStyle?: TextStyle; // Aggiungiamo questa nuova prop
+  textStyle?: TextStyle;
+  ombra?: boolean; // Nuovo attributo
 }
 
 // Definisci il componente Button con tipi espliciti
 const Button: React.FC<ButtonProps> = (props) => {
-  const { title, onPress, style, textStyle, ...rest } = props;
+  const { title, onPress, style, textStyle, ombra = true, ...rest } = props;
   const [isPressed, setIsPressed] = useState(false);
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -74,7 +75,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       <Animated.View
         style={[styles.button, style, { transform: [{ scale: scaleAnim }] }]}
       >
-        {isPressed && <View style={styles.overlay} />}
+        {isPressed && ombra && <View style={styles.overlay} />}
         <RNText style={[styles.buttonText, textStyle]}>{title}</RNText>
       </Animated.View>
     </Pressable>
