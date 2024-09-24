@@ -1,6 +1,6 @@
 import { Text, TextInput, Button } from "../../components/customComponents";
 import { useState } from "react";
-import { View, TouchableOpacity, KeyboardAvoidingView } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { StyleSheet, ScrollView, Platform } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import SelectIcon from "../../components/selectIcon";
@@ -12,11 +12,6 @@ const AddCard = () => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
-    >
       <ScrollView style={styles.container}>
         <View style={{ marginTop: 40 }}>
           <View style={styles.card}>
@@ -153,7 +148,6 @@ const AddCard = () => {
           <Button title="Salva" />
         </View>
       </ScrollView>
-    </KeyboardAvoidingView>
   );
 };
 

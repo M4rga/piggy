@@ -3,10 +3,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Platform,
   Switch,
   Image,
-  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
 import { Text, TextInput, Button } from "../../../components/customComponents";

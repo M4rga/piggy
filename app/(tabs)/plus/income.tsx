@@ -4,9 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
-  Platform,
   Switch,
-  KeyboardAvoidingView,
 } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import React, { useState } from "react";
