@@ -5,6 +5,7 @@ import HomeCards from "../../components/homeCards"; // Importing a custom HomeCa
 import StatsCategory from "../../components/categoryLastMovements";
 import IconFeather from "react-native-vector-icons/Feather";
 import { useRouter } from "expo-router";
+import Balance from "../otherPages/balanceNumber";
 
 import data from "../../data/data.json";
 
@@ -27,39 +28,6 @@ const Home = () => {
     }
   };
 
-  // Example total balance in string format
-  const totalBalanceString = "20.275,78";
-
-  // Convert the total balance string to a number
-  const convertBalanceToNumber = (balanceString: string) => {
-    return parseFloat(balanceString.replace(/\./g, "").replace(",", "."));
-  };
-
-  // Convert string balance to number
-  const totalBalance = convertBalanceToNumber(totalBalanceString);
-
-  // Function to format balance with thousands separators and decimals
-  const formatBalance = (balance: number) => {
-    // Create a formatter object for formatting numbers according to German locale
-    const formatter = new Intl.NumberFormat("de-DE", {
-      // Ensure there are always 2 digits after the decimal point
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    // Format the balance using the created formatter object
-    const formattedBalance = formatter.format(balance);
-
-    // Split the formatted string into euros and cents
-    // In the "de-DE" locale, the decimal separator is a comma (",")
-    const [euros, cents] = formattedBalance.split(",");
-
-    // Return an object containing the formatted euros and cents
-    return { euros, cents };
-  };
-  // Extract formatted euros and cents
-  const { euros, cents } = formatBalance(totalBalance);
-
   // Example inOutAmount
   const inOutAmount = -231; // You can change this value to a negative number to test the negative case
 
@@ -73,7 +41,7 @@ const Home = () => {
       <View style={styles.contentContainer}>
         {/* Top view with pig image */}
         <View style={styles.topView}>
-          <Image source={getPigImage(totalBalance)} style={styles.pig_top} />
+          <Image source={getPigImage(20275.78)} style={styles.pig_top} />
         </View>
 
         {/* Main content container */}
@@ -94,10 +62,9 @@ const Home = () => {
           {/* Total balance section */}
           <View style={styles.balanceContainer}>
             <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
-            <Text style={styles.totalBalanceAmount}>
-              € {euros}
-              <Text style={styles.totalBalanceDecimal}>.{cents}</Text>
-            </Text>
+            <View style={{ marginBottom: 10 }}>
+              <Balance number={20275.78} size={20} />
+            </View>
             <HomeCards />
           </View>
 
@@ -243,16 +210,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontSize: 18,
     fontFamily: "Switzer-Variable",
-  },
-  totalBalanceAmount: {
-    fontSize: 25,
-    fontFamily: "Switzer-Variable",
-    marginBottom: 20,
-  },
-  totalBalanceDecimal: {
-    fontSize: 12,
-    fontFamily: "Switzer-Variable",
-    color: "#A0A0A0",
   },
   card: {
     width: 80,
