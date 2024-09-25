@@ -39,6 +39,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
       <View
         style={{
           flexDirection: "row",
+          alignItems: "center",
           opacity: isFocused ? 1 : 0,
           zIndex: 100,
         }}
