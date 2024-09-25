@@ -10,6 +10,7 @@ const Layout = () => {
   const router = useRouter();
   const [loaded, error] = useFonts({
     "Switzer-Variable": require("../assets/font/Switzer-Variable.ttf"),
+    "Switzer-Variable1": require("../assets/font/Switzer-Variable.ttf"),
     "Switzer-Bold": require("../assets/font/Switzer-Bold.otf"),
     "Switzer-Semibold": require("../assets/font/Switzer-Semibold.otf"),
     "Switzer-Thin": require("../assets/font/Switzer-Thin.otf"),

@@ -17,27 +17,21 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
   const [text, setText] = useState(initialNumber.toString());
   const [number, setNumber] = useState<number | undefined>(initialNumber);
   const [isFocused, setIsFocused] = useState(false);
+  const [textFont, setTextFont] = useState("Switzer-Variable");
 
   const handleTextChange = (input: string) => {
-    const sanitizedInput = input.replace(/,/g, "."); // Rimuove tutte le virgole
-    // const dotCount = (sanitizedInput.match(/\./g) || []).length;
-    // if (dotCount > 1) {
-    //   const lastDotIndex = sanitizedInput.lastIndexOf(".");
-    //   const newText =
-    //     sanitizedInput.substring(0, lastDotIndex) +
-    //     "A" +
-    //     sanitizedInput.substring(lastDotIndex + 1);
-    //   setText(newText); // Sostituisce l'ultimo punto con "A"
-    //   setNumber(undefined);
-    //   return;
-    // }
+    // Rimuove tutte le virgole e mantiene solo il primo punto
+    const sanitizedInput = input.replace(/,/g, "").replace(/\.(?=.*\.)/g, "");
+
     setText(sanitizedInput);
+
     const parsedNumber = parseFloat(sanitizedInput);
     if (!isNaN(parsedNumber)) {
       setNumber(parsedNumber);
     } else {
       setNumber(undefined);
     }
+    setTextFont("Switzer-Variable1");
   };
 
   return (
@@ -51,7 +45,11 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
       >
         <Text style={{ fontSize: size, marginTop: 1.7 }}>€ </Text>
         <TextInput
-          style={{ fontSize: size, color: "black" }}
+          style={{
+            fontSize: size,
+            color: "black",
+            fontFamily: textFont,
+          }}
           onChangeText={handleTextChange}
           value={text}
           onFocus={() => setIsFocused(true)}
