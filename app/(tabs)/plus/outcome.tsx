@@ -241,8 +241,7 @@ const styles = StyleSheet.create({
   selectionContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 10,
-    paddingLeft: 20,
+    paddingTop: 10,
   },
   button: {
     borderColor: "#A0A0A0",
@@ -276,6 +275,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexDirection: "row",
+    paddingHorizontal: 20,
   },
   iconTextContainer: {
     flexDirection: "row",
