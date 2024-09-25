@@ -1,3 +1,4 @@
+import { View } from "react-native";
 import { Text } from "./customComponents";
 import React from "react";
 
@@ -21,12 +22,16 @@ const Balance: React.FC<BalanceProps> = ({
   const [integerPart, decimalPart] = formatNumber(number);
 
   return (
-    <Text style={{ fontSize: size }}>
-      € {integerPart}
-      <Text style={{ color: deciColor, fontSize: Math.max(size - 8) }}>
-        ,{decimalPart}
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <Text style={{ fontSize: size }}>€ </Text>
+      <Text style={{ fontSize: size }}>
+        {integerPart}
+        <Text style={{ fontSize: size }}>,</Text>
+        <Text style={{ color: deciColor, fontSize: Math.max(size - 8) }}>
+          {decimalPart}
+        </Text>
       </Text>
-    </Text>
+    </View>
   );
 };
 

@@ -35,7 +35,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
   };
 
   return (
-    <View>
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
       <View
         style={{
           flexDirection: "row",
@@ -43,7 +43,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
           zIndex: 100,
         }}
       >
-        <Text style={{ fontSize: size, marginTop: 1.7 }}>€ </Text>
+        <Text style={{ fontSize: size }}>€ </Text>
         <TextInput
           style={{
             fontSize: size,
@@ -59,7 +59,6 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
       <View
         style={{
           position: "absolute",
-          marginTop: 1.5,
           opacity: isFocused ? 0 : 1,
         }}
       >
