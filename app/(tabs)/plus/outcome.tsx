@@ -74,6 +74,9 @@ const Outcome = () => {
         />
       </View>
 
+      {/* Linguetta triangolare sotto l'import section */}
+      <View style={styles.triangle} />
+
       {/* Circle ScrollView */}
       <View style={styles.categorySelectionContainer}>
         <ScrollView
@@ -213,6 +216,7 @@ const styles = StyleSheet.create({
     width: "60%",
     padding: 10,
     alignSelf: "center",
+    position: "relative",
     // Shadows (iOS)
     shadowColor: "#000",
     shadowOffset: { width: 2, height: 2 },
@@ -342,6 +346,19 @@ const styles = StyleSheet.create({
   },
   categorySelectionContainer: {
     marginBottom: 20,
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 10,
+    borderRightWidth: 10,
+    borderTopWidth: 15,
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
+    borderTopColor: "white",
+    alignSelf: "center",
+    marginTop: -20,
+    marginBottom: 5,
   },
 });
 
