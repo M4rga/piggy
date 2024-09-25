@@ -21,7 +21,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
 
   const handleTextChange = (input: string) => {
     // Rimuove tutte le virgole e mantiene solo il primo punto
-    const sanitizedInput = input.replace(/,/g, "").replace(/\.(?=.*\.)/g, "");
+    const sanitizedInput = input.replace(/,/g, "").replace(/(\..*)\./g, "$1");
 
     setText(sanitizedInput);
 
@@ -51,6 +51,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
             color: "black",
             fontFamily: textFont,
           }}
+          keyboardType="number-pad"
           onChangeText={handleTextChange}
           value={text}
           onFocus={() => setIsFocused(true)}
