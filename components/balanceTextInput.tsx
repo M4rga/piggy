@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Text, TextInput } from "./customComponents";
 import Balance from "./balanceNumber";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface BalanceTextInputProps {
   initialNumber: number;
@@ -18,9 +18,14 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
   const [number, setNumber] = useState<number | undefined>(initialNumber);
   const [isFocused, setIsFocused] = useState(false);
   const [textFont, setTextFont] = useState("Switzer-Variable");
+  const [inputWidth, setInputWidth] = useState(0);
+
+  // State used to handle selection
+  const [selection, setSelection] = useState<
+    { start: number; end: number } | undefined
+  >(undefined);
 
   const handleTextChange = (input: string) => {
-    // Rimuove tutte le virgole e mantiene solo il primo punto
     const sanitizedInput = input.replace(/,/g, ".").replace(/(\..*)\./g, "$1");
 
     setText(sanitizedInput);
@@ -34,8 +39,32 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
     setTextFont("Switzer-Variable1");
   };
 
+  const measureBalanceWidth = (number: number) => {
+    const formattedNumber = number.toLocaleString("it-IT", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    return formattedNumber.length * (size * 0.6);
+  };
+
+  useEffect(() => {
+    setInputWidth(measureBalanceWidth(number ?? 0));
+  }, [number, size]);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setSelection({ start: 0, end: text.length }); // Updates selection state for selecting all the text
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    setSelection(undefined); // Reset the selection when field is not focused
+  };
+
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <View
+      style={{ flexDirection: "row", alignItems: "center", width: inputWidth }}
+    >
       <View
         style={{
           flexDirection: "row",
@@ -50,18 +79,24 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
             fontSize: size,
             color: "black",
             fontFamily: textFont,
+            width: inputWidth,
           }}
           keyboardType="numeric"
           onChangeText={handleTextChange}
           value={text}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          selection={selection}
+          onSelectionChange={
+            ({ nativeEvent: { selection } }) => setSelection(selection) // Update the selection based on user input
+          }
         />
       </View>
       <View
         style={{
           position: "absolute",
           opacity: isFocused ? 0 : 1,
+          width: inputWidth,
         }}
       >
         <Balance number={number ?? 0} size={size} deciColor={deciColor} />
