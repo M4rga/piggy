@@ -36,7 +36,6 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
     } else {
       setNumber(undefined);
     }
-    // setTextFont("Switzer-Variable1");
   };
 
   const measureBalanceWidth = (number: number) => {
