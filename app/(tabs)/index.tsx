@@ -61,15 +61,14 @@ const Home = () => {
           </View>
 
           {/* Total balance section */}
-          <View style={styles.balanceContainer}>
-            <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
-            <View style={{ marginBottom: 10 }}>
+          <View>
+            <View style={styles.balanceContainer}>
+              <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
               <Balance number={20275.78} size={25} />
             </View>
             <View style={{ marginBottom: 10 }}>
-              <BalanceTextInput initialNumber={20275.78} size={25} />
+              <HomeCards />
             </View>
-            <HomeCards />
           </View>
 
           <Text style={styles.titleThisMonth}>Questo mese</Text>
@@ -205,6 +204,7 @@ const styles = StyleSheet.create({
   },
   balanceContainer: {
     padding: 20,
+    paddingBottom: 10,
   },
   allCards: {
     flexDirection: "row",
@@ -265,7 +265,6 @@ const styles = StyleSheet.create({
     fontFamily: "Switzer-Semibold",
     marginBottom: 10,
     marginLeft: 20,
-    marginTop: -15,
   },
   InOutContainer: {
     flexDirection: "row", // Disposizione orizzontale

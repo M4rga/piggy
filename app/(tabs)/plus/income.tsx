@@ -1,11 +1,5 @@
 import { Text, TextInput, Button } from "../../../components/customComponents";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  Switch,
-} from "react-native";
+import { View, StyleSheet, ScrollView, Pressable, Switch } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import React, { useState } from "react";
 import DropdownButton from "../../../components/dropdown";
@@ -205,8 +199,6 @@ const styles = StyleSheet.create({
   selectionContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    padding: 10,
-    paddingLeft: 20,
   },
   button: {
     borderColor: "#A0A0A0",
@@ -239,6 +231,8 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   scrollContainer: {
+    padding: 10,
+    paddingLeft: 20,
     flexDirection: "row",
   },
   iconTextContainer: {

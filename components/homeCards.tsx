@@ -56,7 +56,11 @@ const getCardStyle = (iconType: CardData["type"]): CardStyle => {
 const HomeCards: React.FC = () => {
   return (
     <View style={styles.allCards}>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={{ paddingHorizontal: 20 }}
+      >
         {cardData.map((card, index) => (
           <View
             key={index}
@@ -130,7 +134,6 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 10,
-    marginBottom: 15,
     justifyContent: "flex-end",
     paddingRight: 20,
     marginRight: 10,
