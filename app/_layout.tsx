@@ -33,7 +33,10 @@ const Layout = () => {
         screenOptions={{
           headerStyle: { backgroundColor: "#FCF6FB" },
           headerTitleAlign: "center",
-          headerTitleStyle: { fontFamily: "Switzer-Semibold" },
+          headerTitleStyle: {
+            fontFamily: "Switzer-Variable",
+            fontSize: 18,
+          },
           headerShadowVisible: false,
         }}
       >
@@ -47,10 +50,6 @@ const Layout = () => {
           name="otherPages/welcome"
           options={{
             headerShown: false,
-            // href: null,
-            // tabBarIcon: ({ color }) => (
-            //   <IconFeather name="align-justify" size={24} color={color} />
-            // ),
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -58,22 +57,13 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
         <Stack.Screen
           name="otherPages/addCard"
           options={{
-            title: "Nuova carta",
-            // href: null,
+            title: "Nuovo portafogli",
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -81,22 +71,13 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
         <Stack.Screen
           name="otherPages/statsFilter"
           options={{
-            title: "Filtro statistiche",
-            // href: null,
+            title: "Statistiche",
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -104,14 +85,6 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
@@ -119,40 +92,9 @@ const Layout = () => {
           name="otherPages/receiptPage"
           options={{
             title: "Storico scontrini",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
-                size={26}
-                onPress={() => router.back()}
-              />
-            ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
-          }}
-        />
-
-        <Stack.Screen
-          name="otherPages/target"
-          options={{
-            title: "Obiettivo",
-            // href: null,
-            headerLeft: () => (
-              <IconFeather
-                name={"chevron-left"}
-                size={26}
-                onPress={() => router.back()}
-              />
-            ),
-            headerRight: () => (
-              <IconFeather
-                name={"check"}
                 size={26}
                 onPress={() => router.back()}
               />
@@ -164,7 +106,6 @@ const Layout = () => {
           name="otherPages/passwordKeeperPage"
           options={{
             title: "Password keeper",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -172,14 +113,6 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
@@ -187,7 +120,6 @@ const Layout = () => {
           name="otherPages/documentsPage"
           options={{
             title: "Documenti",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -195,14 +127,6 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
@@ -210,7 +134,6 @@ const Layout = () => {
           name="otherPages/cardMovements"
           options={{
             title: "Movimenti",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -218,14 +141,6 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
-            // headerRight: () => (
-            //   <IconFeather
-            //     name={"chevron-left"}
-            //     size={26}
-            //     style={{ marginHorizontal: 15 }}
-            //     onPress={() => router.push("otherPages/addCard")}
-            //   />
-            // ),
           }}
         />
 
@@ -233,7 +148,6 @@ const Layout = () => {
           name="otherPages/addReceipt"
           options={{
             title: "Aggiungi scontrino",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -255,7 +169,6 @@ const Layout = () => {
           name="otherPages/userProfile"
           options={{
             title: "Profilo",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}
@@ -270,7 +183,6 @@ const Layout = () => {
           name="otherPages/modifyCard"
           options={{
             title: "Modifica",
-            // href: null,
             headerLeft: () => (
               <IconFeather
                 name={"chevron-left"}

@@ -1,12 +1,11 @@
 import { View, Pressable, SafeAreaView } from "react-native";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Tabs, useRouter } from "expo-router";
 import {
   Menu,
   MenuOptions,
   MenuOption,
   MenuTrigger,
-  MenuProvider,
   renderers,
 } from "react-native-popup-menu";
 import IconFeather from "react-native-vector-icons/Feather";
@@ -31,16 +30,18 @@ const TabLayout = () => {
 
   const openMenu = () => {
     if (menuRef.current) {
-      (menuRef.current as any).open(); // Asserzione di tipo
+      (menuRef.current as any).open();
     }
   };
   return (
     <Tabs
-      // initialRouteName="home"
       screenOptions={{
         headerStyle: { backgroundColor: "#FCF6FB" },
         headerTitleAlign: "center",
-        headerTitleStyle: { fontFamily: "Switzer-Semibold" },
+        headerTitleStyle: {
+          fontFamily: "Switzer-Variable",
+          fontSize: 18,
+        },
         headerShadowVisible: false,
         tabBarShowLabel: false,
         tabBarActiveTintColor: activeColor,
@@ -80,7 +81,7 @@ const TabLayout = () => {
           headerRight: () => (
             <IconFeather
               name={"plus"}
-              size={29}
+              size={26}
               style={{ marginHorizontal: 15 }}
               onPress={() => router.push("otherPages/addCard")}
             />
@@ -237,14 +238,6 @@ const TabLayout = () => {
               onPress={() => router.back()}
             />
           ),
-          // headerRight: () => (
-          //   <IconFeather
-          //     name={"chevron-left"}
-          //     size={26}
-          //     style={{ marginHorizontal: 15 }}
-          //     onPress={() => router.push("otherPages/addCard")}
-          //   />
-          // ),
         }}
       />
 
@@ -261,14 +254,6 @@ const TabLayout = () => {
               onPress={() => router.back()}
             />
           ),
-          // headerRight: () => (
-          //   <IconFeather
-          //     name={"check"}
-          //     size={26}
-          //     style={{ marginHorizontal: 15 }}
-          //     onPress={() => router.push("otherPages/addCard")}
-          //   />
-          // ),
         }}
       />
 
@@ -313,14 +298,6 @@ const TabLayout = () => {
               onPress={() => router.back()}
             />
           ),
-          // headerRight: () => (
-          //   <IconFeather
-          //     name={"chevron-left"}
-          //     size={26}
-          //     style={{ marginHorizontal: 15 }}
-          //     onPress={() => router.push("otherPages/addCard")}
-          //   />
-          // ),
         }}
       />
     </Tabs>
