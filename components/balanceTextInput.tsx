@@ -36,7 +36,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
     } else {
       setNumber(undefined);
     }
-    setTextFont("Switzer-Variable1");
+    // setTextFont("Switzer-Variable1");
   };
 
   const measureBalanceWidth = (number: number) => {
@@ -54,6 +54,7 @@ const BalanceTextInput: React.FC<BalanceTextInputProps> = ({
   const handleFocus = () => {
     setIsFocused(true);
     setSelection({ start: 0, end: text.length }); // Updates selection state for selecting all the text
+    setTextFont("Switzer-Variable1");
   };
 
   const handleBlur = () => {
