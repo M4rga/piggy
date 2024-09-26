@@ -6,148 +6,137 @@ import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import SelectIcon from "../../components/selectIcon";
 import ColorPoint from "../../components/colorPoint";
 import TextInputDate from "../../components/textInputDate";
+import BalanceTextInput from "../../components/balanceTextInput";
 
 const AddCard = () => {
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   return (
-      <ScrollView style={styles.container}>
-        <View style={{ marginTop: 40 }}>
-          <View style={styles.card}>
-            <View style={styles.cardView1}>
-              <TextInput style={{ fontSize: 25 }}>Name</TextInput>
-              <View
-                style={{
-                  marginTop: 85,
-                  marginLeft: 5,
-                  flexDirection: "row",
-                }}
-              >
-                <View>
-                  <TextInput style={{ fontSize: 30 }}>0</TextInput>
-                </View>
-                <View style={{ flexDirection: "row", paddingBottom: 4.6 }}>
-                  <Text style={{ fontSize: 17, textAlignVertical: "bottom" }}>
-                    ,
-                  </Text>
-                  <TextInput
-                    style={{ fontSize: 17, textAlignVertical: "bottom" }}
-                  >
-                    0
-                  </TextInput>
-                </View>
-              </View>
+    <ScrollView style={styles.container}>
+      <View style={{ marginTop: 40 }}>
+        <View style={styles.card}>
+          <View style={styles.cardView1}>
+            <TextInput style={{ fontSize: 25 }}>Name</TextInput>
+            <View
+              style={{
+                marginTop: 85,
+                marginLeft: 5,
+                flexDirection: "row",
+              }}
+            >
+              <BalanceTextInput initialNumber={0} size={25} />
             </View>
+          </View>
+          <IconFontAwesome
+            style={{ marginTop: 5 }}
+            name="credit-card"
+            size={30}
+          />
+        </View>
+      </View>
+      <Text style={styles.iconW}>Icon</Text>
+      <View style={styles.iconV}>
+        <View style={styles.OuterView}>
+          <SelectIcon
+            icon="credit-card"
+            isSelected={selectedIcon === "credit-card"}
+            onSelect={() => setSelectedIcon("credit-card")}
+          />
+          <SelectIcon
+            icon="money"
+            isSelected={selectedIcon === "money"}
+            onSelect={() => setSelectedIcon("money")}
+          />
+          <SelectIcon
+            icon="paypal"
+            isSelected={selectedIcon === "paypal"}
+            onSelect={() => setSelectedIcon("paypal")}
+          />
+          <SelectIcon
+            icon="smile-o"
+            isSelected={selectedIcon === "smile-o"}
+            onSelect={() => setSelectedIcon("smile-o")}
+          />
+        </View>
+        <TouchableOpacity>
+          <View style={styles.plusIcon}>
             <IconFontAwesome
-              style={{ marginTop: 5 }}
-              name="credit-card"
-              size={30}
+              style={{ color: "#D3D3D3" }}
+              name="plus"
+              size={25}
             />
           </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.colorV}>
+        <Text style={{ color: "#A0A0A0" }}>Colore</Text>
+        <View style={styles.pointV}>
+          <ColorPoint
+            backgroundColor="#A0A0A0"
+            isSelected={selectedColor === "#A0A0A0"}
+            onSelect={() => setSelectedColor("#A0A0A0")}
+          />
+          <ColorPoint
+            backgroundColor="#D9D9D9"
+            isSelected={selectedColor === "#D9D9D9"}
+            onSelect={() => setSelectedColor("#D9D9D9")}
+          />
+          <ColorPoint
+            backgroundColor="#2F212F"
+            isSelected={selectedColor === "#2F212F"}
+            onSelect={() => setSelectedColor("#2F212F")}
+          />
+          <ColorPoint
+            backgroundColor="#F773ED"
+            isSelected={selectedColor === "#F773ED"}
+            onSelect={() => setSelectedColor("#F773ED")}
+          />
+          <ColorPoint
+            backgroundColor="#5272F2"
+            isSelected={selectedColor === "#5272F2"}
+            onSelect={() => setSelectedColor("#5272F2")}
+          />
+          <ColorPoint
+            backgroundColor="#AC52F2"
+            isSelected={selectedColor === "#AC52F2"}
+            onSelect={() => setSelectedColor("#AC52F2")}
+          />
+          <ColorPoint
+            backgroundColor="#73F798"
+            isSelected={selectedColor === "#73F798"}
+            onSelect={() => setSelectedColor("#73F798")}
+          />
+          <ColorPoint
+            backgroundColor="#F77373"
+            isSelected={selectedColor === "#F77373"}
+            onSelect={() => setSelectedColor("#F77373")}
+          />
+          <ColorPoint
+            backgroundColor="#F7C273"
+            isSelected={selectedColor === "#F7C273"}
+            onSelect={() => setSelectedColor("#F7C273")}
+          />
+          <ColorPoint
+            backgroundColor="#F4F773"
+            isSelected={selectedColor === "#F4F773"}
+            onSelect={() => setSelectedColor("#F4F773")}
+          />
+          <ColorPoint
+            backgroundColor="#52F2F2"
+            isSelected={selectedColor === "#52F2F2"}
+            onSelect={() => setSelectedColor("#52F2F2")}
+          />
         </View>
-        <Text style={styles.iconW}>Icon</Text>
-        <View style={styles.iconV}>
-          <View style={styles.OuterView}>
-            <SelectIcon
-              icon="credit-card"
-              isSelected={selectedIcon === "credit-card"}
-              onSelect={() => setSelectedIcon("credit-card")}
-            />
-            <SelectIcon
-              icon="money"
-              isSelected={selectedIcon === "money"}
-              onSelect={() => setSelectedIcon("money")}
-            />
-            <SelectIcon
-              icon="paypal"
-              isSelected={selectedIcon === "paypal"}
-              onSelect={() => setSelectedIcon("paypal")}
-            />
-            <SelectIcon
-              icon="smile-o"
-              isSelected={selectedIcon === "smile-o"}
-              onSelect={() => setSelectedIcon("smile-o")}
-            />
-          </View>
-          <TouchableOpacity>
-            <View style={styles.plusIcon}>
-              <IconFontAwesome
-                style={{ color: "#D3D3D3" }}
-                name="plus"
-                size={25}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.colorV}>
-          <Text style={{ color: "#A0A0A0" }}>Colore</Text>
-          <View style={styles.pointV}>
-            <ColorPoint
-              backgroundColor="#A0A0A0"
-              isSelected={selectedColor === "#A0A0A0"}
-              onSelect={() => setSelectedColor("#A0A0A0")}
-            />
-            <ColorPoint
-              backgroundColor="#D9D9D9"
-              isSelected={selectedColor === "#D9D9D9"}
-              onSelect={() => setSelectedColor("#D9D9D9")}
-            />
-            <ColorPoint
-              backgroundColor="#2F212F"
-              isSelected={selectedColor === "#2F212F"}
-              onSelect={() => setSelectedColor("#2F212F")}
-            />
-            <ColorPoint
-              backgroundColor="#F773ED"
-              isSelected={selectedColor === "#F773ED"}
-              onSelect={() => setSelectedColor("#F773ED")}
-            />
-            <ColorPoint
-              backgroundColor="#5272F2"
-              isSelected={selectedColor === "#5272F2"}
-              onSelect={() => setSelectedColor("#5272F2")}
-            />
-            <ColorPoint
-              backgroundColor="#AC52F2"
-              isSelected={selectedColor === "#AC52F2"}
-              onSelect={() => setSelectedColor("#AC52F2")}
-            />
-            <ColorPoint
-              backgroundColor="#73F798"
-              isSelected={selectedColor === "#73F798"}
-              onSelect={() => setSelectedColor("#73F798")}
-            />
-            <ColorPoint
-              backgroundColor="#F77373"
-              isSelected={selectedColor === "#F77373"}
-              onSelect={() => setSelectedColor("#F77373")}
-            />
-            <ColorPoint
-              backgroundColor="#F7C273"
-              isSelected={selectedColor === "#F7C273"}
-              onSelect={() => setSelectedColor("#F7C273")}
-            />
-            <ColorPoint
-              backgroundColor="#F4F773"
-              isSelected={selectedColor === "#F4F773"}
-              onSelect={() => setSelectedColor("#F4F773")}
-            />
-            <ColorPoint
-              backgroundColor="#52F2F2"
-              isSelected={selectedColor === "#52F2F2"}
-              onSelect={() => setSelectedColor("#52F2F2")}
-            />
-          </View>
-        </View>
+      </View>
 
-        {/* Note section */}
-        <TextInputDate type="note" icon="message-square" />
+      {/* Note section */}
+      <TextInputDate type="note" icon="message-square" />
 
-        <View style={styles.VButton}>
-          <Button title="Salva" />
-        </View>
-      </ScrollView>
+      <View style={styles.VButton}>
+        <Button title="Salva" />
+      </View>
+    </ScrollView>
   );
 };
 
