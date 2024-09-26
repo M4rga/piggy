@@ -46,11 +46,9 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
               <Text style={{ color: "#A0A0A0", margin: 0 }}>
                 {selectedTitle}
               </Text>
-              <TextInput
-                style={{ marginTop: 6 }}
-                placeholder="Inserisci la tua nota qua"
-                keyboardType="default"
-              />
+              <TextInput style={{ marginTop: 6 }} keyboardType="default">
+                Inserisci la tua nota qua
+              </TextInput>
             </View>
           </View>
         </View>
