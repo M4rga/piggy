@@ -16,11 +16,11 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <View style={[styles.card, { backgroundColor: props.color }]}>
       <View style={styles.cardView1}>
-        <Text style={{ fontSize: 25, color: props.color2 }}>{props.name}</Text>
+        <Text style={{ fontSize: 18, color: props.color2 }}>{props.name}</Text>
         <Text
           style={{
             fontSize: 30,
-            marginTop: 60,
+            marginTop: 75,
             marginLeft: 5,
             color: props.color2,
           }}

@@ -8,13 +8,15 @@ interface ColorPointProps {
 }
 
 const ColorPoint: React.FC<ColorPointProps> = (props) => {
-
-  const borderColor = props.isSelected ? '#F773ED' : 'white';
+  const borderColor = props.isSelected ? "#F773ED" : "white";
 
   return (
     <TouchableOpacity onPress={props.onSelect}>
       <View
-        style={[styles.point, { backgroundColor: props.backgroundColor, borderColor: borderColor }]}
+        style={[
+          styles.point,
+          { backgroundColor: props.backgroundColor, borderColor: borderColor },
+        ]}
       />
     </TouchableOpacity>
   );
@@ -27,10 +29,6 @@ const styles = StyleSheet.create({
     marginRight: 9,
     borderRadius: 100,
     borderWidth: 2,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.9,
-    shadowRadius: 5,
     elevation: 3,
   },
 });
