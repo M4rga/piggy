@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
   titleLastMoves: {
     fontSize: 18,
-    fontFamily: "Switzer-Semibold",
     margin: 20,
   },
   MovesContainer: {

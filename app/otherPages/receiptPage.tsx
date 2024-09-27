@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   },
   titleCategories: {
     fontSize: 18,
-    fontFamily: "Switzer-Semibold",
     margin: 20,
     marginBottom: 0,
   },

@@ -81,10 +81,10 @@ const Loan = () => {
       </View>
 
       {/* "who" section */}
-      <TextInputDate type="note" icon="user" title="Who" />
+      <TextInputDate type="note" icon="user" title="Chi" />
 
       {/* "By when" section */}
-      <TextInputDate type="date" icon="calendar" title="By when" />
+      <TextInputDate type="date" icon="calendar" title="Entro quando" />
 
       {/* Note section */}
       <TextInputDate type="note" icon="message-square" />
@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
   text: {
     margin: 20,
     fontSize: 15,
-    fontFamily: "Switzer-Semibold",
   },
 
   quantity: {
@@ -181,7 +180,6 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: "black",
-    fontFamily: "Switzer-Semibold",
     fontSize: 16,
   },
 

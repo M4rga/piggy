@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 20,
     fontSize: 15,
-    fontFamily: "Switzer-Semibold",
   },
   selectionText: {
     marginLeft: 20,
