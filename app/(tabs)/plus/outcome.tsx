@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     width: "auto",
-    marginRight: 10,
+    marginHorizontal: 5,
   },
   selectedButton: {
     borderColor: "#F773ED",
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexDirection: "row",
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
   },
   iconTextContainer: {
     flexDirection: "row",

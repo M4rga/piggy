@@ -59,7 +59,8 @@ const HomeCards: React.FC = () => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        style={{ paddingHorizontal: 20 }}
+        style={{ paddingHorizontal: 15 }}
+        contentContainerStyle={{ paddingRight: 40 }}
       >
         {cardData.map((card, index) => (
           <View
@@ -69,7 +70,6 @@ const HomeCards: React.FC = () => {
               { backgroundColor: getCardStyle(card.type).backgroundColor },
             ]}
           >
-            {/* Rendering condizionale dell'icona in base al tipo di card */}
             {card.type === "credit-card" && (
               <IconFeather
                 name="credit-card"
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
   allCards: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 0,
   },
   card: {
     width: 80,
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "flex-end",
     paddingRight: 20,
-    marginRight: 10,
+    marginHorizontal: 5,
   },
   cardIcon: {
     position: "absolute",

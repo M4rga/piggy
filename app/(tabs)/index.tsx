@@ -66,7 +66,7 @@ const Home = () => {
               <Text style={styles.totalBalanceText}>Bilancio Totale</Text>
               <Balance number={20275.78} size={25} />
             </View>
-            <View style={{ marginBottom: 10 }}>
+            <View style={{ marginBottom: 25 }}>
               <HomeCards />
             </View>
           </View>
@@ -143,7 +143,6 @@ const Home = () => {
   );
 };
 
-// Styles for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -256,42 +255,37 @@ const styles = StyleSheet.create({
   },
   titleLastMoves: {
     fontSize: 18,
-    fontFamily: "Switzer-Semibold",
     marginBottom: 10,
     marginLeft: 10,
   },
   titleThisMonth: {
     fontSize: 18,
-    fontFamily: "Switzer-Semibold",
     marginBottom: 10,
     marginLeft: 20,
   },
   InOutContainer: {
-    flexDirection: "row", // Disposizione orizzontale
+    flexDirection: "row",
     backgroundColor: "#FFFFFF",
     paddingLeft: 10,
     marginBottom: 10,
-    width: "100%", // Larghezza aumentata per far spazio a entrambe le view
+    width: "100%",
     height: 115,
     alignItems: "center",
   },
-  // Stile per la sezione "Sei in Positivo", numero e freccia
   amountInOut: {
     flex: 1,
     borderColor: "#ECE9EA",
     borderWidth: 2,
     borderRadius: 17,
     height: "100%",
-    justifyContent: "space-between", // Spaziamo gli elementi
+    justifyContent: "space-between",
   },
-  // Stile per la freccia in alto a sinistra
   arrowInOut: {
     position: "absolute",
     top: 15,
     left: 15,
-    fontFamily: "Switzer-Semibold", // Rende la freccia più spessa
+    fontFamily: "Switzer-Semibold",
   },
-  // Stile per il testo "Sei in Positivo!"
   inOutText: {
     position: "absolute",
     bottom: 20,
@@ -300,7 +294,6 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontFamily: "Switzer-Semibold",
   },
-  // Stile per il numero della somma in alto a destra
   inOutAmount: {
     position: "absolute",
     top: 20,
@@ -309,59 +302,55 @@ const styles = StyleSheet.create({
     fontFamily: "Switzer-Semibold",
     color: "#F773ED",
   },
-  // Stile per la nuova view con entrate/uscite
   inOutDetails: {
-    flexDirection: "column", // Disposizione orizzontale
+    flexDirection: "column",
     backgroundColor: "#FFFFFF",
     paddingLeft: 20,
     marginLeft: 20,
     marginRight: 10,
     height: 115,
     width: 140,
-    alignItems: "flex-start", // Allinea a sinistra
+    alignItems: "flex-start",
     borderColor: "#ECE9EA",
     borderWidth: 2,
     borderRadius: 17,
   },
-  // Stile per le righe Entrate e Uscite
   inOutColumn: {
     flexDirection: "column",
-    marginBottom: 10, // Spazio tra le etichette e i valori
+    marginBottom: 10,
   },
-  // Stile per le etichette Entrate e Uscite
   inLabel: {
     fontSize: 12,
     marginTop: 10,
-    marginLeft: -5, // Spostiamo più a sinistra
+    marginLeft: -5,
     color: "#000000",
     fontFamily: "Switzer-Semibold",
   },
   outLabel: {
     fontSize: 12,
-    marginLeft: -5, // Spostiamo più a sinistra
+    marginLeft: -5,
     color: "#000000",
     fontFamily: "Switzer-Semibold",
   },
-  // Stile per i valori di Entrate e Uscite
   inValue: {
     fontSize: 18,
-    marginTop: 5, // Aggiunge uno spazio maggiore tra label e valore
-    marginLeft: -5, // Spostiamo più a sinistra
+    marginTop: 5,
+    marginLeft: -5,
     color: "#F773ED",
     fontFamily: "Switzer-Semibold",
   },
   outValue: {
     fontSize: 18,
-    marginTop: 5, // Aggiunge uno spazio maggiore tra label e valore
-    marginLeft: -5, // Spostiamo più a sinistra
+    marginTop: 5,
+    marginLeft: -5,
     color: "#5272F2",
     fontFamily: "Switzer-Semibold",
   },
   valueRow: {
-    flexDirection: "row", // Disposizione orizzontale
-    justifyContent: "space-between", // Spazio tra testo e icona
-    alignItems: "center", // Allinea verticalmente l'icona e il testo
-    width: "100%", // Assicurati che l'elemento occupi tutta la larghezza disponibile
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
   },
   chevronIcon: {
     marginRight: 15,
