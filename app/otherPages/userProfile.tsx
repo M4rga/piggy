@@ -26,13 +26,13 @@ const UserProfile = () => {
               style={styles.option}
               onPress={() => router.push("otherPages/target")}
             >
-              <IconFeather name="award" size={18.5} />
+              <IconFeather name="award" size={20} />
               <Text style={styles.optionLabel}>Obiettivo</Text>
             </Pressable>
           </View>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="dollar-sign" size={18.5} />
+              <IconFeather name="dollar-sign" size={20} />
               <Text style={styles.optionLabel}>Valuta</Text>
               <View style={styles.dropdownButtonContainer}>
                 <DropdownButton
@@ -46,7 +46,7 @@ const UserProfile = () => {
           </View>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="lock" size={18.5} />
+              <IconFeather name="lock" size={20} />
               <Text style={styles.optionLabel}>Privacy</Text>
             </Pressable>
           </View>
@@ -58,13 +58,13 @@ const UserProfile = () => {
         <View style={styles.allOptions}>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="image" size={18.5} />
+              <IconFeather name="image" size={20} />
               <Text style={styles.optionLabel}>Foto</Text>
             </Pressable>
           </View>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="user" size={18.5} />
+              <IconFeather name="user" size={20} />
               <Text style={styles.optionLabel}>Nome e cognome</Text>
             </Pressable>
           </View>
@@ -76,19 +76,19 @@ const UserProfile = () => {
         <View style={styles.allOptions}>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="compass" size={18.5} />
+              <IconFeather name="compass" size={20} />
               <Text style={styles.optionLabel}>Istruzioni</Text>
             </Pressable>
           </View>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="help-circle" size={18.5} />
+              <IconFeather name="help-circle" size={20} />
               <Text style={styles.optionLabel}>FAQ</Text>
             </Pressable>
           </View>
           <View>
             <Pressable style={styles.option}>
-              <IconFeather name="life-buoy" size={18.5} />
+              <IconFeather name="life-buoy" size={20} />
               <Text style={styles.optionLabel}>Supporto</Text>
             </Pressable>
           </View>
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
   option: {
     flexDirection: "row",
     alignItems: "center",
-    height: 60,
+    height: 70,
     padding: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#FCF6FB",
     fontFamily: "Switzer-Variable",
   },
   optionLabel: {
-    fontSize: 16,
+    fontSize: 18,
     marginLeft: 15,
   },
   picker: {
