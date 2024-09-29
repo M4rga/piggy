@@ -98,7 +98,7 @@ const Loan = () => {
             onValueChange={toggleSwitch}
             value={isEnabled}
           />
-          <Text style={styles.switchText}>Ricorrente</Text>
+          <Text style={styles.switchText}>Ricordamelo</Text>
         </View>
         <View style={styles.pickerContainer}>
           {isEnabled && (

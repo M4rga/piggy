@@ -80,16 +80,35 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
           openAnimationDuration: 200,
           closeAnimationDuration: 200,
         }}
-        onOpen={() => setIsOpen(true)}
+        onOpen={() => {
+          setTimeout(() => {
+            setIsOpen(true);
+          }, 200);
+        }}
         onClose={() => setIsOpen(false)}
       >
         <MenuTrigger>
-          <Pressable style={stylestwo(color).dropdownButton} onPress={openMenu}>
-            <Text style={styles.buttonText}>{currentValue}</Text>
-            <IconFeather
-              style={styles.arrow}
-              name={isOpen ? "chevron-up" : "chevron-down"}
-            />
+          <Pressable
+            style={stylestwo(color, type).dropdownButton}
+            onPress={openMenu}
+          >
+            {type === "settings" ? (
+              <>
+                <IconFeather
+                  style={styles.arrowLeft}
+                  name={isOpen ? "chevron-up" : "chevron-down"}
+                />
+                <Text style={styles.buttonText}>{currentValue}</Text>
+              </>
+            ) : (
+              <>
+                <Text style={styles.buttonText}>{currentValue}</Text>
+                <IconFeather
+                  style={styles.arrow}
+                  name={isOpen ? "chevron-up" : "chevron-down"}
+                />
+              </>
+            )}
           </Pressable>
         </MenuTrigger>
 
@@ -142,6 +161,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#A0A0A0",
   },
+  arrowLeft: {
+    marginRight: 20,
+    marginLeft: -15,
+    fontSize: 16,
+    color: "#A0A0A0",
+  },
   menuItemText: {
     fontSize: 16,
     color: "#333",
@@ -158,7 +183,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const stylestwo = (color: string) =>
+const stylestwo = (color: string, type: string) =>
   StyleSheet.create({
     dropdownButton: {
       backgroundColor: color,
@@ -167,7 +192,7 @@ const stylestwo = (color: string) =>
       borderRadius: 12,
       flexDirection: "row",
       alignItems: "center",
-      justifyContent: "space-between",
+      justifyContent: type === "settings" ? "flex-start" : "space-between",
     },
   });
 
