@@ -71,6 +71,13 @@ const Layout = () => {
                 onPress={() => router.back()}
               />
             ),
+            headerRight: () => (
+              <IconFeather
+                name={"check"}
+                size={26}
+                onPress={() => router.back()}
+              />
+            ),
           }}
         />
 

@@ -58,16 +58,8 @@ const AddCard = () => {
             isSelected={selectedIcon === "smile-o"}
             onSelect={() => setSelectedIcon("smile-o")}
           />
+          <SelectIcon addButton onSelect={() => alert("Ciao")} />
         </View>
-        <TouchableOpacity>
-          <View style={styles.plusIcon}>
-            <IconFontAwesome
-              style={{ color: "#D3D3D3" }}
-              name="plus"
-              size={25}
-            />
-          </View>
-        </TouchableOpacity>
       </View>
       <View style={styles.colorV}>
         <Text style={{ color: "#A0A0A0" }}>Colore</Text>

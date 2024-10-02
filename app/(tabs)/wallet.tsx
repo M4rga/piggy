@@ -169,12 +169,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 80,
-    height: "90%",
+    height: "89.5%",
     borderRadius: 20,
     marginHorizontal: 5,
   },
   deleteButtonText: {
-    fontWeight: "bold",
+    fontFamily: "Switzer-Variable",
   },
 });
 
