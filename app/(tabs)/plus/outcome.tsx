@@ -3,9 +3,16 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Pressable,
+  Animated,
   Switch,
   Image,
 } from "react-native";
+import {
+  usePressableEffect,
+  pressableStyles,
+  applyPressableStyle,
+} from "../../../components/pressableEffects";
 import React, { useState } from "react";
 import { Text, TextInput, Button } from "../../../components/customComponents";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -106,35 +113,41 @@ const Outcome = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.scrollContainer}
         >
-          {categories.map((category, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.button,
-                selectedCategory === category && styles.selectedButton,
-              ]}
-              onPress={() => setSelectedCategory(category)}
-            >
-              <View style={styles.iconTextContainer}>
-                <IconFontAwesome
-                  name={categoryIcons[category]}
-                  size={20}
-                  style={styles.icon}
-                  color={selectedCategory === category ? "#F773ED" : "#555"}
-                />
-                <Text
+          {categories.map((category, index) => {
+            const { pressableProps, animatedStyle } = usePressableEffect();
+            return (
+              <Pressable
+                key={index}
+                {...pressableProps}
+                onPress={() => setSelectedCategory(category)}
+              >
+                <Animated.View
                   style={[
-                    styles.nonSelectedText,
-                    ...(selectedCategory === category
-                      ? [styles.selectedText]
-                      : []),
+                    applyPressableStyle(styles.button),
+                    selectedCategory === category && styles.selectedButton,
+                    animatedStyle,
                   ]}
                 >
-                  {category}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
+                  <View style={styles.iconTextContainer}>
+                    <IconFontAwesome
+                      name={categoryIcons[category]}
+                      size={20}
+                      style={styles.icon}
+                      color={selectedCategory === category ? "#F773ED" : "#555"}
+                    />
+                    <Text
+                      style={StyleSheet.flatten([
+                        styles.nonSelectedText,
+                        selectedCategory === category && styles.selectedText,
+                      ])}
+                    >
+                      {category}
+                    </Text>
+                  </View>
+                </Animated.View>
+              </Pressable>
+            );
+          })}
         </ScrollView>
       </View>
 
@@ -188,6 +201,7 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 20,
     fontSize: 15,
+    marginTop: 20,
   },
   selectionText: {
     marginLeft: 20,
@@ -240,7 +254,6 @@ const styles = StyleSheet.create({
   selectionContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingTop: 10,
   },
   button: {
     borderColor: "#A0A0A0",
@@ -251,7 +264,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     width: "auto",
-    marginHorizontal: 5,
+    marginRight: 10,
   },
   selectedButton: {
     borderColor: "#F773ED",
@@ -273,8 +286,9 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   scrollContainer: {
+    padding: 10,
+    paddingLeft: 20,
     flexDirection: "row",
-    paddingHorizontal: 15,
   },
   iconTextContainer: {
     flexDirection: "row",
@@ -300,7 +314,7 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 20,
+    margin: 25,
   },
   switchText: {
     marginLeft: 15,
@@ -308,12 +322,13 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   pickerContainer: {
-    marginRight: 10,
+    marginRight: 20,
   },
   footerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 20,
   },
   scrollView: {
     paddingHorizontal: 10,

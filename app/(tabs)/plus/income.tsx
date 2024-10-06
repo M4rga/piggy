@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 20,
     fontSize: 15,
+    marginTop: 20,
   },
   selectionText: {
     marginLeft: 20,
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 20,
+    margin: 25,
   },
   switchText: {
     marginLeft: 15,
@@ -285,12 +286,13 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   pickerContainer: {
-    marginRight: 10,
+    marginRight: 20,
   },
   footerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 20,
   },
 });
 
