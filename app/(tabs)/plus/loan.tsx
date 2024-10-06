@@ -89,7 +89,7 @@ const Loan = () => {
       {/* Note section */}
       <TextInputDate type="note" icon="message-square" />
 
-      <View>
+      <View style={styles.footerContainer}>
         <View style={styles.switchContainer}>
           <Switch
             trackColor={{ false: "black", true: "blue" }}
@@ -126,8 +126,9 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    margin: 20,
+    marginLeft: 20,
     fontSize: 15,
+    marginTop: 50,
   },
 
   quantity: {
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 10,
     shadowColor: "#F773ED45",
     shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 10,
   },
@@ -234,6 +235,13 @@ const styles = StyleSheet.create({
 
   buttons: {
     flex: 1,
+  },
+
+  footerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
   },
 });
 
