@@ -153,22 +153,22 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#A0A0A0",
   },
   arrow: {
     marginLeft: 8,
-    fontSize: 16,
+    fontSize: 15,
     color: "#A0A0A0",
   },
   arrowLeft: {
     marginRight: 20,
     marginLeft: -15,
-    fontSize: 16,
+    fontSize: 15,
     color: "#A0A0A0",
   },
   menuItemText: {
-    fontSize: 16,
+    fontSize: 15,
     color: "#333",
   },
   optionsContainer: {
