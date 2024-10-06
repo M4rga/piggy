@@ -256,7 +256,6 @@ const styles = StyleSheet.create({
   titleLastMoves: {
     fontSize: 18,
     marginBottom: 10,
-    marginLeft: 10,
   },
   titleThisMonth: {
     fontSize: 18,
@@ -266,7 +265,7 @@ const styles = StyleSheet.create({
   InOutContainer: {
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
-    paddingLeft: 10,
+    paddingLeft: 20,
     marginBottom: 10,
     width: "100%",
     height: 115,
@@ -307,7 +306,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingLeft: 20,
     marginLeft: 20,
-    marginRight: 10,
+    marginRight: 20,
     height: 115,
     width: 140,
     alignItems: "flex-start",
@@ -364,6 +363,7 @@ const styles = StyleSheet.create({
   },
   MovesContainer: {
     padding: 10,
+    paddingHorizontal: 20,
   },
 });
 

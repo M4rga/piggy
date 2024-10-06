@@ -49,7 +49,7 @@ const Wallet = () => {
   const renderRightActions = (color: string) => {
     const textColor = getTextColor(color);
     return (
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
         <Pressable
           onPress={() => router.push("otherPages/modifyCard")}
           style={[styles.deleteButton, { backgroundColor: color }]}
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 80,
-    height: "89.5%",
+    height: "88%",
     borderRadius: 20,
     marginHorizontal: 5,
   },

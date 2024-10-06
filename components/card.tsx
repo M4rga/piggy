@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = (props) => {
         <Text
           style={{
             fontSize: 30,
-            marginTop: 75,
+            marginTop: 60,
             marginLeft: 5,
             color: props.color2,
           }}
@@ -41,15 +41,15 @@ const Card: React.FC<CardProps> = (props) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 20,
-    height: 170,
-    width: "95%",
-    marginLeft: "2.5%",
+    height: 150,
+    width: "90%",
+    marginLeft: "5%",
     padding: 15,
     flexDirection: "row",
     marginBottom: 20,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 10,
   },
