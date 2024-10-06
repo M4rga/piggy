@@ -1,9 +1,21 @@
 import { Text, TextInput, Button } from "../../../components/customComponents";
-import { View, StyleSheet, ScrollView, Pressable, Switch } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Switch,
+  Animated,
+} from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import React, { useState } from "react";
 import DropdownButton from "../../../components/dropdown";
 import TextInputDate from "../../../components/textInputDate";
+import {
+  usePressableEffect,
+  pressableStyles,
+  applyPressableStyle,
+} from "../../../components/pressableEffects";
 
 type Category = "Conto Corrente" | "Contanti" | "Pay Pal" | "Fondo Risparmio";
 
@@ -65,35 +77,41 @@ const Income = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.scrollContainer}
         >
-          {categories.map((category, index) => (
-            <Pressable
-              key={index}
-              style={[
-                styles.button,
-                selectedCategory === category && styles.selectedButton,
-              ]}
-              onPress={() => setSelectedCategory(category)}
-            >
-              <View style={styles.iconTextContainer}>
-                <IconFontAwesome
-                  name={categoryIcons[category]}
-                  size={20}
-                  style={styles.icon}
-                  color={selectedCategory === category ? "#F773ED" : "#555"}
-                />
-                <Text
+          {categories.map((category, index) => {
+            const { pressableProps, animatedStyle } = usePressableEffect();
+            return (
+              <Pressable
+                key={index}
+                {...pressableProps}
+                onPress={() => setSelectedCategory(category)}
+              >
+                <Animated.View
                   style={[
-                    styles.nonSelectedText,
-                    ...(selectedCategory === category
-                      ? [styles.selectedText]
-                      : []),
+                    applyPressableStyle(styles.button),
+                    selectedCategory === category && styles.selectedButton,
+                    animatedStyle,
                   ]}
                 >
-                  {category}
-                </Text>
-              </View>
-            </Pressable>
-          ))}
+                  <View style={styles.iconTextContainer}>
+                    <IconFontAwesome
+                      name={categoryIcons[category]}
+                      size={20}
+                      style={styles.icon}
+                      color={selectedCategory === category ? "#F773ED" : "#555"}
+                    />
+                    <Text
+                      style={StyleSheet.flatten([
+                        styles.nonSelectedText,
+                        selectedCategory === category && styles.selectedText,
+                      ])}
+                    >
+                      {category}
+                    </Text>
+                  </View>
+                </Animated.View>
+              </Pressable>
+            );
+          })}
         </ScrollView>
       </View>
 
@@ -193,7 +211,7 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "#FF69B4",
     fontSize: 30,
-    fontFamily: "Switzer-Semibold",
+    fontFamily: "Switzer-Variable",
   },
   selectionContainer: {
     flexDirection: "row",

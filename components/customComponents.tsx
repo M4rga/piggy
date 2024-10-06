@@ -38,7 +38,12 @@ interface CustomTextInputProps extends TextInputProps {
 // Definisci il componente TextInput con tipi espliciti
 const TextInput: React.FC<CustomTextInputProps> = (props) => {
   const { style, ...rest } = props;
-  return <RNTextInput style={[defaultStyle, style]} {...rest} />;
+  return (
+    <RNTextInput
+      style={[defaultStyle, { fontFamily: "Switzer-Variable" }, style]}
+      {...rest}
+    />
+  );
 };
 
 // Definisci i tipi per le proprietà del componente Button

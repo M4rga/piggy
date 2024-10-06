@@ -1,13 +1,14 @@
-import { Text, TextInput } from "../../components/customComponents";
+import { Text, TextInput, Button } from "../../components/customComponents";
 import { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
-import { StyleSheet, ScrollView } from "react-native";
-import IconFeather from "react-native-vector-icons/Feather";
+import { StyleSheet, ScrollView, Platform } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import SelectIcon from "../../components/selectIcon";
 import ColorPoint from "../../components/colorPoint";
+import TextInputDate from "../../components/textInputDate";
+import BalanceTextInput from "../../components/balanceTextInput";
 
-const modifyCard = () => {
+const AddCard = () => {
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
@@ -24,19 +25,7 @@ const modifyCard = () => {
                 flexDirection: "row",
               }}
             >
-              <View>
-                <TextInput style={{ fontSize: 30 }}>0</TextInput>
-              </View>
-              <View style={{ flexDirection: "row", paddingBottom: 4.6 }}>
-                <Text style={{ fontSize: 17, textAlignVertical: "bottom" }}>
-                  ,
-                </Text>
-                <TextInput
-                  style={{ fontSize: 17, textAlignVertical: "bottom" }}
-                >
-                  0
-                </TextInput>
-              </View>
+              <BalanceTextInput initialNumber={0} size={25} />
             </View>
           </View>
           <IconFontAwesome
@@ -69,16 +58,8 @@ const modifyCard = () => {
             isSelected={selectedIcon === "smile-o"}
             onSelect={() => setSelectedIcon("smile-o")}
           />
+          <SelectIcon addButton onSelect={() => alert("Ciao")} />
         </View>
-        <TouchableOpacity>
-          <View style={styles.plusIcon}>
-            <IconFontAwesome
-              style={{ color: "#D3D3D3" }}
-              name="plus"
-              size={25}
-            />
-          </View>
-        </TouchableOpacity>
       </View>
       <View style={styles.colorV}>
         <Text style={{ color: "#A0A0A0" }}>Colore</Text>
@@ -141,31 +122,11 @@ const modifyCard = () => {
         </View>
       </View>
 
-      <View style={styles.colorV}>
-        <View style={{ flexDirection: "row", height: 80 }}>
-          <IconFeather
-            name="message-square"
-            style={{ marginTop: 11.5 }}
-            size={30}
-          />
-          <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#A0A0A0", margin: 0 }}>Note</Text>
-            <TextInput
-              style={{ marginTop: 6 }}
-              placeholder="Inserisci la tua nota qua"
-              keyboardType="default"
-            />
-          </View>
-        </View>
-      </View>
+      {/* Note section */}
+      <TextInputDate type="note" icon="message-square" />
 
       <View style={styles.VButton}>
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => alert("Button pressed")}
-        >
-          <Text style={styles.buttonText}>Salva</Text>
-        </TouchableOpacity>
+        <Button title="Salva" />
       </View>
     </ScrollView>
   );
@@ -253,19 +214,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
-
-  saveButton: {
-    backgroundColor: "#F773ED",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 100,
-  },
-
-  buttonText: {
-    color: "black",
-    fontFamily: "Switzer-Semibold",
-    fontSize: 16,
-  },
 });
 
-export default modifyCard;
+export default AddCard;
