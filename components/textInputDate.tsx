@@ -8,9 +8,15 @@ interface TextInputDateProps {
   type: string;
   icon?: string;
   title?: string;
+  color?: string;
 }
 
-const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
+const TextInputDate: React.FC<TextInputDateProps> = ({
+  type,
+  icon,
+  title,
+  color = "white",
+}) => {
   const [date, setDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
 
@@ -35,7 +41,7 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
     <View>
       {type === "note" ? (
         // Note section
-        <View style={styles.sessions}>
+        <View style={[styles.sessions, { backgroundColor: color }]}>
           <View style={{ flexDirection: "row", height: 80 }}>
             <IconFeather
               name={selectedIcon}
@@ -58,7 +64,7 @@ const TextInputDate: React.FC<TextInputDateProps> = ({ type, icon, title }) => {
         </View>
       ) : (
         // Date section
-        <View style={styles.sessions}>
+        <View style={[styles.sessions, { backgroundColor: color }]}>
           <View style={{ flexDirection: "row", height: 80 }}>
             <IconFeather
               name={selectedIcon}

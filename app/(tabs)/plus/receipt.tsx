@@ -1,4 +1,4 @@
-import { Text } from "../../../components/customComponents";
+import { Text, Button } from "../../../components/customComponents";
 import { View, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
@@ -84,12 +84,18 @@ const Receipt = () => {
         <Image source={images.one} style={styles.imageStyle} />
       </View>
       <View style={styles.viewStyle}>
-        <TouchableOpacity style={styles.button} onPress={openCamera}>
-          <Text style={styles.buttonText}>Scatta foto</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={openGallery}>
-          <Text style={styles.buttonText}>Importa</Text>
-        </TouchableOpacity>
+        <Button
+          title="Scatta foto"
+          style={styles.button}
+          textStyle={styles.buttonText}
+          onPress={openCamera}
+        />
+        <Button
+          title="Importa"
+          style={styles.button}
+          textStyle={styles.buttonText}
+          onPress={openGallery}
+        />
       </View>
     </View>
   );
@@ -102,10 +108,9 @@ const styles = StyleSheet.create({
     paddingTop: "10%",
   },
   textStyle: {
-    paddingHorizontal: "3%",
+    paddingHorizontal: 20,
     fontFamily: "Switzer-Semibold",
     fontSize: 27,
-    textAlign: "center",
   },
   imageViewStyle: {
     alignItems: "center",

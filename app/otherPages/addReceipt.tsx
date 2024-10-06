@@ -61,10 +61,10 @@ const AddReceipt = () => {
         </View>
 
         {/* Date section */}
-        <TextInputDate type="date" icon="calendar" />
+        <TextInputDate type="date" icon="calendar" color="#FCF6FB" />
 
         {/* Note section */}
-        <TextInputDate type="note" icon="message-square" />
+        <TextInputDate type="note" icon="message-square" color="#FCF6FB" />
 
         {/* Save button */}
         <View style={styles.saveView}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
-    padding: "6%",
+    // padding: "6%",
   },
   categoriaText: {
     marginLeft: 20,
